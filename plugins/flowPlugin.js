@@ -82,18 +82,7 @@
 
     CCJS.addPlugin('About', function(){
         this.showPopupElement([
-            '<style style="display:none">',
-                '[data-content] {',
-                    'align-content: flex-start;',
-                    'align-items: flex-start;',
-                    'justify-content: flex-start;',
-                '}',
-                '[data-content] [data-info] {',
-                    'font-weight:500;',
-                    'width: 100%',
-                '}',
-            '</style>',
-            '<div data-content="">',
+            '<div data-content="" class="column">',
                 '<p data-info="">',
                 'Info:<br>',
                     '1. outline is used on selected element in order to highlight it.',
