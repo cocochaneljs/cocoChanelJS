@@ -11,7 +11,7 @@ body {
 
 .flex {
     display: -webkit-flex;
-       display: flex;
+    display: flex;
 }
 
 .space-around {
@@ -164,7 +164,7 @@ body {
 }
 .popup {
     z-index: 100;
-    overflow: scroll;
+    overflow: visible;
     position: fixed;
     top: 30px;
     left: 20%;
@@ -179,16 +179,16 @@ body {
     content:'CLOSE POPUP X';
     text-align: right;
     padding: 10px;
+    box-sizing: border-box;
     position: fixed;
     z-index: -1;
     top: 0;
-    right: 0;
-    bottom: 0;
+    width: 100%;
+    height: 100%;
     left: 0;
     background: rgba(10,0,4,0.4);
     cursor: default;
     border:1px solid #AD0055;
-    will-change: top,left,bottom,right,position;
 }
 
 .popup * {
@@ -196,4 +196,28 @@ body {
     min-width: 20%;
     margin: auto auto;
     border: 1px solid #333333;
+}
+
+.popup >div[data-content] {
+    overflow: hidden;
+    overflow-y: scroll;
+    width: 100%;
+    height: 100%;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.popup > div[data-button] {
+    -webkit-transition: background-color 100ms linear;
+    -moz-transition: background-color 100ms linear;
+    -o-transition: background-color 100ms linear;
+    -ms-transition: background-color 100ms linear;
+    transition: background-color 100ms linear;
+    cursor: pointer;
+}
+
+.popup > div[data-button]:hover {
+    background: #aaaaaa;
 }

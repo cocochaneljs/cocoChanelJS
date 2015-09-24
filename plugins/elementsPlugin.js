@@ -2,9 +2,14 @@
     CCJS.addPlugin('\u20de Add +',function(){
         var me = this;
         me.showPopupElement([
-            '<div data-type="div"    	>[         DIV         ]</div>',
-            '<div data-type="a"  		>[          A          ]</div>',
-            '<div data-type="p"  		>[          P          ]</div>',
+            '<div data-content="">',
+            '<div data-button="" data-type="div">[DIV]</div>',
+            '<div data-button="" data-type="a">[A]</div>',
+            '<div data-button="" data-type="p">[P]</div>',
+            '<div data-button="" data-type="link">[Link]</div>',
+            '<div data-button="" data-type="b">[B]</div>',
+            '<div data-button="" data-type="span">[SPAN]</div>',
+            '</div'
         ].join(''),function(e){
             if (e.target.getAttribute('data-type'))
                 this.addElement(e.target.getAttribute('data-type'));
