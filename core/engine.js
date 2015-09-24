@@ -31,34 +31,20 @@ CocoChanelJS.prototype.initialize = function() {
     this.createPopupElement();
     this.implementDocument();
     this.refreshData();
+    this.initializeEventListeners();
 
-    this.main_elementSelector.addEventListener('click', function() {
-        me.onElementSelected.apply(me, arguments);
-    }, false);
-    this.main_elementAttributes.addEventListener('change', function() {
-        me.onElementAttributesChanged.apply(me, arguments);
-    }, false);
-    this.main_elementExtras.addEventListener('change', function() {
-        me.onElementExtrasChanged.apply(me, arguments);
-    }, false);
+    // origin lie
+    document.origin = 'https://github.com/rokyed/cocoChanelJS.git';
 
-    window.addEventListener('keydown',function (e) {
-        if (((e.which || e.keyCode) == 116) || ((e.which || e.keyCode) == 8) ) {
-            alert('Backspace and F5 are disabled, for not loosing your data by mistake');
-            e.preventDefault();
-        }
-    }, false);
-    window.addEventListener('refresh',function (e) { e.preventDefault(); }, false);
-
-    //  @TODO event linkage for iframe not working yet
-    // this.main_preview.addEventListener('message', function() {
-    //     debugger;
-    //     me.onPreviewElementClicked.apply(me, arguments);
-    // }, false);
 };
 
 CocoChanelJS.prototype.onPreviewElementClicked = function(e) {
-    debugger;
+    this.setCurrentSelectedElement(e[2],e[1]);
+    this.softRefreshData();
+};
+CocoChanelJS.prototype.onPreviewElementHover = function(e) {
+    this.setCurrentSelectedElement(e[2],e[1]);
+    this.softRefreshData();
 };
 
 CocoChanelJS.prototype.onElementSelected = function(e) {
@@ -337,6 +323,39 @@ CocoChanelJS.prototype.indexAllItems = function() {
     }
 };
 
+CocoChanelJS.prototype.initializeEventListeners = function() {
+    var me = this;
+    this.main_elementSelector.addEventListener('click', function() {
+        me.onElementSelected.apply(me, arguments);
+    }, false);
+
+    this.main_elementAttributes.addEventListener('change', function() {
+        me.onElementAttributesChanged.apply(me, arguments);
+    }, false);
+
+    this.main_elementExtras.addEventListener('change', function() {
+        me.onElementExtrasChanged.apply(me, arguments);
+    }, false);
+
+    window.addEventListener('keydown',function (e) {
+        if (['input','textarea'].indexOf(e.target.nodeName.toLowerCase())== -1)
+            if (((e.which || e.keyCode) == 116) || ((e.which || e.keyCode) == 8) ) {
+                alert('Backspace and F5 are disabled, for not loosing your data by mistake');
+                e.preventDefault();
+            }
+    }, false);
+
+    //  @TODO event linkage for iframe not working yet
+    window.addEventListener('message', function(evt) {
+        var data = JSON.parse(evt.data);
+
+        if(data[0] == "click")
+            me.onPreviewElementClicked.apply(me, [data]);
+        if(data[0] == "hover")
+            me.onPreviewElementHover.apply(me, [data]);
+    }, false);
+};
+
 //  @TODO event linkage for iframe not working yet
 CocoChanelJS.prototype.eventListenerInjector = function () {
     if (this.root_document.querySelector('script['+this.untoucheableNodes+']'))
@@ -347,15 +366,19 @@ CocoChanelJS.prototype.eventListenerInjector = function () {
     script.setAttribute(this.untoucheableNodes,'true');
     script.innerHTML = [
         '(function() {',
+            '/*origin lie*/',
+            'document.origin = "https://github.com/rokyed/cocoChanelJS.git";',
             'document.addEventListener("click",function(e){',
-                'window.top.postMessage(JSON.stringify(["click",e.target.nodeName,e.target.getAttribute("',
+                'top.postMessage(JSON.stringify(["click",e.target.nodeName,e.target.getAttribute("',
                 this.uniqueIdAttribute,
                 '")]),"*");',
+                'console.log("click");',
             '});',
-            'document.addEventListener("hover",function(){',
-                'window.top.postMessage(JSON.stringify(["hover",e.target.nodeName,e.target.getAttribute("',
+            'document.addEventListener("hover",function(e){',
+                'top.postMessage(JSON.stringify(["hover",e.target.nodeName,e.target.getAttribute("',
                 this.uniqueIdAttribute,
                 '")]),"*");',
+                'console.log("hover");',
             '});',
         '})();'
     ].join('');

@@ -59,7 +59,7 @@ body {
 }
 
 .fastPane {
-    overflow-y: scroll;
+    overflow-y: auto;
     width:100px !important;
 }
 .optionsPane {
@@ -67,7 +67,7 @@ body {
     min-height: 22px;
     width: 100%;
     border-bottom: 1px solid #503050;
-    overflow-x:scroll;
+    overflow-x:auto;
     overflow-y: hidden;
     transition: all 100ms;
 }
@@ -95,13 +95,11 @@ body {
 }
 
 .propertiesPane {
-    width: 100px;
+    width: 200px;
     border-left: 1px solid #BADA55;
     border-right: 1px solid #BADA55;
 }
-.propertiesPane:hover {
-    width: 300px;
-}
+
 
 .main_scenePreview *:hover:after {
     content:'',
@@ -116,7 +114,7 @@ body {
 .main_attributesSection,
 .main_extrasSection {
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     border-top: 1px solid #BADA55;
     border-bottom: 1px solid #503050;
 }
@@ -226,7 +224,7 @@ body {
 
 .popup >div[data-content] {
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     width: 100%;
     height: 100%;
     display: -webkit-flex;
