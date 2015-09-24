@@ -1,5 +1,5 @@
 ( function() {
-function CocoChanelJS(previewElement, elementSelectorElement, elementAttributesElement, elementExtrasEelement, optionPane) {
+function CocoChanelJS(previewElement, elementSelectorElement, elementAttributesElement, elementExtrasEelement, optionPane,fastPane) {
     this.uniqueIdAttribute = 'data-ccjs-element';
     this.nonRemovableNodes = ['HTML','HEAD','BODY','STYLE'];
     this.delayReload = 300;
@@ -8,6 +8,7 @@ function CocoChanelJS(previewElement, elementSelectorElement, elementAttributesE
     this.main_elementAttributes = elementAttributesElement;
     this.main_elementExtras = elementExtrasEelement;
     this.main_options = optionPane;
+    this.main_fastOptions = fastPane;
     this.main_popup = {};
     this.elementCounter = 0;
     this.root_document = null;
@@ -45,7 +46,6 @@ CocoChanelJS.prototype.onElementSelected = function(e) {
     var eTarget = e.target;
     this.setCurrentSelectedElement(eTarget.getAttribute('data-selector'), eTarget.getAttribute('data-type'));
     this.softRefreshData();
-    console.log(['selected:',eTarget,this.currentSelectedElementNode]);
 };
 
 CocoChanelJS.prototype.onElementAttributesChanged = function() {
@@ -61,6 +61,7 @@ CocoChanelJS.prototype.onElementAttributesChanged = function() {
     this.softRefreshData();
 };
 CocoChanelJS.prototype.onElementExtrasChanged = function() {
+    //@TODO
     console.log('extra change!!');
 };
 CocoChanelJS.prototype.setCurrentSelectedElement = function(dataSelector, dataType, id) {
@@ -159,6 +160,7 @@ CocoChanelJS.prototype.listAllAttributes = function() {
 };
 
 CocoChanelJS.prototype.listAllExtras = function() {
+    //@TODO
     var extras = "";
 
     if (this.currentSelectedElementNode) {
@@ -204,7 +206,7 @@ CocoChanelJS.prototype.selectSpecificElement = function(attrib, selector) {
 };
 
 // creates plugins that give access to the core, so we could add stuff to the core without modifying the whole core.
-CocoChanelJS.prototype.addPlugin = function(title, action) {
+CocoChanelJS.prototype.addPlugin = function(title, action, fastPane) {
     var me = this,
         plugin = document.createElement('div');
 
@@ -212,7 +214,11 @@ CocoChanelJS.prototype.addPlugin = function(title, action) {
     plugin.addEventListener('click', function() {
         action.apply(me, arguments);
     }, false);
-    this.main_options.appendChild(plugin);
+    if (fastPane)
+        this.main_fastOptions.appendChild(plugin);
+    else
+        this.main_options.appendChild(plugin);
+
 };
 
 CocoChanelJS.prototype.showPreview = function() {
@@ -237,6 +243,7 @@ CocoChanelJS.prototype.refreshData = function() {
 };
 
 CocoChanelJS.prototype.softRefreshData =function() {
+    this.indexAllItems();
     this.listAllAttributes();
     this.listAllElements();
     this.listAllExtras();
@@ -270,7 +277,6 @@ CocoChanelJS.prototype.showPopupElement = function(data,callback,scope, personal
 };
 
 CocoChanelJS.prototype.onPopupElementTap = function(e) {
-    console.log(e.target);
     if (!this.main_popup.personalizedClose)
         this.main_popup.element.classList.add('hidden');
 };
@@ -286,9 +292,13 @@ CocoChanelJS.prototype.indexAllItems = function() {
                 this.elementCounter ++;
                 elements[i].setAttribute(this.uniqueIdAttribute, this.elementCounter);
             }
+            if (! elements[i].getAttribute('class'))
+                elements[i].setAttribute('class', '');
+
+            if (! elements[i].getAttribute('id'))
+                elements[i].setAttribute('id', '');
         }
     }
-
 };
 
 window['CCJS'] = new CocoChanelJS(
@@ -296,6 +306,7 @@ window['CCJS'] = new CocoChanelJS(
     document.querySelector('.main_sceneSelector'),
     document.querySelector('.main_attributesSection'),
     document.querySelector('.main_extrasSection'),
-    document.querySelector('.optionsPane')
+    document.querySelector('.optionsPane'),
+    document.querySelector('.fastPane')
 );
 })();

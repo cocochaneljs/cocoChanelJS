@@ -58,39 +58,48 @@ body {
     border: 1px solid #503050;
 }
 
+.fastPane {
+    overflow-y: scroll;
+    width:100px !important;
+}
 .optionsPane {
-    max-height: 20px;
-    min-height: 20px;
+    max-height: 22px;
+    min-height: 22px;
+    width: 100%;
     border-bottom: 1px solid #503050;
     overflow-x:scroll;
     overflow-y: hidden;
-    transition: all 200ms;
+    transition: all 100ms;
 }
 
 .optionsPane:hover {
-    max-height: 300px;
-    min-height: 20px;
+    max-height: 500px;
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
 }
 
-.optionsPane > div {
-    border: 1px solid #503050;
+.optionsPane > div,
+.fastPane >div {
+    border: 2px solid #503050;
     border-bottom-color: #BADA55;
     padding: 0 3px;
     cursor: pointer;
-    min-width: 100px;
-    max-height: 20px;
-    min-height: 20px;
+    min-width: 80px;
+    max-height: 18px;
+    min-height: 18px;
+    line-height: 18px;
     text-align: center;
 }
-.optionsPane > div:hover {
+.optionsPane > div:hover,
+.fastPane >div:hover {
     background: #aaaaaa;
 }
 
 .propertiesPane {
     width: 200px;
     border-left: 1px solid #BADA55;
+    border-right: 1px solid #BADA55;
+
 }
 .main_sceneSelector,
 .main_attributesSection,

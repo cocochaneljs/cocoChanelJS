@@ -10,7 +10,7 @@
                 this.addElement(e.target.getAttribute('data-type'));
         }, me);
 
-    });
+    }, true);
     CCJS.addPlugin('\u20de Delete',function(){
         this.removeElement();
     });
@@ -24,7 +24,7 @@
 
         this.currentSelectedElementNode.parentNode.insertBefore(this.currentSelectedElementNode, this.currentSelectedElementNode.previousSibling);
         this.softRefreshData();
-    });
+    }, true);
 
     CCJS.addPlugin('\u20de Order \uffec',function(){
         if (!this.currentSelectedElementNode)
@@ -35,14 +35,14 @@
 
         this.currentSelectedElementNode.parentNode.insertBefore(this.currentSelectedElementNode.nextSibling, this.currentSelectedElementNode);
         this.softRefreshData();
-    });
+    }, true);
     CCJS.addPlugin('\u20de Move \uffea',function(){
         if (!this.currentSelectedElementNode || this.nonRemovableNodes.indexOf(this.currentSelectedElementNode.parentNode) > -1)
             return;
 
         this.currentSelectedElementNode.parentNode.parentNode.appendChild(this.currentSelectedElementNode);
         this.softRefreshData();
-    });
+    }, true);
     CCJS.addPlugin('\u20de Move \uffec',function(){
         var elementsFromParent = this.currentSelectedElementNode.parentNode.children,
             dataShow =[],
@@ -74,7 +74,7 @@
                 this.softRefreshData();
             }
         }, me);
-    });
+    }, true);
     CCJS.addPlugin('Add Attribute',function(){
         var attribute = prompt('Attribute:\n(style,class,id,type,...)',''),
             value = prompt('Value:','');
@@ -84,6 +84,6 @@
 
         this.currentSelectedElementNode.setAttribute(attribute, value);
         this.softRefreshData();
-    });
+    }, true);
 
 })();
