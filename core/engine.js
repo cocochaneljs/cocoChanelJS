@@ -149,10 +149,10 @@ CocoChanelJS.prototype.listAllAttributes = function() {
             this.currentSelectedElementNode.attributes[i].name,
             '" type="text" value="',
                 this.currentSelectedElementNode.attributes[i].value,
-            '">'].join('');
+            '"></div>'].join('');
         }
     }else {
-        attributes = "<div class='alert'>!! NOTHING SELECTED</div";
+        attributes = "<div class='alert'>!! NOTHING SELECTED</div>";
     }
 
     this.main_elementAttributes.innerHTML = attributes;
@@ -164,7 +164,7 @@ CocoChanelJS.prototype.listAllExtras = function() {
     if (this.currentSelectedElementNode) {
 
     }else {
-        extras = "<div class='alert'>!! NOTHING SELECTED</div";
+        extras = "<div class='alert'>!! NOTHING SELECTED</div>";
     }
 
 
