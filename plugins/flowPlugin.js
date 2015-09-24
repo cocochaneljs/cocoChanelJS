@@ -1,7 +1,4 @@
 (function() {
-    //refreshes app when pressed
-
-
     CCJS.addPlugin('File',function(){
         var me = this,
             style = this.root_document.querySelector('style');
@@ -82,38 +79,35 @@
 
         }, false);
     },false);
+
+    CCJS.addPlugin('About', function(){
+        this.showPopupElement([
+            '<style style="display:none">',
+                '[data-content] {',
+                    'align-content: flex-start;',
+                    'align-items: flex-start;',
+                    'justify-content: flex-start;',
+                '}',
+                '[data-content] [data-info] {',
+                    'background:#000;',
+                    'font-weight:500;',
+                    'width: 100%',
+                '}',
+            '</style>',
+            '<div data-content="">',
+                '<p data-info="">',
+                'Info:<br>',
+                    '1. outline is used on selected element in order to highlight it.',
+                '</p>',
+                '<p data-info="">',
+                'Authors:<br><br>',
+                    window['CCJS_AUTHORS'].join('<br>'),
+                '</p>',
+            '</div>'
+        ].join(''),function(e){});
+    });
+
     CCJS.addPlugin('Refresh \u21bb',function(){
         this.refreshData();
-    }, true);
-
-    CCJS.addPlugin('Style', function() {
-        var me = this,
-            style = this.pluginVitalData.flowPlugin_style;
-
-        me.showPopupElement([
-            '<textarea wrap="off" style="width:100%;height:100%">',
-            style ? style.innerText : '',
-            '</textarea>'
-        ].join(''),function(e){
-            if (e.target.nodeName == "TEXTAREA")
-                return;
-
-
-            if (!style)
-                style = this.root_document.createElement('style');
-
-            var css = this.main_popup.element.querySelector('textarea').value;
-            css = css.replace(/<br.*?>/g, '');
-            style.innerHTML = css;
-            this.pluginVitalData.flowPlugin_style = style;
-            this.root_head.appendChild(style);
-
-            this.softRefreshData();
-            this.main_popup.element.classList.add('hidden');
-
-
-
-        }, false, true);
-
     }, true);
 })();

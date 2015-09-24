@@ -1,22 +1,4 @@
 (function() {
-    window['STARTER_KIT_TEMPLATES'] = {
-        blog: [
-            '<head>',
-                '<style>',
-                    'body {',
-                        'background-color: #bada55;',
-                    '}',
-                '</style>',
-            '</head>',
-            '<body>',
-            '</body>'
-        ],
-        shop: [
-            '<html>',
-            ''
-        ]
-    };
-
     CCJS.addPlugin('\u20de Add +',function(){
         var me = this,
             data = [];

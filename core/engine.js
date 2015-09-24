@@ -5,6 +5,7 @@ function CocoChanelJS(previewElement, elementSelectorElement, elementAttributesE
     this.untoucheableNodes = 'data-not-touch';
     this.hilighter = {
         selectedElementAttribute: 'data-ccjs-selected',
+        selectedElementStyle: 'data-ccjs-hilighter',
         selectedStyleElement: null,
     };
     this.delayReload = 300;
@@ -417,14 +418,18 @@ CocoChanelJS.prototype.drawSelectedElementHilighter = function() {
     if (this.currentSelectedElementNode)
         this.currentSelectedElementNode.setAttribute(this.hilighter.selectedElementAttribute,'true');
 
+    if (! this.hilighter.selectedStyleElement)
+        this.hilighter.selectedStyleElement = this.root_document.querySelector('['+this.hilighter.selectedElementStyle+']');
+
     if (! this.hilighter.selectedStyleElement) {
         var hilit = this.root_document.createElement('style');
 
         this.hilighter.selectedStyleElement = hilit;
         hilit.setAttribute(this.untoucheableNodes, 'true');
+        hilit.setAttribute(this.hilighter.selectedElementStyle, 'true');
         hilit.innerHTML = [
             '['+ this.hilighter.selectedElementAttribute+']{',
-                'outline: 1px dashed #bada55',
+                'outline: 1px dashed #bada55 !important;',
             '}'
         ].join('');
 

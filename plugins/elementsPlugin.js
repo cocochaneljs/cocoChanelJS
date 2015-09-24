@@ -1,5 +1,4 @@
 (function() {
-    
 
     CCJS.addPlugin('\u20de Add +',function(){
         var me = this;
