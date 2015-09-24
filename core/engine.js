@@ -3,6 +3,10 @@ function CocoChanelJS(previewElement, elementSelectorElement, elementAttributesE
     this.uniqueIdAttribute = 'data-ccjs-element';
     this.nonRemovableNodes = ['HTML','HEAD','BODY','STYLE'];
     this.untoucheableNodes = 'data-not-touch';
+    this.hilighter = {
+        selectedElementAttribute: 'data-ccjs-selected',
+        selectedStyleElement: null,
+    };
     this.delayReload = 300;
     this.main_preview = previewElement;
     this.main_elementSelector =elementSelectorElement;
@@ -84,8 +88,8 @@ CocoChanelJS.prototype.setCurrentSelectedElement = function(dataSelector, dataTy
     } else if(this.currentSelectedElement.dataType){
         this.currentSelectedElementNode = this.selectSpecificElement(false, dataType);
         console.log('selected with dataType');
-
     }
+    this.drawSelectedElementHilighter();
 }
 
 CocoChanelJS.prototype.implementDocument = function(skipDocumentCreation) {
@@ -343,11 +347,21 @@ CocoChanelJS.prototype.initializeEventListeners = function() {
     }, false);
 
     window.addEventListener('keydown',function (e) {
-        if (['input','textarea'].indexOf(e.target.nodeName.toLowerCase())== -1)
+        if (['input','textarea'].indexOf(e.target.nodeName.toLowerCase())== -1){
             if (((e.which || e.keyCode) == 116) || ((e.which || e.keyCode) == 8) ) {
                 alert('Backspace and F5 are disabled, for not loosing your data by mistake');
                 e.preventDefault();
             }
+        } else {
+            var TABKEY = 9;
+            if(e.keyCode == TABKEY) {
+                e.target.value += "    ";
+                if(e.preventDefault) {
+                    e.preventDefault();
+                }
+                return false;
+            }
+        }
     }, false);
 
     //  @TODO event linkage for iframe not working yet
@@ -389,7 +403,32 @@ CocoChanelJS.prototype.eventListenerInjector = function () {
     ].join('');
 
     this.root_body.appendChild(script);
-}
+};
+
+CocoChanelJS.prototype.drawSelectedElementHilighter = function() {
+    var oldElements = this.root_document.querySelectorAll('['+this.hilighter.selectedElementAttribute+']');
+
+    for(var i = 0; i< oldElements.length;i++) {
+        oldElements[i].removeAttribute(this.hilighter.selectedElementAttribute);
+    }
+
+    this.currentSelectedElementNode.setAttribute(this.hilighter.selectedElementAttribute,'true');
+
+    if (! this.hilighter.selectedStyleElement) {
+        var hilit = this.root_document.createElement('style');
+
+        this.hilighter.selectedStyleElement = hilit;
+        hilit.setAttribute(this.untoucheableNodes, 'true');
+        hilit.innerHTML = [
+            '['+ this.hilighter.selectedElementAttribute+']{',
+                'outline: 1px dashed #bada55',
+            '}'
+        ].join('');
+
+        this.root_head.appendChild(hilit);
+    }
+};
+
 
 window['CCJS'] = new CocoChanelJS(
     document.querySelector('.main_scenePreview'),
