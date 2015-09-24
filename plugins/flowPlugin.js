@@ -7,9 +7,11 @@
             style = this.root_document.querySelector('style');
 
         me.showPopupElement([
-            '<div class="new-file">New File</div>',
-            '<div class="save-file">Save File</div>',
-            '<div>Load File: <input type="file" class="load-file"></div>'
+            '<div data-content="">',
+                '<div data-button="" class="new-file">New File</div>',
+                '<div data-button="" class="save-file">Save File</div>',
+                '<div data-button="">Load File: <input type="file" class="load-file"></div>',
+            '</div>'
         ].join(''),function(e){
 
         if (e.target.classList.contains('new-file')) {
@@ -82,7 +84,7 @@
     },false);
     CCJS.addPlugin('Refresh \u21bb',function(){
         this.refreshData();
-    });
+    }, true);
 
     CCJS.addPlugin('Style', function() {
         var me = this,
@@ -112,6 +114,5 @@
 
         }, false, true);
 
-    });
-
+    }, true);
 })();

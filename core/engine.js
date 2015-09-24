@@ -2,6 +2,7 @@
 function CocoChanelJS(previewElement, elementSelectorElement, elementAttributesElement, elementExtrasEelement, optionPane,fastPane) {
     this.uniqueIdAttribute = 'data-ccjs-element';
     this.nonRemovableNodes = ['HTML','HEAD','BODY','STYLE'];
+    this.untoucheableNodes = 'data-not-touch';
     this.delayReload = 300;
     this.main_preview = previewElement;
     this.main_elementSelector =elementSelectorElement;
@@ -32,14 +33,32 @@ CocoChanelJS.prototype.initialize = function() {
     this.refreshData();
 
     this.main_elementSelector.addEventListener('click', function() {
-        me.onElementSelected.apply(me,arguments);
+        me.onElementSelected.apply(me, arguments);
     }, false);
     this.main_elementAttributes.addEventListener('change', function() {
-        me.onElementAttributesChanged.apply(me,arguments);
+        me.onElementAttributesChanged.apply(me, arguments);
     }, false);
     this.main_elementExtras.addEventListener('change', function() {
-        me.onElementExtrasChanged.apply(me,arguments);
+        me.onElementExtrasChanged.apply(me, arguments);
     }, false);
+
+    window.addEventListener('keydown',function (e) {
+        if (((e.which || e.keyCode) == 116) || ((e.which || e.keyCode) == 8) ) {
+            alert('Backspace and F5 are disabled, for not loosing your data by mistake');
+            e.preventDefault();
+        }
+    }, false);
+    window.addEventListener('refresh',function (e) { e.preventDefault(); }, false);
+
+    //  @TODO event linkage for iframe not working yet
+    // this.main_preview.addEventListener('message', function() {
+    //     debugger;
+    //     me.onPreviewElementClicked.apply(me, arguments);
+    // }, false);
+};
+
+CocoChanelJS.prototype.onPreviewElementClicked = function(e) {
+    debugger;
 };
 
 CocoChanelJS.prototype.onElementSelected = function(e) {
@@ -86,12 +105,12 @@ CocoChanelJS.prototype.setCurrentSelectedElement = function(dataSelector, dataTy
 CocoChanelJS.prototype.implementDocument = function(skipDocumentCreation) {
     if (!skipDocumentCreation)
         this.root_document = document.implementation.createHTMLDocument();
+
     this.root_body = this.root_document.body;
     this.root_body.setAttribute('style','');
     this.root_body.setAttribute('class','');
     this.root_head = this.root_document.head;
-
-
+    this.eventListenerInjector();
 };
 
 CocoChanelJS.prototype.listAllElements = function() {
@@ -101,6 +120,9 @@ CocoChanelJS.prototype.listAllElements = function() {
     //@TODO to be refactored with a template for greater flexibility
 
     for (var i = 0, ln = elements.length; i<ln;i++) {
+        if (elements[i].getAttribute(this.untoucheableNodes))
+            continue;
+
         str += '<div data-selector="'
 
         if (elements[i].getAttribute(this.uniqueIdAttribute))
@@ -112,7 +134,7 @@ CocoChanelJS.prototype.listAllElements = function() {
         str +='">';
 
         if (elements[i].getAttribute(this.uniqueIdAttribute))
-            str +=  + elements[i].getAttribute(this.uniqueIdAttribute);
+            str += elements[i].getAttribute(this.uniqueIdAttribute);
 
         str += '<mark>'+ elements[i].id+'</mark>';
         str += '<sup>' + elements[i].nodeName + '</sup></div>';
@@ -142,8 +164,6 @@ CocoChanelJS.prototype.listAllAttributes = function() {
 
     if (this.currentSelectedElementNode) {
         for (var i = 0, ln = this.currentSelectedElementNode.attributes.length; i < ln; i++) {
-            if (this.currentSelectedElementNode.attributes[i].name === this.uniqueIdAttribute)
-                continue;
             attributes +=['<div><label>',
                 this.currentSelectedElementNode.attributes[i].name,
             ':</label><input data-attribute-data="',
@@ -174,10 +194,9 @@ CocoChanelJS.prototype.listAllExtras = function() {
 };
 
 CocoChanelJS.prototype.addElement = function(type) {
-    this.elementCounter++;
     var element = this.root_document.createElement(type);
 
-    element.setAttribute(this.uniqueIdAttribute,this.elementCounter);
+    element.setAttribute(this.uniqueIdAttribute,this.generateUniqueId());
     element.setAttribute('style','');
     element.setAttribute('class','');
 
@@ -223,11 +242,29 @@ CocoChanelJS.prototype.addPlugin = function(title, action, fastPane) {
 
 CocoChanelJS.prototype.showPreview = function() {
     var me = this;
+
     //takes all the root_document and spews it out as a string
     this.main_preview.src = '';
+
     this.___REFRESH_TIMER___ = window.setTimeout(function() {
         me.main_preview.src = 'data:text/html;charset=utf-8,' + encodeURI(me.root_document.documentElement.innerHTML);
+        me.main_preview.contentWindow.postMessage('hi',"*");
     },this.delayReload);
+};
+
+CocoChanelJS.prototype.cookieBackup = function() {
+    var data =  {
+        html: me.root_document.documentElement.innerHTML,
+        UID: this.elementCounter
+    };
+
+    document.cookie = JSON.stringify(data);
+
+};
+
+CocoChanelJS.prototype.generateUniqueId = function() {
+    var timestamp = new Date().getTime();
+    return timestamp.toString(16).toUpperCase();
 };
 
 CocoChanelJS.prototype.refreshData = function() {
@@ -288,9 +325,8 @@ CocoChanelJS.prototype.indexAllItems = function() {
 
     for (var i = 0, ln = elements.length; i<ln;i++) {
         if (this.nonRemovableNodes.indexOf(elements[i].nodeName) === -1) {
-            if (! elements[i].getAttribute(this.uniqueIdAttribute)) {
-                this.elementCounter ++;
-                elements[i].setAttribute(this.uniqueIdAttribute, this.elementCounter);
+            if (!elements[i].getAttribute(this.uniqueIdAttribute)) {
+                elements[i].setAttribute(this.uniqueIdAttribute, this.generateUniqueId());
             }
             if (! elements[i].getAttribute('class'))
                 elements[i].setAttribute('class', '');
@@ -300,6 +336,32 @@ CocoChanelJS.prototype.indexAllItems = function() {
         }
     }
 };
+
+//  @TODO event linkage for iframe not working yet
+CocoChanelJS.prototype.eventListenerInjector = function () {
+    if (this.root_document.querySelector('script['+this.untoucheableNodes+']'))
+        return;
+    var script = this.root_document.createElement('script');
+
+    script.setAttribute('type','text/javascript');
+    script.setAttribute(this.untoucheableNodes,'true');
+    script.innerHTML = [
+        '(function() {',
+            'document.addEventListener("click",function(e){',
+                'window.top.postMessage(JSON.stringify(["click",e.target.nodeName,e.target.getAttribute("',
+                this.uniqueIdAttribute,
+                '")]),"*");',
+            '});',
+            'document.addEventListener("hover",function(){',
+                'window.top.postMessage(JSON.stringify(["hover",e.target.nodeName,e.target.getAttribute("',
+                this.uniqueIdAttribute,
+                '")]),"*");',
+            '});',
+        '})();'
+    ].join('');
+
+    this.root_body.appendChild(script);
+}
 
 window['CCJS'] = new CocoChanelJS(
     document.querySelector('.main_scenePreview'),

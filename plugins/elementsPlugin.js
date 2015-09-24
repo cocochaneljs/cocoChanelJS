@@ -18,7 +18,7 @@
     }, true);
     CCJS.addPlugin('\u20de Delete',function(){
         this.removeElement();
-    });
+    }, true);
 
     CCJS.addPlugin('\u20de Order \uffea',function(){
         if (!this.currentSelectedElementNode)
@@ -81,13 +81,26 @@
         }, me);
     }, true);
     CCJS.addPlugin('Add Attribute',function(){
+        if(!this.currentSelectedElementNode)
+            return;
         var attribute = prompt('Attribute:\n(style,class,id,type,...)',''),
             value = prompt('Value:','');
 
-        if (!attribute || !value || !this.currentSelectedElementNode)
+        if (!attribute || !value)
             return;
 
         this.currentSelectedElementNode.setAttribute(attribute, value);
+        this.softRefreshData();
+    }, true);
+    CCJS.addPlugin('innerHTML', function(){
+        if(!this.currentSelectedElementNode)
+            return;
+        var iHtml = prompt('NOTE: THIS OVERRIDES ANY ELEMENT IN THE INNER HTML!!\ninnerHTML:','');
+
+        if (!iHtml)
+            return;
+
+        this.currentSelectedElementNode.innerHTML = iHtml;
         this.softRefreshData();
     }, true);
 
