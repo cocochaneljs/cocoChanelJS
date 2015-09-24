@@ -75,5 +75,15 @@
             }
         }, me);
     });
+    CCJS.addPlugin('Add Attribute',function(){
+        var attribute = prompt('Attribute:\n(style,class,id,type,...)',''),
+            value = prompt('Value:','');
+
+        if (!attribute || !value || !this.currentSelectedElementNode)
+            return;
+
+        this.currentSelectedElementNode.setAttribute(attribute, value);
+        this.softRefreshData();
+    });
 
 })();

@@ -18,9 +18,13 @@
         }
 
         if (e.target.classList.contains('save-file')) {
+                var fileNameToSaveAs = prompt('Enter file name:\n(it will go to downloads)\n(ADD .html at the end)','file.html');
+
+                if (! fileNameToSaveAs)
+                    return;
+
                 var textToWrite = '<html>'+ this.root_document.documentElement.innerHTML+'</html>';
                 var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
-                var fileNameToSaveAs = 'page.html';
 
                 var downloadLink = document.createElement("a");
                 downloadLink.download = fileNameToSaveAs;
