@@ -93,8 +93,13 @@ CocoChanelJS.prototype.implementDocument = function(skipDocumentCreation) {
         this.root_document = document.implementation.createHTMLDocument();
 
     this.root_body = this.root_document.body;
-    this.root_body.setAttribute('style','');
-    this.root_body.setAttribute('class','');
+
+    if (!this.root_body.getAttribute('style'))
+        this.root_body.setAttribute('style','');
+
+    if (!this.root_body.getAttribute('class'))
+        this.root_body.setAttribute('class','');
+
     this.root_head = this.root_document.head;
     this.eventListenerInjector();
 };
