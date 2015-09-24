@@ -88,7 +88,7 @@
 
     CCJS.addPlugin('Style', function() {
         var me = this,
-            style = this.root_document.querySelector('style');
+            style = this.pluginVitalData.flowPlugin_style;
 
         me.showPopupElement([
             '<textarea wrap="off" style="width:100%;height:100%">',
@@ -105,6 +105,7 @@
             var css = this.main_popup.element.querySelector('textarea').value;
             css = css.replace(/<br.*?>/g, '');
             style.innerHTML = css;
+            this.pluginVitalData.flowPlugin_style = style;
             this.root_head.appendChild(style);
 
             this.softRefreshData();

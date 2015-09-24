@@ -23,6 +23,7 @@ function CocoChanelJS(previewElement, elementSelectorElement, elementAttributesE
     this.currentSelectedElementNode = null;
     this.plugins = [];
     this.initialize();
+    this.pluginVitalData = {};
 }
 
 CocoChanelJS.prototype.test = function (first_argument) {
@@ -89,7 +90,6 @@ CocoChanelJS.prototype.setCurrentSelectedElement = function(dataSelector, dataTy
         this.currentSelectedElementNode = this.selectSpecificElement(false, dataType);
         console.log('selected with dataType');
     }
-    this.drawSelectedElementHilighter();
 }
 
 CocoChanelJS.prototype.implementDocument = function(skipDocumentCreation) {
@@ -265,6 +265,7 @@ CocoChanelJS.prototype.generateUniqueId = function() {
 CocoChanelJS.prototype.refreshData = function() {
     this.currentSelectedElement = null;
     this.currentSelectedElementNode = null;
+    this.drawSelectedElementHilighter();
     this.indexAllItems();
     this.listAllAttributes();
     this.listAllElements();
@@ -275,6 +276,7 @@ CocoChanelJS.prototype.refreshData = function() {
 };
 
 CocoChanelJS.prototype.softRefreshData =function() {
+    this.drawSelectedElementHilighter();
     this.indexAllItems();
     this.listAllAttributes();
     this.listAllElements();
@@ -412,7 +414,8 @@ CocoChanelJS.prototype.drawSelectedElementHilighter = function() {
         oldElements[i].removeAttribute(this.hilighter.selectedElementAttribute);
     }
 
-    this.currentSelectedElementNode.setAttribute(this.hilighter.selectedElementAttribute,'true');
+    if (this.currentSelectedElementNode)
+        this.currentSelectedElementNode.setAttribute(this.hilighter.selectedElementAttribute,'true');
 
     if (! this.hilighter.selectedStyleElement) {
         var hilit = this.root_document.createElement('style');
