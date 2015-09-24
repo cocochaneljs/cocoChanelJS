@@ -1,15 +1,18 @@
 (function() {
 
-    CCJS.addPlugin('\u20de Add +',function(){
-        var me = this;
+    CCJS.addPlugin('Add Element',function(){
+        var me = this,
+            data = "",
+            sortedCCJSElements = window['CCJS_ELEMENTS'].sort();
+
+        for (var i =0; i< sortedCCJSElements.length;i++) {
+            data += '<div data-button="" data-type="'+sortedCCJSElements[i];
+            data +='">'+sortedCCJSElements[i]+'</div>';
+        }
+
         me.showPopupElement([
             '<div data-content="">',
-            '<div data-button="" data-type="div">[DIV]</div>',
-            '<div data-button="" data-type="a">[A]</div>',
-            '<div data-button="" data-type="p">[P]</div>',
-            '<div data-button="" data-type="link">[Link]</div>',
-            '<div data-button="" data-type="b">[B]</div>',
-            '<div data-button="" data-type="span">[SPAN]</div>',
+                data,
             '</div'
         ].join(''),function(e){
             if (e.target.getAttribute('data-type'))
@@ -17,11 +20,11 @@
         }, me);
 
     }, true);
-    CCJS.addPlugin('\u20de Delete',function(){
+    CCJS.addPlugin('Delete Element',function(){
         this.removeElement();
     }, true);
 
-    CCJS.addPlugin('\u20de Order \uffea',function(){
+    CCJS.addPlugin('Move Before',function(){
         if (!this.currentSelectedElementNode)
             return;
 
@@ -32,7 +35,7 @@
         this.softRefreshData();
     }, true);
 
-    CCJS.addPlugin('\u20de Order \uffec',function(){
+    CCJS.addPlugin('Move After',function(){
         if (!this.currentSelectedElementNode)
             return;
 
@@ -42,23 +45,24 @@
         this.currentSelectedElementNode.parentNode.insertBefore(this.currentSelectedElementNode.nextSibling, this.currentSelectedElementNode);
         this.softRefreshData();
     }, true);
-    CCJS.addPlugin('\u20de Move \uffea',function(){
+    CCJS.addPlugin('Move Up In DOM',function(){
         if (!this.currentSelectedElementNode || this.nonRemovableNodes.indexOf(this.currentSelectedElementNode.parentNode) > -1)
             return;
 
         this.currentSelectedElementNode.parentNode.parentNode.appendChild(this.currentSelectedElementNode);
         this.softRefreshData();
     }, true);
-    CCJS.addPlugin('\u20de Move \uffec',function(){
+    CCJS.addPlugin('Move Down In DOM',function(){
         var elementsFromParent = this.currentSelectedElementNode.parentNode.children,
             dataShow =[],
+            elementsString ="",
             me = this;
 
         for (var i = 0; i < elementsFromParent.length; i++) {
             if (elementsFromParent[i] === this.currentSelectedElementNode || this.nonRemovableNodes.indexOf(elementsFromParent[i].nodeName) > -1)
                 continue;
-            dataShow.push([
-                '<div ',
+            elementsString += [
+                '<div data-button="" ',
                 this.uniqueIdAttribute,
                 '="',
                 elementsFromParent[i].getAttribute(this.uniqueIdAttribute),
@@ -67,10 +71,16 @@
                 ' ',
                 elementsFromParent[i].getAttribute(this.uniqueIdAttribute),
                 '</div>'
-            ].join(''));
+            ].join('');
         }
 
-        me.showPopupElement(dataShow,function(e){
+        dataShow = [
+            '<div data-content="">',
+                elementsString,
+            '</div>'
+        ];
+
+        me.showPopupElement(dataShow.join(''),function(e){
             if (e.target.getAttribute(this.uniqueIdAttribute)) {
                 var element = this.selectSpecificElement(e.target.getAttribute(this.uniqueIdAttribute));
 

@@ -1,8 +1,4 @@
 (function() {
-    window['CCJS_AUTHORS'] = [
-        'Andrei Bazavan'
-    ];
-
     window['STARTER_KIT_STYLE_OPTIONS'] = {
         style: [{
             title: 'position',

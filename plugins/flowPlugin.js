@@ -89,7 +89,6 @@
                     'justify-content: flex-start;',
                 '}',
                 '[data-content] [data-info] {',
-                    'background:#000;',
                     'font-weight:500;',
                     'width: 100%',
                 '}',
