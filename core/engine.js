@@ -4,6 +4,7 @@ function CocoChanelJS(previewElement, elementSelectorElement, elementAttributesE
     this.uniqueIdAttribute = 'data-ccjs-element';
     this.nonRemovableNodes = ['HTML','HEAD','BODY','STYLE'];
     this.untoucheableNodes = 'data-not-touch';
+    this.unstyleableNodes ='data-not-style';
     this.hilighter = {
         selectedElementAttribute: 'data-ccjs-selected',
         selectedElementStyle: 'data-ccjs-hilighter',
@@ -19,6 +20,7 @@ function CocoChanelJS(previewElement, elementSelectorElement, elementAttributesE
     this.main_popup = {};
     this.elementCounter = 0;
     this.root_document = null;
+    this.root_document_html = null;
     this.root_body = null;
     this.root_head = null;
     this.currentSelectedElement = null;
@@ -104,6 +106,7 @@ CocoChanelJS.prototype.implementDocument = function(skipDocumentCreation) {
     if (!skipDocumentCreation)
         this.root_document = document.implementation.createHTMLDocument();
 
+    this.root_document_html = this.root_document.querySelector('html');
     this.root_body = this.root_document.body;
 
     if (!this.root_body.getAttribute('style'))
@@ -113,6 +116,14 @@ CocoChanelJS.prototype.implementDocument = function(skipDocumentCreation) {
         this.root_body.setAttribute('class','');
 
     this.root_head = this.root_document.head;
+
+    if (!this.root_head.getAttribute(this.unstyleableNodes))
+        this.root_head.setAttribute(this.unstyleableNodes,'true');
+
+    if (!this.root_document_html.getAttribute(this.unstyleableNodes))
+        this.root_document_html.setAttribute(this.unstyleableNodes,'true');
+
+
     this.eventListenerInjector();
 };
 
@@ -377,19 +388,12 @@ CocoChanelJS.prototype.initializeEventListeners = function() {
 
     window.addEventListener('keydown',function (e) {
         if (['input','textarea'].indexOf(e.target.nodeName.toLowerCase())== -1){
-            if (((e.which || e.keyCode) == 116) || ((e.which || e.keyCode) == 8) ) {
+            if ((e.which || e.keyCode) == 116) {
                 alert(this.language['backspace-key-f5-disabled']);
                 e.preventDefault();
             }
         } else {
-            var TABKEY = 9;
-            if(e.keyCode == TABKEY) {
-                e.target.value += "    ";
-                if(e.preventDefault) {
-                    e.preventDefault();
-                }
-                return false;
-            }
+            //keyHandler(e);
         }
     }, false);
 

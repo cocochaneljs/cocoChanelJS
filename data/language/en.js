@@ -9,6 +9,9 @@
         'dom-move-down': 'DOM Move Down',
         'general-styling': 'General Styling',
         'general-styling-placeholder': 'Write CSS here for anything in the design ...',
+        'element-styling':'Style Element',
+        'style-option-remove':'Delete Me',
+        'style-cannot-be-styled':'The current element cannot be styled.',
         'add-lorem-ipsum': 'Add Lorem Ipsum',
         'add-attribute': 'Add Attribute',
         'add-attribute-name-prompt': 'Attribute:\n(style,class,id,type,...)',
@@ -22,6 +25,7 @@
         'load-design': 'Load Design',
         'new-design': 'New Design',
         'innerHTML': 'Set Inner HTML',
-        'innerHTML-prompt': 'NOTE: THIS OVERRIDES ANY ELEMENT IN THE INNER HTML!!\ninnerHTML:'
+        'innerHTML-prompt': 'NOTE: THIS OVERRIDES ANY ELEMENT IN THE INNER HTML!!\ninnerHTML:',
+        'close-popup':'Close Popup [X]'
     }
 })();
