@@ -124,7 +124,7 @@ body {
 }
 .main_sceneSelector > div,
 .main_attributesSection > div,
-.main_extrasSection >div { 
+.main_extrasSection >div {
     box-shadow:0 2px 1px rgba(0,0,0,0.3);
     border-bottom:1px solid #999;
     min-height: 20px;
@@ -226,6 +226,10 @@ body {
 .popup * {
     display: inline-block;
     margin: auto auto;
+}
+
+[data-not-touch] {
+    background: #f55;
 }
 
 .popup div[data-content] {

@@ -55,6 +55,12 @@ CocoChanelJS.prototype.onPreviewElementHover = function(e) {
 
 CocoChanelJS.prototype.onElementSelected = function(e) {
     var eTarget = e.target;
+
+    if (eTarget.getAttribute(this.untoucheableNodes)) {
+        this.refreshData();
+        return;
+    }
+
     this.setCurrentSelectedElement(eTarget.getAttribute('data-selector'), eTarget.getAttribute('data-type'));
     this.softRefreshData();
 };
@@ -116,10 +122,18 @@ CocoChanelJS.prototype.listAllElements = function() {
     //@TODO to be refactored with a template for greater flexibility
 
     for (var i = 0, ln = elements.length; i<ln;i++) {
-        if (elements[i].getAttribute(this.untoucheableNodes))
-            continue;
 
-        str += '<div data-selector="'
+
+
+        str += '<div ';
+        str +='data-tree-depth="';
+        str += this.calcDepth(elements[i]);
+        str +='"';
+        if (elements[i].getAttribute(this.untoucheableNodes)) {
+            str += this.untoucheableNodes + '="true"';
+        }
+
+        str +='data-selector="';
 
         if (elements[i].getAttribute(this.uniqueIdAttribute))
             str += elements[i].getAttribute(this.uniqueIdAttribute);
@@ -136,6 +150,17 @@ CocoChanelJS.prototype.listAllElements = function() {
         str += '<sup>' + elements[i].nodeName + '</sup></div>';
     }
     this.main_elementSelector.innerHTML = str;
+};
+
+CocoChanelJS.prototype.calcDepth = function(element, count){
+    count = count || 0;
+
+    if (element.parentNode) {
+        count++;
+        return this.calcDepth(element.parentNode, count);
+    } else {
+        return count;
+    }
 };
 
 CocoChanelJS.prototype.highlightSelectedElement = function() {
@@ -385,6 +410,7 @@ CocoChanelJS.prototype.eventListenerInjector = function () {
     var script = this.root_document.createElement('script');
 
     script.setAttribute('type','text/javascript');
+    script.id = "EVENT_INJECT";
     script.setAttribute(this.untoucheableNodes,'true');
     script.innerHTML = [
         '(function() {',
@@ -405,7 +431,7 @@ CocoChanelJS.prototype.eventListenerInjector = function () {
         '})();'
     ].join('');
 
-    this.root_body.appendChild(script);
+    this.root_head.appendChild(script);
 };
 
 CocoChanelJS.prototype.drawSelectedElementHilighter = function() {
