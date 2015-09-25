@@ -1,13 +1,19 @@
 (function() {
-    CCJS.addPlugin('File',function(){
+    CCJS.addPlugin('file',function(){
         var me = this,
             style = this.root_document.querySelector('style');
 
         me.showPopupElement([
             '<div data-content="">',
-                '<div data-button="" class="new-file">New File</div>',
-                '<div data-button="" class="save-file">Save File</div>',
-                '<div data-button="">Load File: <input type="file" class="load-file"></div>',
+                '<div data-button="" class="new-file">',
+                    me.language['new-design'],
+                '</div>',
+                '<div data-button="" class="save-file">',
+                    me.language['save-design'],
+                '</div>',
+                '<div data-button="">',
+                    me.language['load-design'],
+                '<input type="file" class="load-file"></div>',
             '</div>'
         ].join(''),function(e){
 
@@ -80,7 +86,7 @@
         }, false);
     },false);
 
-    CCJS.addPlugin('About', function(){
+    CCJS.addPlugin('about', function(){
         this.showPopupElement([
             '<div data-content="" class="column">',
                 '<p data-info="">',
@@ -95,7 +101,7 @@
         ].join(''),function(e){});
     });
 
-    CCJS.addPlugin('Refresh \u21bb',function(){
+    CCJS.addPlugin('hard-refresh',function(){
         this.refreshData();
     }, true);
 })();

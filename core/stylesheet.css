@@ -217,7 +217,7 @@ body {
 .popup::before {
     color: #fff;
     font-weight:bolder;
-    content:'CLOSE POPUP X';
+    content:'[X]';
     text-align: right;
     padding: 10px;
     box-sizing: border-box;

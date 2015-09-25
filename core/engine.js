@@ -1,5 +1,6 @@
 ( function() {
 function CocoChanelJS(previewElement, elementSelectorElement, elementAttributesElement, elementExtrasEelement, optionPane,fastPane) {
+    this.language = window['data_language'];
     this.uniqueIdAttribute = 'data-ccjs-element';
     this.nonRemovableNodes = ['HTML','HEAD','BODY','STYLE'];
     this.untoucheableNodes = 'data-not-touch';
@@ -194,7 +195,7 @@ CocoChanelJS.prototype.listAllAttributes = function() {
             '"></div>'].join('');
         }
     }else {
-        attributes = "<div class='alert'>!! NOTHING SELECTED</div>";
+        attributes = "<div class='alert'>"+this.language['nothing_selected']+"</div>";
     }
 
     this.main_elementAttributes.innerHTML = attributes;
@@ -207,7 +208,7 @@ CocoChanelJS.prototype.listAllExtras = function() {
     if (this.currentSelectedElementNode) {
 
     }else {
-        extras = "<div class='alert'>!! NOTHING SELECTED</div>";
+        extras = "<div class='alert'>"+this.language['nothing_selected']+"</div>";
     }
 
 
@@ -250,7 +251,7 @@ CocoChanelJS.prototype.addPlugin = function(title, action, fastPane) {
     var me = this,
         plugin = document.createElement('div');
 
-    plugin.innerText = title;
+    plugin.innerText = this.language[title] || title;
     plugin.addEventListener('click', function() {
         action.apply(me, arguments);
     }, false);
@@ -377,7 +378,7 @@ CocoChanelJS.prototype.initializeEventListeners = function() {
     window.addEventListener('keydown',function (e) {
         if (['input','textarea'].indexOf(e.target.nodeName.toLowerCase())== -1){
             if (((e.which || e.keyCode) == 116) || ((e.which || e.keyCode) == 8) ) {
-                alert('Backspace and F5 are disabled, for not loosing your data by mistake');
+                alert(this.language['backspace-key-f5-disabled']);
                 e.preventDefault();
             }
         } else {

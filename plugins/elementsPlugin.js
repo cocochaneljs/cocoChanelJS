@@ -1,6 +1,6 @@
 (function() {
 
-    CCJS.addPlugin('Add Element',function(){
+    CCJS.addPlugin('add-element',function(){
         var me = this,
             data = "",
             sortedCCJSElements = window['CCJS_ELEMENTS'].sort();
@@ -20,11 +20,11 @@
         }, me);
 
     }, true);
-    CCJS.addPlugin('Delete Element',function(){
+    CCJS.addPlugin('delete-element',function(){
         this.removeElement();
     }, true);
 
-    CCJS.addPlugin('Move Before',function(){
+    CCJS.addPlugin('dom-order-up',function(){
         if (!this.currentSelectedElementNode)
             return;
 
@@ -35,7 +35,7 @@
         this.softRefreshData();
     }, true);
 
-    CCJS.addPlugin('Move After',function(){
+    CCJS.addPlugin('dom-order-down',function(){
         if (!this.currentSelectedElementNode)
             return;
 
@@ -45,14 +45,14 @@
         this.currentSelectedElementNode.parentNode.insertBefore(this.currentSelectedElementNode.nextSibling, this.currentSelectedElementNode);
         this.softRefreshData();
     }, true);
-    CCJS.addPlugin('Move Up In DOM',function(){
-        if (!this.currentSelectedElementNode || this.nonRemovableNodes.indexOf(this.currentSelectedElementNode.parentNode) > -1)
+    CCJS.addPlugin('dom-move-up',function(){
+        if (!this.currentSelectedElementNode || this.nonRemovableNodes.indexOf(this.currentSelectedElementNode.parentNode.nodeName) != -1)
             return;
 
         this.currentSelectedElementNode.parentNode.parentNode.appendChild(this.currentSelectedElementNode);
         this.softRefreshData();
     }, true);
-    CCJS.addPlugin('Move Down In DOM',function(){
+    CCJS.addPlugin('dom-move-down',function(){
         var elementsFromParent = this.currentSelectedElementNode.parentNode.children,
             dataShow =[],
             elementsString ="",
@@ -91,11 +91,11 @@
             }
         }, me);
     }, true);
-    CCJS.addPlugin('Add Attribute',function(){
+    CCJS.addPlugin('add-attribute',function(){
         if(!this.currentSelectedElementNode)
             return;
-        var attribute = prompt('Attribute:\n(style,class,id,type,...)',''),
-            value = prompt('Value:','');
+        var attribute = prompt(this.language['add-attribute-name-prompt'],''),
+            value = prompt(this.language['add-attribute-value-prompt'],'');
 
         if (!attribute || !value)
             return;
@@ -106,7 +106,7 @@
     CCJS.addPlugin('innerHTML', function(){
         if(!this.currentSelectedElementNode)
             return;
-        var iHtml = prompt('NOTE: THIS OVERRIDES ANY ELEMENT IN THE INNER HTML!!\ninnerHTML:','');
+        var iHtml = prompt(this.language['innerHTML-prompt'],'');
 
         if (!iHtml)
             return;

@@ -24,15 +24,21 @@
             </div>
         </div>
     </body>
-
-    <!-- CORE ENGINE -->
-    <script src="core/engine.js"></script>
+    <!-- ORDER: CORE DATA , DATA, ENGINE, PLUGINS -->
+    <!-- CORE DATA (REQUIRED BY ENGINE) -->
+        <!-- LANGUAGES ONLY ONE ENABLED AT TIME-->
+        <script src="data/language/en.js"></script>
+        <!-- <script src="data/language/ro.js"></script> -->
+        <!-- <script src="data/language/fr.js"></script> -->
     <!-- DATA OBJECTS -->
     <script src="data/dataCCJS.js"></script>
     <script src="data/dataObjects.js"></script>
+    <!-- CORE ENGINE -->
+    <script src="core/engine.js"></script>
     <!-- PLUGINS -->
     <script src="plugins/flowPlugin.js"></script>
     <script src="plugins/elementsPlugin.js"></script>
     <script src="plugins/stylePlugin.js"></script>
+    <script src="plugins/templatesPlugin.js"></script>
 
 </html>

@@ -1,10 +1,12 @@
 (function() {
-    CCJS.addPlugin('Style', function() {
+    CCJS.addPlugin('general-styling', function() {
         var me = this,
             style = this.pluginVitalData.flowPlugin_style;
 
         me.showPopupElement([
-            '<textarea wrap="off" placeholder="Write CSS here for anything in the design ..." style="width:100%;height:100%">',
+            '<textarea wrap="off" placeholder="',
+                this.language['general-styling-placeholder'],
+            '" style="width:100%;height:100%">',
             style ? style.innerText : '',
             '</textarea>'
         ].join(''),function(e){
