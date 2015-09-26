@@ -86,9 +86,17 @@
                 '="',
                 elementsFromParent[i].getAttribute(this.uniqueIdAttribute),
                 '">',
-                elementsFromParent[i].nodeName,
-                ' ',
-                elementsFromParent[i].getAttribute(this.uniqueIdAttribute),
+                    elementsFromParent[i].getAttribute(this.uniqueIdAttribute),
+                    '<b>',
+                        elementsFromParent[i].id,
+                    '</b>',
+                    '<mark>',
+                        elementsFromParent[i].getAttribute('class'),
+                    '</mark>',
+                    '<sup>',
+                        elementsFromParent[i].nodeName,
+
+                    '</sup>',
                 '</div>'
             ].join('');
         }
