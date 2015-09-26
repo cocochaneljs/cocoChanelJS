@@ -237,6 +237,8 @@ CocoChanelJS.prototype.addElement = function(type) {
         this.currentSelectedElementNode.appendChild(element);
 
     this.softRefreshData();
+
+    return element;
 };
 
 CocoChanelJS.prototype.removeElement = function() {
@@ -349,7 +351,8 @@ CocoChanelJS.prototype.showPopupElement = function(data,callback,scope, personal
 };
 
 CocoChanelJS.prototype.onPopupElementTap = function(e) {
-    if (!this.main_popup.personalizedClose)
+
+    if (!this.main_popup.personalizedClose || e.target.getAttribute('data-close-button'))
         this.main_popup.element.classList.add('hidden');
 };
 

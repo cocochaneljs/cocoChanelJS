@@ -1,119 +1,68 @@
 (function() {
     window['STARTER_KIT_STYLE_OPTIONS'] = [{
-            title: 'position',
-            options: [
-                'absolute','fixed','relative','static','inherit','initial'
-            ]
+            category: 'positioning and sizing',title: 'position',options: ['absolute','fixed','relative','static','inherit','initial']
         },{
-            title: 'display',
-            options: [
-                'block','flex','inline-block','inline','run-in','none','inherit','initial'
-            ]
+            category: 'positioning and sizing',title: 'top',options: ['#']
         },{
-            title: 'flex-direction',
-            options: [
-                'row','column','row-reverse','column-reverse'
-            ]
+            category: 'positioning and sizing',title: 'bottom',options: ['#']
         },{
-            title: 'flex-wrap',
-            options: [
-                'wrap','nowrap','wrap-reverse'
-            ]
+            category: 'positioning and sizing',title: 'left',options: ['#']
         },{
-            title: 'align-items',
-            options: [
-                'flex-start','flex-end','center','baseline','stretch'
-            ]
+            category: 'positioning and sizing',title: 'right',options: ['#']
         },{
-            title: 'align-self',
-            options: [
-                'flex-start','flex-end','center','baseline','stretch'
-            ]
+            category: 'positioning and sizing',title: 'width',options: ['#']
         },{
-            title: 'align-content',
-            options: [
-                'flex-start','flex-end','center','space-around','space-between','stretch'
-            ]
+            category: 'positioning and sizing',title: 'box-sizing',options: ['content-box','padding-box','border-box']
         },{
-            title: 'box-sizing',
-            options: [
-                'content-box','padding-box','border-box'
-            ]
+            category: 'positioning and sizing',title: 'height',options: ['#']
         },{
-            title: 'color',
-            options: [
-                '#color'
-            ]
+            category: 'edges',title: 'margin',options: ['#']
         },{
-            title: 'background-color',
-            options: [
-                '#color'
-            ]
+            category: 'edges',title: 'padding',options: ['#']
         },{
-            title: 'border',
-            options: [
-                '#'
-            ]
+            category: 'display',title: 'display',options: ['block','flex','inline-block','inline','run-in','none','inherit','initial']
         },{
-            title: 'background',
-            options: [
-                '#'
-            ]
+            category: 'display',title: 'flex-direction',options: ['row','column','row-reverse','column-reverse']
         },{
-            title: 'margin',
-            options: [
-                '#'
-            ]
+            category: 'display',title: 'flex-wrap',options: ['wrap','nowrap','wrap-reverse']
         },{
-            title: 'padding',
-            options: [
-                '#'
-            ]
+            category: 'display',title: 'align-items',options: ['flex-start','flex-end','center','baseline','stretch']
         },{
-            title: 'border-style',
-            options: [
-                'none','hidden','dotted','dashed','solid','groove','double','ridge','inset','outset'
-            ]
+            category: 'display',title: 'align-self',options: ['flex-start','flex-end','center','baseline','stretch']
         },{
-            title: 'background-clip',
-            options: [
-                'content-box','padding-box','border-box'
-            ]
+            category: 'display',title: 'align-content',options: ['flex-start','flex-end','center','space-around','space-between','stretch']
         },{
-            title: 'background-origin',
-            options: [
-                'content-box','padding-box','border-box'
-            ]
+            category: 'display',title: 'justify-content',options: ['flex-start','flex-end','center','space-around','space-between']
         },{
-            title: 'background-attachment',
-            options: [
-                'fixed','scroll','local','inherit'
-            ]
+            category: 'colors and backgrounds',title: 'color',options: ['#color']
         },{
-            title: 'background-repeat',
-            options: [
-                'repeat','no-repeat','round','space','repeat-x','repeat-y'
-            ]
+            category: 'colors and backgrounds',title: 'background-color',options: ['#color']
         },{
-            title: 'background-position',
-            options: [
-                'center','top','left','right','bottom','#'
-            ]
+            category: 'edges',title: 'border',options: ['#']
         },{
-            title: 'background-size',
-            options: [
-                'cover','contain','auto','#'
-            ]
+            category: 'edges',title: 'border-left',options: ['#']
         },{
-            title: 'border-width',
-            options: [
-                'thin','medium','thick','#'
-            ]
+            category: 'edges',title: 'border-right',options: ['#']
         },{
-            title: 'justify-content',
-            options: [
-                'flex-start','flex-end','center','space-around','space-between'
-            ]
+            category: 'edges',title: 'border-top',options: ['#']
+        },{
+            category: 'edges',title: 'border-bottom',options: ['#']
+        },{
+            category: 'edges',title: 'border-radius',options: ['#']
+        },{
+            category: 'colors and backgrounds',title: 'background',options: ['#']
+        },{
+            category: 'colors and backgrounds',title: 'background-clip',options: ['content-box','padding-box','border-box']
+        },{
+            category: 'colors and backgrounds',title: 'background-origin',options: ['content-box','padding-box','border-box']
+        },{
+            category: 'colors and backgrounds',title: 'background-attachment',options: ['fixed','scroll','local','inherit']
+        },{
+            category: 'colors and backgrounds',title: 'background-repeat',options: ['repeat','no-repeat','round','space','repeat-x','repeat-y']
+        },{
+            category: 'colors and backgrounds',title: 'background-position',options: ['center','top','left','right','bottom','#']
+        },{
+            category: 'colors and backgrounds',title: 'background-size',options: ['cover','contain','auto','#']
         }];
 
     window['STARTER_KIT_TEMPLATES'] = {

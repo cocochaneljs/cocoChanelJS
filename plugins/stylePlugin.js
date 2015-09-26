@@ -7,6 +7,7 @@
             style = this.root_document.querySelector('[data-general-styling]');
 
         me.showPopupElement([
+            '<div data-button="" data-close-button="true">',this.language['close-popup'],'</div>',
             '<textarea wrap="off" placeholder="',
                 this.language['general-styling-placeholder'],
             '" style="width:100%;height:100%">',
@@ -44,8 +45,8 @@
         }
 
         var me = this,
-            styleOptions = window['STARTER_KIT_STYLE_OPTIONS'].sort(function(a,b) {    
-                    return a.title.localeCompare(b.title);
+            styleOptions = window['STARTER_KIT_STYLE_OPTIONS'].sort(function(a,b) {
+                    return a.category.localeCompare(b.category);
             }),
             styling = CSSMagic.parse(this.currentSelectedElementNode.getAttribute('style') || ''),
             stylingTemplate = [],
@@ -84,7 +85,7 @@
                 '</div>'
             );
             stylingTemplate.push(
-                '<div class="flex-one" data-custom-value="" data-option="',
+                '<div class="block" data-custom-value="" data-option="',
                 styleOptions[i].title,
                 '">',
                     '<span data-option-label="">',
@@ -96,8 +97,8 @@
         }
 
         template = [
-            '<div class="no-overflow column" style="" data-content="">',
-                '<div data-button="" data-close-button="true">',this.language['close-popup'],'</div>',
+            '<div data-button="" data-close-button="true">',this.language['close-popup'],'</div>',
+            '<div class="block" style="" data-content="">',
                 stylingTemplate.join(''),
             '</div>'
         ];

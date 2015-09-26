@@ -11,6 +11,7 @@
         }
 
         me.showPopupElement([
+            '<div data-button="" data-close-button="true">',this.language['close-popup'],'</div>',
             '<div data-content="">',
                 data,
             '</div'
@@ -19,6 +20,24 @@
                 this.addElement(e.target.getAttribute('data-type'));
         }, me);
 
+    }, true);
+
+    CCJS.addPlugin('duplicate-element', function(){
+        if(!this.currentSelectedElementNode || this.nonRemovableNodes.indexOf(this.currentSelectedElementNode.nodeName) != -1)
+            return;
+
+        var currentElement = this.currentSelectedElementNode,
+            element = this.addElement(currentElement.nodeName);
+
+        for (var i = 0, ln = currentElement.attributes.length; i < ln; i++)
+            if (currentElement.attributes[i].name != this.uniqueIdAttribute)
+                element.setAttribute(currentElement.attributes[i].name, currentElement.attributes[i].value);
+
+        currentElement.parentNode.appendChild(element);
+
+        element.innerHTML = currentElement.innerHTML;
+
+        this.softRefreshData();
     }, true);
     CCJS.addPlugin('delete-element',function(){
         this.removeElement();
@@ -75,6 +94,7 @@
         }
 
         dataShow = [
+            '<div data-button="" data-close-button="true">',this.language['close-popup'],'</div>',
             '<div data-content="">',
                 elementsString,
             '</div>'
@@ -89,7 +109,7 @@
 
                 this.softRefreshData();
             }
-        }, me);
+        });
     }, true);
     CCJS.addPlugin('add-attribute',function(){
         if(!this.currentSelectedElementNode)
@@ -106,13 +126,22 @@
     CCJS.addPlugin('innerHTML', function(){
         if(!this.currentSelectedElementNode)
             return;
-        var iHtml = prompt(this.language['innerHTML-prompt'],'');
 
-        if (!iHtml)
-            return;
+            this.showPopupElement([
+                '<div data-button="" data-close-button="true">',this.language['close-popup'],'</div>',
+                '<textarea wrap="off" placeholder="',
+                    this.language['write-innerhtml-placeholder'],
+                '" style="width:100%;height:100%">',
+                this.currentSelectedElementNode.innerHTML,
+                '</textarea>'
+            ].join(''),function(e){
+                if (e.target.nodeName == "TEXTAREA")
+                    return;
 
-        this.currentSelectedElementNode.innerHTML = iHtml;
-        this.softRefreshData();
+                this.currentSelectedElementNode.innerHTML = this.main_popup.element.querySelector('textarea').value;
+
+                this.softRefreshData();
+            }, false, true);
     }, true);
 
 })();

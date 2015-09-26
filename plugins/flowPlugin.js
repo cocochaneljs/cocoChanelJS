@@ -4,6 +4,7 @@
             style = this.root_document.querySelector('style');
 
         me.showPopupElement([
+            '<div data-button="" data-close-button="true">',this.language['close-popup'],'</div>',
             '<div data-content="">',
                 '<div data-button="" class="new-file">',
                     me.language['new-design'],
@@ -88,6 +89,7 @@
 
     CCJS.addPlugin('about', function(){
         this.showPopupElement([
+            '<div data-button="" data-close-button="true">',this.language['close-popup'],'</div>',
             '<div data-content="" class="column">',
                 '<p data-info="">',
                 'Info:<br>',

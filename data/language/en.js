@@ -26,7 +26,8 @@
         'load-design': 'Load Design',
         'new-design': 'New Design',
         'innerHTML': 'Set Inner HTML',
-        'innerHTML-prompt': 'NOTE: THIS OVERRIDES ANY ELEMENT IN THE INNER HTML!!\ninnerHTML:',
+        'duplicate-element': 'Duplicate Element',
+        'write-innerhtml-placeholder': 'NOTE: THIS OVERRIDES ANY ELEMENT IN THE INNER HTML!!\ninnerHTML:',
         'close-popup':'Close Popup [X]'
     }
 })();
