@@ -3,6 +3,8 @@
         var me = this,
             style = this.root_document.querySelector('style');
 
+        me.refreshData();
+
         me.showPopupElement([
             '<div data-button="" data-close-button="true">',this.language['close-popup'],'</div>',
             '<div data-content="">',
@@ -24,6 +26,9 @@
         }
 
         if (e.target.classList.contains('save-file')) {
+                me.storeEditorDataInDocument();
+                me.refreshData();
+
                 var fileNameToSaveAs = prompt('Enter file name:\n(it will go to downloads)\n(ADD .html at the end)','file.html');
 
                 if (! fileNameToSaveAs)
@@ -73,6 +78,7 @@
                         if (evt.target.readyState == FileReader.DONE) {
                             me.root_document.documentElement.innerHTML = evt.target.result;
                             me.refreshData();
+                            me.loadEditorDataFromDocument();
                         }
                     };
 

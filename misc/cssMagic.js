@@ -16,7 +16,7 @@ CSS_MAGIC.prototype.parse = function (cssText) {
     return this.purge(cssObject);
 }
 
-CSS_MAGIC.prototype.strigify = function (cssObject) {
+CSS_MAGIC.prototype.stringify = function (cssObject) {
     var str = "";
 
     cssObject = this.purge(cssObject);

@@ -122,7 +122,7 @@
                         styling = CSSMagic.addStatement(styling, key, '');
                 }
 
-                this.currentSelectedElementNode.setAttribute('style',CSSMagic.strigify(styling));
+                this.currentSelectedElementNode.setAttribute('style',CSSMagic.stringify(styling));
                 this.main_popup.element.classList.add('hidden');
                 this.softRefreshData();
                 return;

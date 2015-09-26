@@ -22,12 +22,16 @@
         'hard-refresh': 'Refresh \u21bb',
         'about': 'About',
         'file': 'File',
+        'add-image-data':'Load & Assign Image'
+        'load-png-file-only': 'Load image, PNG ONLY!',
         'save-design': 'Save Design',
         'load-design': 'Load Design',
         'new-design': 'New Design',
         'innerHTML': 'Set Inner HTML',
         'duplicate-element': 'Duplicate Element',
         'write-innerhtml-placeholder': 'NOTE: THIS OVERRIDES ANY ELEMENT IN THE INNER HTML!!\ninnerHTML:',
-        'close-popup':'Close Popup [X]'
+        'close-popup':'Close Popup [X]',
+        'image-add-as-src': 'Set as src',
+        'image-add-as-background': 'Set as background-image',
     }
 })();

@@ -20,6 +20,10 @@
         },{
             category: 'edges',title: 'padding',options: ['#']
         },{
+            category: 'display',title: 'overflow-x',options: ['hidden','visible','scroll','auto','inherit']
+        },{
+            category: 'display',title: 'overflow-y',options: ['hidden','visible','scroll','auto','inherit']
+        },{
             category: 'display',title: 'display',options: ['block','flex','inline-block','inline','run-in','none','inherit','initial']
         },{
             category: 'display',title: 'flex-direction',options: ['row','column','row-reverse','column-reverse']

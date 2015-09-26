@@ -2,7 +2,7 @@
 function CocoChanelJS(previewElement, elementSelectorElement, elementAttributesElement, elementExtrasEelement, optionPane,fastPane) {
     this.language = window['data_language'];
     this.uniqueIdAttribute = 'data-ccjs-element';
-    this.nonRemovableNodes = ['HTML','HEAD','BODY','STYLE'];
+    this.nonRemovableNodes = ['HTML','HEAD','BODY','STYLE','data-storage-element'];
     this.untoucheableNodes = 'data-not-touch';
     this.unstyleableNodes ='data-not-style';
     this.hilighter = {
@@ -23,6 +23,8 @@ function CocoChanelJS(previewElement, elementSelectorElement, elementAttributesE
     this.root_document_html = null;
     this.root_body = null;
     this.root_head = null;
+    this.root_document_data_storage = null;
+    this.root_injection_script = null;
     this.currentSelectedElement = null;
     this.currentSelectedElementNode = null;
     this.plugins = [];
@@ -123,8 +125,47 @@ CocoChanelJS.prototype.implementDocument = function(skipDocumentCreation) {
     if (!this.root_document_html.getAttribute(this.unstyleableNodes))
         this.root_document_html.setAttribute(this.unstyleableNodes,'true');
 
+    this.root_document_data_storage = this.root_document.querySelector('[data-storage-element]');
 
-    this.eventListenerInjector();
+    if (!this.root_document_data_storage) {
+        this.root_document_data_storage = this.root_document.createElement('script');
+        this.root_document_data_storage.setAttribute('data-storage-element','true')
+        this.root_document_data_storage.setAttribute(this.untoucheableNodes,'true');
+        this.root_document_data_storage.setAttribute('type','application/json');
+        this.root_document_data_storage.setAttribute('style','display:none');
+        this.root_document_data_storage.setAttribute(this.uniqueIdAttribute,this.generateUniqueId());
+        this.root_document_data_storage.id = 'DATA_STORAGE';
+        this.root_head.appendChild(this.root_document_data_storage);
+    }
+
+    if (this.root_document.querySelector('script['+this.untoucheableNodes+'][data-event-injection-script]'))
+        return;
+    var script = this.root_document.createElement('script');
+
+    script.setAttribute('type','text/javascript');
+    script.id = "EVENT_INJECT";
+    script.setAttribute(this.untoucheableNodes,'true');
+    script.setAttribute('data-event-injection-script','true')
+    script.innerHTML = [
+        '(function() {',
+            '/*origin lie*/',
+            'document.origin = "https://github.com/rokyed/cocoChanelJS.git";',
+            'document.addEventListener("click",function(e){',
+                'top.postMessage(JSON.stringify(["click",e.target.nodeName,e.target.getAttribute("',
+                this.uniqueIdAttribute,
+                '")]),"*");',
+                'console.log("click");',
+            '});',
+            'document.addEventListener("hover",function(e){',
+                'top.postMessage(JSON.stringify(["hover",e.target.nodeName,e.target.getAttribute("',
+                this.uniqueIdAttribute,
+                '")]),"*");',
+                'console.log("hover");',
+            '});',
+        '})();'
+    ].join('');
+    this.root_injection_script = script;
+    this.root_head.appendChild(script);
 };
 
 CocoChanelJS.prototype.listAllElements = function() {
@@ -411,37 +452,6 @@ CocoChanelJS.prototype.initializeEventListeners = function() {
     }, false);
 };
 
-//  @TODO event linkage for iframe not working yet
-CocoChanelJS.prototype.eventListenerInjector = function () {
-    if (this.root_document.querySelector('script['+this.untoucheableNodes+']'))
-        return;
-    var script = this.root_document.createElement('script');
-
-    script.setAttribute('type','text/javascript');
-    script.id = "EVENT_INJECT";
-    script.setAttribute(this.untoucheableNodes,'true');
-    script.innerHTML = [
-        '(function() {',
-            '/*origin lie*/',
-            'document.origin = "https://github.com/rokyed/cocoChanelJS.git";',
-            'document.addEventListener("click",function(e){',
-                'top.postMessage(JSON.stringify(["click",e.target.nodeName,e.target.getAttribute("',
-                this.uniqueIdAttribute,
-                '")]),"*");',
-                'console.log("click");',
-            '});',
-            'document.addEventListener("hover",function(e){',
-                'top.postMessage(JSON.stringify(["hover",e.target.nodeName,e.target.getAttribute("',
-                this.uniqueIdAttribute,
-                '")]),"*");',
-                'console.log("hover");',
-            '});',
-        '})();'
-    ].join('');
-
-    this.root_head.appendChild(script);
-};
-
 CocoChanelJS.prototype.drawSelectedElementHilighter = function() {
     var oldElements = this.root_document.querySelectorAll('['+this.hilighter.selectedElementAttribute+']');
 
@@ -471,6 +481,13 @@ CocoChanelJS.prototype.drawSelectedElementHilighter = function() {
     }
 };
 
+CocoChanelJS.prototype.storeEditorDataInDocument = function() {
+    this.root_document_data_storage.innerHTML = "'"+ JSON.stringify(this.pluginVitalData)+"'";
+};
+CocoChanelJS.prototype.loadEditorDataFromDocument = function() {
+    var str = this.root_document_data_storage.innerHTML;
+    this.pluginVitalData = JSON.parse(str.substring(1,str.length-1));
+};
 
 window['CCJS'] = new CocoChanelJS(
     document.querySelector('.main_scenePreview'),
