@@ -44,22 +44,39 @@
         }
 
         var me = this,
-            styling = CSS_BREAK(this.currentSelectedElementNode.getAttribute('style') || ''),
+            styleOptions = window['STARTER_KIT_STYLE_OPTIONS'].sort(function(a,b) {    
+                    return a.title.localeCompare(b.title);
+            }),
+            styling = CSSMagic.parse(this.currentSelectedElementNode.getAttribute('style') || ''),
             stylingTemplate = [],
             template;
 
-        delete styling[''];
 
-        for (var i = 0,styleOptions = window['STARTER_KIT_STYLE_OPTIONS'],ln = styleOptions.length; i< ln; i++) {
+        for (var i = 0,ln = styleOptions.length; i< ln; i++) {
             var options =[];
             for (var u =0,optionsArr = styleOptions[i].options,optionsLn = optionsArr.length; u < optionsLn; u++) {
-                options.push(
-                    '<div data-button="" data-option-value="',
-                        optionsArr[u],
-                    '">',
-                        optionsArr[u],
-                    '</div>'
-                );
+                if (optionsArr[u].indexOf("#") == -1) {
+                    options.push(
+                        '<div data-button="" data-option-value="',
+                            optionsArr[u],
+                        '">',
+                            optionsArr[u],
+                        '</div>'
+                    );
+                } else {
+                    var type = optionsArr[u].replace('#','');
+
+                    if (!type)
+                        type = "text";
+
+                    options.push(
+                        '<input class="input-option" placeholder="',
+                            this.language['custom-style-placeholder'],
+                        '" data-button="" type="', type, '" data-custom-value="" data-option-value="',
+                            optionsArr[u],
+                        '">'
+                    );
+                }
             }
             options.push(
                 '<div data-button="" data-option-value="remove-value">',
@@ -67,34 +84,19 @@
                 '</div>'
             );
             stylingTemplate.push(
-                '<div class="flex-one" data-button="" data-option="',
+                '<div class="flex-one" data-custom-value="" data-option="',
                 styleOptions[i].title,
                 '">',
-                    '<span>',
+                    '<span data-option-label="">',
                         styleOptions[i].title,
-                    ':</span>',
+                    '</span>',
                     options.join(''),
                 '</div>'
             );
         }
 
         template = [
-            '<style style="display:none">',
-                '[data-button][data-option] {',
-                    'max-height: none !important;',
-                    'flex: 0 auto !important;',
-                    'width: 99%;',
-                    'box-sizing:border-box;',
-                    'background: inherit;',
-                '}',
-                '[data-button][data-option-value]:hover {',
-                    'background: #edf !important;',
-                '}',
-                '[data-button][data-option-value][data-selected] {',
-                    'background: #99f !important;',
-                '}',
-            '</style>',
-            '<div class="column" data-content="">',
+            '<div class="no-overflow column" style="" data-content="">',
                 '<div data-button="" data-close-button="true">',this.language['close-popup'],'</div>',
                 stylingTemplate.join(''),
             '</div>'
@@ -109,13 +111,17 @@
                     var statementTitleCurrent = selectedOptions[i].parentNode.getAttribute('data-option'),
                         statementValueCurrent = selectedOptions[i].getAttribute('data-option-value');
 
-                    styling[statementTitleCurrent] = statementValueCurrent;
+                    if (statementValueCurrent.indexOf('#') == -1)
+                        CSSMagic.addStatement(styling, statementTitleCurrent, statementValueCurrent);
+                    else
+                        CSSMagic.addStatement(styling, statementTitleCurrent, selectedOptions[i].value.replace(/;/g, ""));
                 }
                 for (var key in styling) {
-                    if (styling[key] && styling[key]!="remove-value")
-                        compiledCSS +=key +':'+ styling[key]+';';
+                    if (styling[key] == "remove-value")
+                        styling = CSSMagic.addStatement(styling, key, '');
                 }
-                this.currentSelectedElementNode.setAttribute('style',compiledCSS);
+
+                this.currentSelectedElementNode.setAttribute('style',CSSMagic.strigify(styling));
                 this.main_popup.element.classList.add('hidden');
                 this.softRefreshData();
                 return;
@@ -143,7 +149,18 @@
             if (! styling[stylingTitle])
                 continue;
 
-            buttonToSelect[k].querySelector('[data-option-value="'+styling[stylingTitle]+'"]').setAttribute('data-selected','true');
+            var selection = buttonToSelect[k].querySelector('[data-option-value="'+styling[stylingTitle]+'"]');
+
+            if (selection)
+                selection.setAttribute('data-selected','true');
+            else {
+                var custom = buttonToSelect[k].querySelector('[data-custom-value]');
+
+                if (custom) {
+                    custom.value = styling[stylingTitle];
+                    custom.setAttribute('data-selected','true');
+                }
+            }
         }
     }, true);
 

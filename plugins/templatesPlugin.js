@@ -36,7 +36,7 @@
             ' Sed maximus malesuada rhoncus. Pellentesque ac eleifend tortor, et accumsan mi.'
         ].join('');
 
-        this.currentSelectedElementNode.innerHTML = this.currentSelectedElementNode.innerHtml + lorem;
+        this.currentSelectedElementNode.innerHTML = (this.currentSelectedElementNode.innerHtml || '') + lorem;
 
         this.refreshData();
     }, true);

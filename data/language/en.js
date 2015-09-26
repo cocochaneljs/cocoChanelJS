@@ -12,6 +12,7 @@
         'element-styling':'Style Element',
         'style-option-remove':'Delete Me',
         'style-cannot-be-styled':'The current element cannot be styled.',
+        'custom-style-placeholder':'Custom value...',
         'add-lorem-ipsum': 'Add Lorem Ipsum',
         'add-attribute': 'Add Attribute',
         'add-attribute-name-prompt': 'Attribute:\n(style,class,id,type,...)',

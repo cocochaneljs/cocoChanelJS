@@ -460,7 +460,7 @@ CocoChanelJS.prototype.drawSelectedElementHilighter = function() {
         hilit.setAttribute(this.hilighter.selectedElementStyle, 'true');
         hilit.innerHTML = [
             '['+ this.hilighter.selectedElementAttribute+']{',
-                'outline: 1px dashed #bada55 !important;',
+                'outline: 2px outset #f0f !important;',
             '}'
         ].join('');
 
