@@ -71,11 +71,11 @@
                         type = "text";
 
                     options.push(
-                        '<input class="input-option" placeholder="',
+                        '<textarea wrap="off" spellcheck="false" class="input-option" placeholder="',
                             this.language['custom-style-placeholder'],
                         '" data-button="" type="', type, '" data-custom-value="" data-option-value="',
                             optionsArr[u],
-                        '">'
+                        '"></textarea>'
                     );
                 }
             }
