@@ -68,7 +68,7 @@
 
                 if (setAs && this.currentSelectedElementNode) {
                     var index = e.target.getAttribute('data-image-index');
-                    debugger;
+
                     if (setAs == "background") {
                         var style = CSSMagic.parse(this.currentSelectedElementNode.getAttribute('style') || '');
 

@@ -3,14 +3,16 @@ function CSS_MAGIC() {};
 
 CSS_MAGIC.prototype.parse = function (cssText) {
     var cssObject = {},
-        cssStatements = cssText.split(';');
+        cssStatements = this.split(cssText, ';');
 
     for (var i=0,ln=cssStatements.length; i<ln; i++) {
         if (!cssStatements[i])
             continue;
 
-        var statementValue = cssStatements[i].split(':');
-        cssObject[statementValue[0].replace(/\s*/g,'')] = statementValue[1].replace(/^\s*/, '');
+        var statementValue =  this.split(cssStatements[i],':');
+
+        if (statementValue.length == 2)
+            cssObject[statementValue[0].replace(/\s*/g,'')] = statementValue[1].replace(/^\s/, '');
     }
 
     return this.purge(cssObject);
@@ -46,6 +48,32 @@ CSS_MAGIC.prototype.purge = function (cssObject) {
     delete cssObject[''];
     return cssObject;
 }
+
+CSS_MAGIC.prototype.split = function (string,byCharacter) {
+    var arr = [],
+        currentStringBuildup = "",
+        inParanthesis = false;
+    for (var i = 0, ln = string.length; i < ln; i++) {
+        var character = string.substring(i,i+1);
+
+        if (character != byCharacter || inParanthesis)
+            currentStringBuildup += character;
+
+        if (!inParanthesis && character == "(")
+            inParanthesis = true;
+
+        if (inParanthesis && character == ")")
+            inParanthesis = false;
+
+        if (!inParanthesis && character == byCharacter || i +1 >= ln) {
+            arr.push(currentStringBuildup);
+            currentStringBuildup = "";
+        }
+    }
+    return arr;
+}
+
+
 
 window['CSSMagic'] = new CSS_MAGIC();
 })();

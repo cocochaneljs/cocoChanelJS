@@ -115,7 +115,7 @@
                     if (statementValueCurrent.indexOf('#') == -1)
                         CSSMagic.addStatement(styling, statementTitleCurrent, statementValueCurrent);
                     else
-                        CSSMagic.addStatement(styling, statementTitleCurrent, selectedOptions[i].value.replace(/;/g, ""));
+                        CSSMagic.addStatement(styling, statementTitleCurrent, selectedOptions[i].value);
                 }
                 for (var key in styling) {
                     if (styling[key] == "remove-value")

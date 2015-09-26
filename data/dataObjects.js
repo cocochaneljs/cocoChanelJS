@@ -56,6 +56,8 @@
         },{
             category: 'colors and backgrounds',title: 'background',options: ['#']
         },{
+            category: 'colors and backgrounds',title: 'background-image',options: ['#']
+        },{
             category: 'colors and backgrounds',title: 'background-clip',options: ['content-box','padding-box','border-box']
         },{
             category: 'colors and backgrounds',title: 'background-origin',options: ['content-box','padding-box','border-box']
