@@ -152,24 +152,7 @@ CocoChanelJS.prototype.implementDocument = function(skipDocumentCreation) {
     script.id = "EVENT_INJECT";
     script.setAttribute(this.untoucheableNodes,'true');
     script.setAttribute('data-event-injection-script','true')
-    script.innerHTML = [
-        '(function() {',
-            '/*origin lie*/',
-            'document.origin = "https://github.com/rokyed/cocoChanelJS.git";',
-            'document.addEventListener("click",function(e){',
-                'top.postMessage(JSON.stringify(["click",e.target.nodeName,e.target.getAttribute("',
-                this.uniqueIdAttribute,
-                '")]),"*");',
-                'console.log("click");',
-            '});',
-            'document.addEventListener("hover",function(e){',
-                'top.postMessage(JSON.stringify(["hover",e.target.nodeName,e.target.getAttribute("',
-                this.uniqueIdAttribute,
-                '")]),"*");',
-                'console.log("hover");',
-            '});',
-        '})();'
-    ].join('');
+    script.innerHTML = CCJS_GEN_INJECTION_JS(this.uniqueIdAttribute);
     this.root_injection_script = script;
     this.root_head.appendChild(script);
 };
@@ -495,11 +478,7 @@ CocoChanelJS.prototype.drawSelectedElementHilighter = function() {
         this.hilighter.selectedStyleElement = hilit;
         hilit.setAttribute(this.untoucheableNodes, 'true');
         hilit.setAttribute(this.hilighter.selectedElementStyle, 'true');
-        hilit.innerHTML = [
-            '['+ this.hilighter.selectedElementAttribute+']{',
-                'outline: 2px outset #f0f !important;',
-            '}'
-        ].join('');
+        hilit.innerHTML = CCJS_GEN_INJECTION_CSS('['+ this.hilighter.selectedElementAttribute+']');
 
         this.root_head.appendChild(hilit);
     }
