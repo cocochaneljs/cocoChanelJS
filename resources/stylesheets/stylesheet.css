@@ -64,9 +64,11 @@ body {
     border: none;
 }
 
+
 .previewPane {
     background-color: #fafafa;
     background: radial-gradient(ellipse at center, #efefdf 0%,#e0e0d0 100%);
+    position: relative;
 }
 [data-preview-loading="true"]::after {
     width: 100%;
