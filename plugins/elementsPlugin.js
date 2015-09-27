@@ -14,16 +14,16 @@
             '<div data-button="" data-close-button="true">',this.language['close-popup'],'</div>',
             '<div data-content="">',
                 data,
-            '</div'
+            '</div>'
         ].join(''),function(e){
             if (e.target.getAttribute('data-type'))
                 this.addElement(e.target.getAttribute('data-type'));
         }, me);
 
-    }, true);
+    }, true, true);
 
     CCJS.addPlugin('duplicate-element', function(){
-        if(!this.currentSelectedElementNode || this.nonRemovableNodes.indexOf(this.currentSelectedElementNode.nodeName) != -1)
+        if(this.nonRemovableNodes.indexOf(this.currentSelectedElementNode.nodeName) != -1)
             return;
 
         var currentElement = this.currentSelectedElementNode,
@@ -33,16 +33,16 @@
             if (currentElement.attributes[i].name != this.uniqueIdAttribute)
                 element.setAttribute(currentElement.attributes[i].name, currentElement.attributes[i].value);
 
-        element.id = currentElement.id + CCJS.root_document.querySelectorAll('[id*="'+currentElement.id+'"]').length;        
+        element.id = currentElement.id + CCJS.root_document.querySelectorAll('[id*="'+currentElement.id+'"]').length;
         currentElement.parentNode.appendChild(element);
 
         element.innerHTML = currentElement.innerHTML;
 
         this.softRefreshData();
-    }, true);
+    }, true, true);
     CCJS.addPlugin('delete-element',function(){
         this.removeElement();
-    }, true);
+    }, true, true);
 
     CCJS.addPlugin('dom-order-up',function(){
         if (!this.currentSelectedElementNode)
@@ -53,7 +53,7 @@
 
         this.currentSelectedElementNode.parentNode.insertBefore(this.currentSelectedElementNode, this.currentSelectedElementNode.previousSibling);
         this.softRefreshData();
-    }, true);
+    }, true, true);
 
     CCJS.addPlugin('dom-order-down',function(){
         if (!this.currentSelectedElementNode)
@@ -64,14 +64,14 @@
 
         this.currentSelectedElementNode.parentNode.insertBefore(this.currentSelectedElementNode.nextSibling, this.currentSelectedElementNode);
         this.softRefreshData();
-    }, true);
+    }, true, true);
     CCJS.addPlugin('dom-move-up',function(){
         if (!this.currentSelectedElementNode || this.nonRemovableNodes.indexOf(this.currentSelectedElementNode.parentNode.nodeName) != -1)
             return;
 
         this.currentSelectedElementNode.parentNode.parentNode.appendChild(this.currentSelectedElementNode);
         this.softRefreshData();
-    }, true);
+    }, true, true);
     CCJS.addPlugin('dom-move-down',function(){
         var elementsFromParent = this.currentSelectedElementNode.parentNode.children,
             dataShow =[],
@@ -119,7 +119,7 @@
                 this.softRefreshData();
             }
         });
-    }, true);
+    }, true, true);
     CCJS.addPlugin('add-attribute',function(){
         if(!this.currentSelectedElementNode)
             return;
@@ -131,7 +131,7 @@
 
         this.currentSelectedElementNode.setAttribute(attribute, value);
         this.softRefreshData();
-    }, true);
+    }, true, true);
     CCJS.addPlugin('innerHTML', function(){
         if(!this.currentSelectedElementNode)
             return;
@@ -151,6 +151,5 @@
 
                 this.softRefreshData();
             }, false, true);
-    }, true);
-
+    }, true, true);
 })();

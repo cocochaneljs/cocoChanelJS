@@ -39,7 +39,7 @@
     }, true);
 
     CCJS.addPlugin('element-styling',function() {
-        if (!this.currentSelectedElementNode || this.currentSelectedElementNode.getAttribute(this.unstyleableNodes)) {
+        if (this.currentSelectedElementNode.getAttribute(this.unstyleableNodes)) {
             alert(this.language['style-cannot-be-styled']);
             return;
         }
@@ -70,13 +70,22 @@
                     if (!type)
                         type = "text";
 
-                    options.push(
-                        '<textarea wrap="off" spellcheck="false" class="input-option" placeholder="',
-                            this.language['custom-style-placeholder'],
-                        '" data-button="" type="', type, '" data-custom-value="" data-option-value="',
-                            optionsArr[u],
-                        '"></textarea>'
-                    );
+                    if (type == "text")
+                        options.push(
+                            '<textarea wrap="off" spellcheck="false" class="input-option" placeholder="',
+                                this.language['custom-style-placeholder'],
+                            '" data-button="" data-custom-value="" data-option-value="',
+                                optionsArr[u],
+                            '"></textarea>'
+                        );
+                    else
+                        options.push(
+                            '<input wrap="off" spellcheck="false" class="input-option" placeholder="',
+                                this.language['custom-style-placeholder'],
+                            '" data-button="" type="'+type+'" data-custom-value="" data-option-value="',
+                                optionsArr[u],
+                            '">'
+                        );
                 }
             }
             options.push(
@@ -163,6 +172,6 @@
                 }
             }
         }
-    }, true);
+    }, true, true);
 
 })();

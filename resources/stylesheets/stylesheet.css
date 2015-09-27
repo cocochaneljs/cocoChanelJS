@@ -66,6 +66,15 @@ body {
 
 .previewPane {
     background-color: #fafafa;
+    background: radial-gradient(ellipse at center, #efefdf 0%,#e0e0d0 100%);
+}
+[data-preview-loading="true"]::after {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    background-position: center;
+    background-repeat: no-repeat;
+    content: '';
 }
 
 .fastPane {
@@ -105,6 +114,26 @@ body {
 .optionsPane > div:hover,
 .fastPane >div:hover {
     background: #aad;
+}
+.plugin-button {
+    position: relative;
+}
+
+.plugin-disabled:hover {
+    background: #d00 !important;
+}
+.plugin-button::before {
+    display: block;
+    width: 2px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #aad;
+    content: '';
+}
+.plugin-disabled::before {
+    background-color: #d00;
 }
 
 .propertiesPane {
@@ -167,7 +196,7 @@ body {
 
 .main_sceneSelector > div mark {
     background: none;
-    color: #FAD;
+    color: #723;
 }
 
 .main_sceneSelector > div:hover,
@@ -246,7 +275,7 @@ body {
 }
 
 [data-not-touch] {
-    background: #f55;
+    background: #d33;
 }
 
 .popup div[data-content] {

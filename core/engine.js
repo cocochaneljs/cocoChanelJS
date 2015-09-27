@@ -30,6 +30,7 @@ function CocoChanelJS(previewElement, elementSelectorElement, elementAttributesE
     this.plugins = [];
     this.initialize();
     this.pluginVitalData = {};
+
 }
 
 CocoChanelJS.prototype.test = function (first_argument) {
@@ -37,18 +38,24 @@ CocoChanelJS.prototype.test = function (first_argument) {
 };
 
 CocoChanelJS.prototype.initialize = function() {
+    // origin lie
+    document.origin = 'https://github.com/rokyed/cocoChanelJS.git';
+
     var me = this;
 
     this.createPopupElement();
     this.implementDocument();
-    this.refreshData();
     this.initializeEventListeners();
+    this.clearSelection();
+    this.refreshData();
 
-    // origin lie
-    document.origin = 'https://github.com/rokyed/cocoChanelJS.git';
 
 };
 
+CocoChanelJS.prototype.clearSelection = function() {
+    this.currentSelectedElement = null;
+    this.currentSelectedElementNode =null;
+};
 CocoChanelJS.prototype.onPreviewElementClicked = function(e) {
     this.setCurrentSelectedElement(e[2],e[1]);
     this.softRefreshData();
@@ -92,7 +99,6 @@ CocoChanelJS.prototype.setCurrentSelectedElement = function(dataSelector, dataTy
         dataType: dataType,
         id: id
     };
-
 
     if (this.currentSelectedElement.dataSelector){
         this.currentSelectedElementNode = this.selectSpecificElement(dataSelector);
@@ -301,13 +307,20 @@ CocoChanelJS.prototype.selectSpecificElement = function(attrib, selector) {
 };
 
 // creates plugins that give access to the core, so we could add stuff to the core without modifying the whole core.
-CocoChanelJS.prototype.addPlugin = function(title, action, fastPane) {
+CocoChanelJS.prototype.addPlugin = function(title, action, fastPane, checkForSelected) {
     var me = this,
         plugin = document.createElement('div');
 
     plugin.innerText = this.language[title] || title;
+    plugin.classList.add('plugin-button');
+    plugin.setAttribute('data-plugin-requires-selection',checkForSelected? 'true': 'false');
     plugin.addEventListener('click', function() {
-        action.apply(me, arguments);
+        if (!checkForSelected || me.currentSelectedElementNode){
+            action.apply(me, arguments);
+        }else{
+            me.refreshData();
+            alert(me.language['element-selected-is-required']);
+        }
     }, false);
     if (fastPane)
         this.main_fastOptions.appendChild(plugin);
@@ -321,10 +334,12 @@ CocoChanelJS.prototype.showPreview = function() {
 
     //takes all the root_document and spews it out as a string
     this.main_preview.src = '';
+    this.main_preview.parentNode.setAttribute('data-preview-loading','true');
 
     this.___REFRESH_TIMER___ = window.setTimeout(function() {
         me.main_preview.src = 'data:text/html;charset=utf-8,' + encodeURI(me.root_document.documentElement.innerHTML);
-        me.main_preview.contentWindow.postMessage('hi',"*");
+        //me.main_preview.contentWindow.postMessage('hi',"*");
+        me.main_preview.parentNode.removeAttribute('data-preview-loading');
     },this.delayReload);
 };
 
@@ -346,14 +361,7 @@ CocoChanelJS.prototype.generateUniqueId = function() {
 CocoChanelJS.prototype.refreshData = function() {
     this.currentSelectedElement = null;
     this.currentSelectedElementNode = null;
-    this.drawSelectedElementHilighter();
-    this.indexAllItems();
-    this.listAllAttributes();
-    this.listAllElements();
-    this.listAllExtras();
-    this.showPreview();
-    this.highlightSelectedElement();
-
+    this.softRefreshData();
 };
 
 CocoChanelJS.prototype.softRefreshData =function() {
@@ -364,7 +372,23 @@ CocoChanelJS.prototype.softRefreshData =function() {
     this.listAllExtras();
     this.showPreview();
     this.highlightSelectedElement();
+    this.toggleButtons();
 };
+
+CocoChanelJS.prototype.toggleButtons = function() {
+    var elements = document.querySelectorAll('[data-plugin-requires-selection="true"]');
+
+    if (this.currentSelectedElementNode) {
+        for (var i = 0, ln = elements.length;i<ln;i++) {
+            elements[i].classList.remove('plugin-disabled');
+        }
+    }else {
+        for (var i = 0, ln = elements.length;i<ln;i++) {
+            elements[i].classList.add('plugin-disabled');
+        }
+    }
+};
+
 CocoChanelJS.prototype.createPopupElement = function() {
     var me = this,
         popup = document.createElement('div');
@@ -383,7 +407,7 @@ CocoChanelJS.prototype.createPopupElement = function() {
     document.body.appendChild(popup);
 
 };
-CocoChanelJS.prototype.showPopupElement = function(data,callback,scope, personalizedClose) {
+CocoChanelJS.prototype.showPopupElement = function(data, callback, scope, personalizedClose) {
         this.main_popup.element.classList.remove('hidden');
         this.main_popup.callback = callback;
         this.main_popup.scope = scope || this;
