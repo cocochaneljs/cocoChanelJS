@@ -195,10 +195,29 @@ body {
 .main_extrasSection >div label {
     flex: 0 0 100px;
 }
-
-.main_sceneSelector > div mark {
-    background: none;
+.element-selection-button .id-listing {
     color: #723;
+}
+.element-selection-button .class-listing {
+    color: #327;
+
+}
+.element-selection-button .element-tiny-info {
+    background: none;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 80px;
+    width: 80px;
+}
+
+.element-selection-button div {
+    font-size: 8px;
+    line-height: 8px;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding: 1px 0;
+
 }
 
 .main_sceneSelector > div:hover,

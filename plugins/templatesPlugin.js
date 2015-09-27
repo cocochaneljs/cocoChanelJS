@@ -22,6 +22,7 @@
             return;
 
         var lorem = [
+            '<div class="text lorem-ipsum">',
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             ' Nunc lacinia vitae turpis vitae laoreet. Phasellus accumsan feugiat libero,',
             ' finibus laoreet augue sagittis vitae. Cum sociis natoque penatibus et magnis dis parturient montes,',
@@ -33,7 +34,8 @@
             ' dui libero euismod augue, vel mollis lectus ligula in erat.',
             ' Quisque nec tristique metus. Maecenas quis massa congue,',
             ' faucibus enim eu, molestie neque. Donec volutpat vulputate lacinia.',
-            ' Sed maximus malesuada rhoncus. Pellentesque ac eleifend tortor, et accumsan mi.'
+            ' Sed maximus malesuada rhoncus. Pellentesque ac eleifend tortor, et accumsan mi.',
+            '</div>'
         ].join('');
 
         this.currentSelectedElementNode.innerHTML = (this.currentSelectedElementNode.innerHtml || '') + lorem;

@@ -167,7 +167,7 @@ CocoChanelJS.prototype.listAllElements = function() {
 
 
 
-        str += '<div ';
+        str += '<div class="element-selection-button"';
         str +='data-tree-depth="';
         str += this.calcDepth(elements[i]);
         str +='"';
@@ -182,14 +182,20 @@ CocoChanelJS.prototype.listAllElements = function() {
 
         str +='" data-type="';
         str += elements[i].nodeName;
-
         str +='">';
 
-        if (elements[i].getAttribute(this.uniqueIdAttribute))
-            str += elements[i].getAttribute(this.uniqueIdAttribute);
+        str += '<div class="flex column">';
+        str += '<sub class="element-tiny-info class-listing">'+ elements[i].className +'</sub>';
+        str += '<sup class="element-tiny-info id-listing">'+ elements[i].id+'</sup>';
+        str +='</div>';
+        str += '<div class="flex column">';
+        str += '<sub class="element-tiny-info">' + elements[i].nodeName + '</sub>';
 
-        str += '<mark>'+ elements[i].id+'</mark>';
-        str += '<sup>' + elements[i].nodeName + '</sup></div>';
+        if (elements[i].getAttribute(this.uniqueIdAttribute))
+            str += '<sup class="element-tiny-info">'+elements[i].getAttribute(this.uniqueIdAttribute)+'</sup>';
+            str +='</div>';
+
+        str +='</div>';
     }
     this.main_elementSelector.innerHTML = str;
 };
