@@ -38,9 +38,21 @@
         },{
             category: 'display',title: 'justify-content',options: ['flex-start','flex-end','center','space-around','space-between']
         },{
-            category: 'colors and backgrounds',title: 'color',options: ['#color']
+            category: 'fonts',title: 'color',options: ['#color']
         },{
-            category: 'colors and backgrounds',title: 'background-color',options: ['#color']
+            category: 'fonts',title: 'font-family',options: ['#']
+        },{
+            category: 'fonts',title: 'font-size',options: ['#']
+        },{
+            category: 'fonts',title: 'font-weight',options: ['normal','bold','bolder','#']
+        },{
+            category: 'fonts',title: 'line-height',options: ['#']
+        },{
+            category: 'cursors',title: 'cursor',options: ['pointer','crosshair','default','auto','move','wait','help','resize','e-resize','w-resize','n-resize','s-resize','ne-resize','nw-resize','se-resize','sw-resize','text','inherit']
+        },{
+            category: 'fonts',title: 'text-align',options: ['center','left','right','justify','justify-all','start','end','match-parent','unset','inherit','initial']
+        },{
+            category: 'backgrounds',title: 'background-color',options: ['#color']
         },{
             category: 'edges',title: 'border',options: ['#']
         },{
@@ -54,21 +66,21 @@
         },{
             category: 'edges',title: 'border-radius',options: ['#']
         },{
-            category: 'colors and backgrounds',title: 'background',options: ['#']
+            category: 'backgrounds',title: 'background',options: ['#']
         },{
-            category: 'colors and backgrounds',title: 'background-image',options: ['#']
+            category: 'backgrounds',title: 'background-image',options: ['#']
         },{
-            category: 'colors and backgrounds',title: 'background-clip',options: ['content-box','padding-box','border-box']
+            category: 'backgrounds',title: 'background-clip',options: ['content-box','padding-box','border-box']
         },{
-            category: 'colors and backgrounds',title: 'background-origin',options: ['content-box','padding-box','border-box']
+            category: 'backgrounds',title: 'background-origin',options: ['content-box','padding-box','border-box']
         },{
-            category: 'colors and backgrounds',title: 'background-attachment',options: ['fixed','scroll','local','inherit']
+            category: 'backgrounds',title: 'background-attachment',options: ['fixed','scroll','local','inherit']
         },{
-            category: 'colors and backgrounds',title: 'background-repeat',options: ['repeat','no-repeat','round','space','repeat-x','repeat-y']
+            category: 'backgrounds',title: 'background-repeat',options: ['repeat','no-repeat','round','space','repeat-x','repeat-y']
         },{
-            category: 'colors and backgrounds',title: 'background-position',options: ['center','top','left','right','bottom','#']
+            category: 'backgrounds',title: 'background-position',options: ['center','top','left','right','bottom','#']
         },{
-            category: 'colors and backgrounds',title: 'background-size',options: ['cover','contain','auto','#']
+            category: 'backgrounds',title: 'background-size',options: ['cover','contain','auto','#']
         }];
 
     window['STARTER_KIT_TEMPLATES'] = {

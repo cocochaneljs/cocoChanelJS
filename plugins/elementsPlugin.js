@@ -33,6 +33,7 @@
             if (currentElement.attributes[i].name != this.uniqueIdAttribute)
                 element.setAttribute(currentElement.attributes[i].name, currentElement.attributes[i].value);
 
+        element.id = currentElement.id + CCJS.root_document.querySelectorAll('[id*="'+currentElement.id+'"]').length;        
         currentElement.parentNode.appendChild(element);
 
         element.innerHTML = currentElement.innerHTML;
