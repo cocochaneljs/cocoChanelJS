@@ -32,12 +32,12 @@
             '</style>',
             '<div data-content="">',
                 '<div style="width: 100%; box-sizing:border-box;" data-button="">',
-                    me.language['load-png-file-only'],
-                '<input type="file" class="load-file-png"></div>',
+                    me.language['load-png-file'],
+                '<input type="file" data-load-type="image/png" class="load-file-png"></div>',
                 dataImages,
             '</div>'
         ].join(''),function(e){
-                if (e.target.classList.contains('load-file-png')) {
+                if (e.target.getAttribute('data-load-type')) {
                     var input = this.main_popup.element.querySelector('.load-file-png');
 
                     input.onchange = function () {
@@ -50,7 +50,7 @@
                                 if (evt.target.readyState == FileReader.DONE) {
                                         convertImgToBase64URL(evt.target.result,function(dx) {
                                                 me.pluginVitalData['imagesLoaderPlugin_images'].push(dx);
-                                        },'png');
+                                        },e.target.getAttribute('data-load-type'));
 
                                     me.refreshData();
                                 }

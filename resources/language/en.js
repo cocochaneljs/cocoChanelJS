@@ -24,7 +24,7 @@
         'about': 'About',
         'file': 'File',
         'add-image-data':'Load & Assign Image',
-        'load-png-file-only': 'Load image, PNG ONLY!',
+        'load-png-file': 'Load image as PNG',
         'save-design': 'Save Design',
         'load-design': 'Load Design',
         'new-design': 'New Design',

@@ -1,5 +1,4 @@
 (function() {
-
     CCJS.addPlugin('add-element',function(){
         var me = this,
             data = "",
