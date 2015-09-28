@@ -33,6 +33,8 @@
         'write-innerhtml-placeholder': 'NOTE: THIS OVERRIDES ANY ELEMENT IN THE INNER HTML!!\ninnerHTML:',
         'close-popup':'Close Popup [X]',
         'image-add-as-src': 'Set as src',
-        'image-add-as-background': 'Set as background-image'
+        'image-add-as-background': 'Set as background-image',
+        'positioning-form': 'Positioning Wizard',
+        'positioning-form-position-label': 'Position:'
     }
 })();

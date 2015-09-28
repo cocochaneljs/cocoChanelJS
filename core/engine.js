@@ -484,6 +484,7 @@ CocoChanelJS.prototype.drawSelectedElementHilighter = function() {
         this.hilighter.selectedStyleElement = hilit;
         hilit.setAttribute(this.untoucheableNodes, 'true');
         hilit.setAttribute(this.hilighter.selectedElementStyle, 'true');
+        hilit.id = 'SELECTION-HILIGHTER';
         hilit.innerHTML = CCJS_GEN_INJECTION_CSS('['+ this.hilighter.selectedElementAttribute+']');
 
         this.root_head.appendChild(hilit);

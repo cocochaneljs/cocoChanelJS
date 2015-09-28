@@ -12,6 +12,17 @@
         'span','summary','table','tr','td','ul','ol','li'
     ];
 
+    window['CCJS_MESURE_UNITS'] = [
+        'px','%','em','cm','mm','in','pt','pc'
+    ]
+
+    window['CCJS_URLS'] = {
+        plugins: 'plugins/',
+        language: 'resources/language/',
+        images: 'resources/images',
+        pluginStylesheets: 'resources/stylesheets/plugins/'
+    }
+
 })();
 
 

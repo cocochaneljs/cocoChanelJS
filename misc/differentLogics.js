@@ -10,3 +10,21 @@ function merge_options(obj1,obj2){
     for (var attrname in obj2) { obj3[attrname] = obj2[attrname]; }
     return obj3;
 }
+
+/**
+ * @param {String} string1
+ * @param {Array} array1
+ * @returns {Boolean}
+ */
+function stringContainsElementOfArray (string1,array1) {
+    var contained = false;
+
+    for (var i = 0, ln = array1.length;i<ln;i++) {
+        if (string1.indexOf(array1[i]) != -1) {
+            contained = true;
+            break;
+        }
+    }
+    
+    return contained;
+}

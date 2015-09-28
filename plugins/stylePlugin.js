@@ -24,7 +24,8 @@
             var css = this.main_popup.element.querySelector('textarea').value;
 
             css = css.replace(/<br.*?>/g, '');
-            style.innerHTML = css;
+            style.innerHTML = css
+            style.id = "GENERAL_STYLING";
             style.setAttribute(this.untoucheableNodes, 'true');
             style.setAttribute('data-general-styling','true');
 
