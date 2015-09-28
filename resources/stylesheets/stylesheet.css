@@ -225,9 +225,7 @@ body {
 .main_extrasSection >div:hover {
     background: #aab;
 }
-.selected {
-    background: #aad;
-}
+
 /* CHEAP SOLUTION FOR MAKING IT A BUTTON (DIV ONLY)*/
 .main_sceneSelector > div::after {
     content:'';
