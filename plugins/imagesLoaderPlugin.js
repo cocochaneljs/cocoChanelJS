@@ -11,25 +11,21 @@
         for(var i =0,ilp = me.pluginVitalData['imagesLoaderPlugin_images'],ilpLn = ilp.length;i<ilpLn;i++ )
         {
             dataImages.push (
-                '<div data-button="" data-icon="" data-add-as="background" data-image-index="'+i+'"'+
-                'style="background-image:url(\''+ilp[i]+'\')">'+me.language['image-add-as-background']+'</div>'
-            );
-            dataImages.push (
-                '<div data-button="" data-icon="" data-add-as="src" data-image-index="'+i+'"'+
-                'style="background-image:url(\''+ilp[i]+'\')">'+me.language['image-add-as-src']+'</div>'
+                '<div data-button="" data-container="">'+
+                    '<div data-button="" data-icon="" data-delete="true" data-image-index="'+i+'"'+
+                    'style="background-image:url(\''+ilp[i]+'\')"></div>'+
+                    '<div class="column">'+
+                        '<div data-button="" data-image-index="'+i+'" data-add-as="background">'+me.language['image-add-as-background']+'</div>'+
+                        '<div data-button="" data-image-index="'+i+'" data-add-as="src">'+me.language['image-add-as-src']+'</div>'+
+                        '<div data-button="" data-image-index="'+i+'" data-delete="true">'+me.language['image-delete']+'</div>'+
+                    '</div>'+
+                '</div>'
             );
         }
 
         me.showPopupElement([
             '<div data-button="" data-close-button="true">',this.language['close-popup'],'</div>',
-            '<style>',
-                '[data-icon] {',
-                    'display:inline-block;min-width:100px !important;max-width:100px;min-height:100px !important;max-height:100px;',
-                    'background-repeat:no-repeat;background-size:contain;background-position: center;',
-                    'text-shadow: 0 0 1px #000;',
-                    'color: #f0f',
-                '}',
-            '</style>',
+            '<link rel="stylesheet" href="',window['CCJS_URLS'].pluginStylesheets,'imageloaderPlugin.css">',
             '<div data-content="">',
                 '<div style="width: 100%; box-sizing:border-box;" data-button="">',
                     me.language['load-png-file'],
@@ -49,7 +45,8 @@
                             freader.onload = function(evt) {
                                 if (evt.target.readyState == FileReader.DONE) {
                                         convertImgToBase64URL(evt.target.result,function(dx) {
-                                                me.pluginVitalData['imagesLoaderPlugin_images'].push(dx);
+                                                if (me.pluginVitalData['imagesLoaderPlugin_images'].indexOf(dx) == -1)
+                                                    me.pluginVitalData['imagesLoaderPlugin_images'].push(dx);
                                         },e.target.getAttribute('data-load-type'));
 
                                     me.refreshData();
@@ -64,10 +61,10 @@
                     me.main_popup.element.classList.add('hidden');
                 }
 
-                var setAs = e.target.getAttribute('data-add-as');
+                var setAs = e.target.getAttribute('data-add-as'),
+                    index = e.target.getAttribute('data-image-index');
 
                 if (setAs && this.currentSelectedElementNode) {
-                    var index = e.target.getAttribute('data-image-index');
 
                     if (setAs == "background") {
                         var style = CSSMagic.parse(this.currentSelectedElementNode.getAttribute('style') || '');
@@ -82,6 +79,13 @@
                     me.softRefreshData();
                     me.main_popup.element.classList.add('hidden');
                 }
+
+                if (index && e.target.getAttribute('data-delete')) {
+                    me.pluginVitalData['imagesLoaderPlugin_images'].splice(index,1);
+                    me.main_popup.element.classList.add('hidden');
+                }
+
+
             },false,true);
     });
 })();

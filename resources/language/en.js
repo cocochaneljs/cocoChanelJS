@@ -34,6 +34,7 @@
         'close-popup':'Close Popup [X]',
         'image-add-as-src': 'Set as src',
         'image-add-as-background': 'Set as background-image',
+        'image-delete': 'Remove image from project',
         'positioning-form': 'Positioning Wizard',
         'positioning-form-position-label': 'Position:'
     }

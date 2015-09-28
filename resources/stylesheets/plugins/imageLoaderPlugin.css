@@ -1,0 +1,19 @@
+[data-button] {
+    display: flex;
+    flex-flow: row nowrap;
+}
+[data-container]:hover,
+[data-icon]:hover {
+    background-color: initial !important;
+}
+[data-icon] {
+    display:inline-block;
+    min-width:100px !important;
+    max-width:100px;
+    min-height:100px !important;max-height:100px;
+    background-repeat:no-repeat;
+    background-size:contain;
+    background-position: center;
+    text-shadow: 0 0 1px #000;
+    color: #f0f;
+}
