@@ -300,7 +300,7 @@ CocoChanelJS.prototype.addPlugin = function(title, action, fastPane, checkForSel
     var me = this,
         plugin = document.createElement('div');
 
-    plugin.innerText = this.language[title] || title;
+    plugin.innerHTML = this.language[title] || title;
     plugin.classList.add('plugin-button');
     plugin.setAttribute('data-plugin-requires-selection',checkForSelected? 'true': 'false');
     plugin.addEventListener('click', function() {
