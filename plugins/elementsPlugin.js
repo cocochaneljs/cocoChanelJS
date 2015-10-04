@@ -73,38 +73,19 @@
     }, true, true);
     CCJS.addPlugin('dom-move-down',function(){
         var elementsFromParent = this.currentSelectedElementNode.parentNode.children,
+            filteredElements = [];
             dataShow =[],
-            elementsString ="",
+            elementsString = "",
             me = this;
 
         for (var i = 0; i < elementsFromParent.length; i++) {
             if (elementsFromParent[i] === this.currentSelectedElementNode || this.nonRemovableNodes.indexOf(elementsFromParent[i].nodeName) > -1)
                 continue;
-            elementsString += [
-                '<div class="element-selection-button" data-button="" ',
-                this.uniqueIdAttribute,
-                '="',
-                elementsFromParent[i].getAttribute(this.uniqueIdAttribute),
-                '">',
-                    '<div class="flex column">',
-                        '<sup class="element-tiny-info class-listing">',
-                            elementsFromParent[i].getAttribute('class'),
-                        '</sup>',
-                        '<sub class="element-tiny-info id-listing">',
-                            elementsFromParent[i].id,
-                        '</sub>',
-                    '</div>',
-                    '<div class="flex column">',
-                        '<sup class="element-tiny-info">',
-                            elementsFromParent[i].nodeName,
-                        '</sup>',
-                        '<sub class="element-tiny-info">',
-                            elementsFromParent[i].getAttribute(this.uniqueIdAttribute),
-                        '</sub>',
-                    '</div>',
-                '</div>'
-            ].join('');
+
+            filteredElements.push(elementsFromParent[i]);
         }
+
+        elementsString += this.getAllElementsAsList(filteredElements);
 
         dataShow = [
             '<style>',
@@ -123,13 +104,13 @@
         ];
 
         me.showPopupElement(dataShow.join(''),function(e){
-            if (e.target.getAttribute(this.uniqueIdAttribute)) {
-                var element = this.selectSpecificElement(e.target.getAttribute(this.uniqueIdAttribute));
+            if (e.target.getAttribute('data-selector')) {
+                var element = this.selectSpecificElement(e.target.getAttribute('data-selector'));
 
                 if (element)
                     element.appendChild(this.currentSelectedElementNode);
 
-                this.softRefreshData();
+                this.refreshData();
             }
         });
     }, true, true);

@@ -158,46 +158,55 @@ CocoChanelJS.prototype.implementDocument = function(skipDocumentCreation) {
 };
 
 CocoChanelJS.prototype.listAllElements = function() {
-    var elements = this.root_document.querySelectorAll('*');
+    this.main_elementSelector.innerHTML = this.getAllElementsAsList();
+};
+
+CocoChanelJS.prototype.getAllElements = function(withSelector) {
+    return this.root_document.querySelectorAll(withSelector ? withSelector : '*');
+};
+
+CocoChanelJS.prototype.reccursiveTreeExplore = function(element) {
+    if (element.children.length == 0)
+        return {
+            uniqueID:  element.getAttribute ? element.getAttribute(this.uniqueIdAttribute) :'',
+            nodeName: element.nodeName,
+            nodeClass: element.className,
+            nodeID: element.id
+        };
+
+        var arr = [{
+            uniqueID: element.getAttribute ? element.getAttribute(this.uniqueIdAttribute) :'',
+            nodeName: element.nodeName,
+            nodeClass: element.className,
+            nodeID: element.id
+        }];
+
+        for (var i = 0,ln = element.children.length; i< ln;i++)
+            arr.push(this.reccursiveTreeExplore(element.children[i]));
+
+        return arr;
+};
+
+CocoChanelJS.prototype.getAllElementsAsList = function(elements) {
+    elements = elements || this.getAllElements();
     var str ='';
 
     //@TODO to be refactored with a template for greater flexibility
 
     for (var i = 0, ln = elements.length; i<ln;i++) {
-
-
-
-        str += '<div class="element-selection-button"';
-        str +='data-tree-depth="';
-        str += this.calcDepth(elements[i]);
-        str +='"';
-        if (elements[i].getAttribute(this.untoucheableNodes)) {
-            str += this.untoucheableNodes + '="true"';
-        }
-
-        str +='data-selector="';
-
-        if (elements[i].getAttribute(this.uniqueIdAttribute))
-            str += elements[i].getAttribute(this.uniqueIdAttribute);
-
-        str +='" data-type="';
-        str += elements[i].nodeName;
-        str +='">';
-
-        str += '<div class="flex column">';
-        str += '<sub class="element-tiny-info class-listing">'+ elements[i].className +'</sub>';
-        str += '<sup class="element-tiny-info id-listing">'+ elements[i].id+'</sup>';
-        str +='</div>';
-        str += '<div class="flex column">';
-        str += '<sub class="element-tiny-info">' + elements[i].nodeName + '</sub>';
-
-        if (elements[i].getAttribute(this.uniqueIdAttribute))
-            str += '<sup class="element-tiny-info">'+elements[i].getAttribute(this.uniqueIdAttribute)+'</sup>';
-            str +='</div>';
-
-        str +='</div>';
+        str+= CCJS_ELEMENT_LIST_STRUCTURE({
+            extraDATA: 'data-button',
+            id: elements[i].id,
+            className: elements[i].className,
+            dataType: elements[i].nodeName,
+            isUntoucheable: elements[i].getAttribute(this.untoucheableNodes) ? true: false,
+            untoucheable: this.untoucheableNodes,
+            dataSelector: elements[i].getAttribute(this.uniqueIdAttribute),
+            treeDepth: this.calcDepth(elements[i])
+        });
     }
-    this.main_elementSelector.innerHTML = str;
+
+    return str;
 };
 
 CocoChanelJS.prototype.calcDepth = function(element, count){
@@ -342,17 +351,35 @@ CocoChanelJS.prototype.cookieBackup = function() {
 
 };
 
+/**
+ * generates an unique id based on the timestamp, in order to not duplicate it,
+ *  it also counts all the elments containing the prefix from the timestamp.
+ * @returns {String}
+ */
 CocoChanelJS.prototype.generateUniqueId = function() {
-    var timestamp = new Date().getTime();
-    return timestamp.toString(16).toUpperCase();
+    var timestamp = new Date().getTime(),
+        timestampStr = timestamp.toString(16).toUpperCase(),
+        elements = this.getAllElements(true, '['+this.uniqueIdAttribute+'^="'+timestampStr+'"]');
+
+    timestampStr += '_'+ elements.length ;
+
+    return timestampStr;
 };
 
+/**
+ * it's a hard refresh , one that also removes selection
+ * @returns {undefined}
+ */
 CocoChanelJS.prototype.refreshData = function() {
     this.currentSelectedElement = null;
     this.currentSelectedElementNode = null;
     this.softRefreshData();
 };
 
+/**
+ * it's a soft refresh , does not remvoe selection
+ * @returns {undefined}
+ */
 CocoChanelJS.prototype.softRefreshData =function() {
     this.drawSelectedElementHilighter();
     this.indexAllItems();
@@ -364,6 +391,10 @@ CocoChanelJS.prototype.softRefreshData =function() {
     this.toggleButtons();
 };
 
+/**
+ * toggles on slection, if the plugin requires selection.
+ * @returns {undefined}
+ */
 CocoChanelJS.prototype.toggleButtons = function() {
     var elements = document.querySelectorAll('[data-plugin-requires-selection="true"]');
 
@@ -378,6 +409,10 @@ CocoChanelJS.prototype.toggleButtons = function() {
     }
 };
 
+/**
+ * executed upon initalization creates popup which will be used during runtime
+ * @returns {undefined}
+ */
 CocoChanelJS.prototype.createPopupElement = function() {
     var me = this,
         popup = document.createElement('div');
@@ -396,6 +431,16 @@ CocoChanelJS.prototype.createPopupElement = function() {
     document.body.appendChild(popup);
 
 };
+
+/**
+ * executed by plugins, helps performing actions on the specific plugin
+ * it already has events in order to listen for clicks
+ * @param {String} data HTML code that will be inserted into popup, close button not included by default
+ * @param {Function} callback
+ * @param {Object/Context} scope
+ * @param {Boolean} personalizedClose
+ * @returns {undefined}
+ */
 CocoChanelJS.prototype.showPopupElement = function(data, callback, scope, personalizedClose) {
         this.main_popup.element.classList.remove('hidden');
         this.main_popup.callback = callback;
@@ -404,12 +449,20 @@ CocoChanelJS.prototype.showPopupElement = function(data, callback, scope, person
         this.main_popup.personalizedClose = !!personalizedClose;
 };
 
+/**
+ * self explanatory, hides popup
+ * @returns {undefined}
+ */
 CocoChanelJS.prototype.onPopupElementTap = function(e) {
 
     if (!this.main_popup.personalizedClose || e.target.getAttribute('data-close-button'))
         this.main_popup.element.classList.add('hidden');
 };
 
+/**
+ * adds unique id to all elements from the document (skips nonRemovableNodes)
+ * @returns {undefined}
+ */
 CocoChanelJS.prototype.indexAllItems = function() {
     this.implementDocument(true);
 

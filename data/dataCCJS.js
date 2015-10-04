@@ -25,6 +25,27 @@
 
 })();
 
+function CCJS_ELEMENT_LIST_STRUCTURE (data) {
+    return [
+        '<div ',
+        (data.extraDATA ? data.extraDATA: ''),
+        ' class="element-selection-button ',
+        (data.itemClass ? data.itemClass: ''),
+        '" data-tree-depth="',data.treeDepth,'"',
+        (data.isUntoucheable ? (data.untoucheable + '="true"') :''),
+        'data-selector="', data.dataSelector,'" data-type="',data.dataType,'">',
+            '<div class="flex column">',
+                '<sub class="element-tiny-info node-name">', data.dataType,'</sub>',
+                '<sup class="element-tiny-info data-slector">',data.dataSelector,'</sup>',
+            '</div>',
+            '<div class="flex column">',
+                '<sub class="element-tiny-info class-listing">',data.className,'</sub>',
+                '<sup class="element-tiny-info id-listing">',data.id,'</sup>',
+            '</div>',
+        '</div>'
+    ].join('');
+}
+
 
 function CCJS_GEN_INJECTION_CSS (selector) {
     return [

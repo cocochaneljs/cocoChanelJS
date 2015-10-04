@@ -93,10 +93,11 @@ body {
 }
 [data-preview-loading="true"]::after {
     will-change: all;
-    width: 100%;
-    max-height: none;
-    min-height: 100%;
-    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-color: rgba(0, 0, 0, 0.1);
     background-position: center;
     background-repeat: no-repeat;
@@ -229,6 +230,19 @@ body {
         -ms-flex: 0 0 100px;
             flex: 0 0 100px;
 }
+
+.element-selection-button {
+    position: relative;
+}
+.element-selection-button::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
 .element-selection-button .id-listing {
     color: #723;
 }
@@ -258,17 +272,6 @@ body {
 .main_attributesSection > div:hover,
 .main_extrasSection >div:hover {
     background: #aab;
-}
-
-/* CHEAP SOLUTION FOR MAKING IT A BUTTON (DIV ONLY)*/
-.main_sceneSelector > div::after {
-    content:'';
-    z-index: 1;
-    position: absolute;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
 }
 
 .optionsPane >div,
