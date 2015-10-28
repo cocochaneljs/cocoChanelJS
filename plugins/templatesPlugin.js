@@ -22,7 +22,6 @@
             return;
 
         var lorem = [
-            '<div class="text lorem-ipsum">',
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             ' Nunc lacinia vitae turpis vitae laoreet. Phasellus accumsan feugiat libero,',
             ' finibus laoreet augue sagittis vitae. Cum sociis natoque penatibus et magnis dis parturient montes,',
@@ -35,10 +34,13 @@
             ' Quisque nec tristique metus. Maecenas quis massa congue,',
             ' faucibus enim eu, molestie neque. Donec volutpat vulputate lacinia.',
             ' Sed maximus malesuada rhoncus. Pellentesque ac eleifend tortor, et accumsan mi.',
-            '</div>'
-        ].join('');
+        ].join(''),
+            lipsumElement = this.root_document.createElement('div');
 
-        this.currentSelectedElementNode.innerHTML = (this.currentSelectedElementNode.innerHtml || '') + lorem;
+        lipsumElement.className = "text lorem-ipsum";
+        lipsumElement.innerHTML = lorem;
+
+        this.currentSelectedElementNode.appendChild(lipsumElement);
 
         this.refreshData();
     }, true);

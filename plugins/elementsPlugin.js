@@ -37,6 +37,11 @@
 
         element.innerHTML = currentElement.innerHTML;
 
+        var subElements = element.querySelectorAll('*');
+
+        for (var k = 0,lnk = subElements.length; k < lnk; k++)
+            subElements[k].removeAttribute('data-ccjs-element');
+
         this.softRefreshData();
     }, true, true);
     CCJS.addPlugin('delete-element',function(){
