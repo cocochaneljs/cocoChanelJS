@@ -29,5 +29,4 @@ Many things will be changed to be better.
   - Full support for HTML:
     - Since it's an HTML environment, it's easier to get acurate preview of the page
 
-##Want to contribute:
-   Email me at: rokyed@gmail.com
+## still on. (working on it when i get free time)
