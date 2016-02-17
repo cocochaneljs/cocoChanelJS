@@ -19,4 +19,4 @@
                 this.softRefreshData();
             }, false, true);
     }, true, true);
-});
+})();
