@@ -74,6 +74,6 @@ CSS_MAGIC.prototype.split = function (string,byCharacter) {
 }
 
 
-
+window['CSS_MAGIC'] = CSS_MAGIC;
 window['CSSMagic'] = new CSS_MAGIC();
 })();
