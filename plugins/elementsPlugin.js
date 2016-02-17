@@ -44,6 +44,7 @@
 
         this.softRefreshData();
     }, true, true);
+    
     CCJS.addPlugin('delete-element',function(){
         this.removeElement();
     }, true, true);
@@ -69,6 +70,7 @@
         this.currentSelectedElementNode.parentNode.insertBefore(this.currentSelectedElementNode.nextSibling, this.currentSelectedElementNode);
         this.softRefreshData();
     }, true, true);
+
     CCJS.addPlugin('dom-move-up',function(){
         if (!this.currentSelectedElementNode || this.nonRemovableNodes.indexOf(this.currentSelectedElementNode.parentNode.nodeName) != -1)
             return;
@@ -76,6 +78,7 @@
         this.currentSelectedElementNode.parentNode.parentNode.appendChild(this.currentSelectedElementNode);
         this.softRefreshData();
     }, true, true);
+
     CCJS.addPlugin('dom-move-down',function(){
         var elementsFromParent = this.currentSelectedElementNode.parentNode.children,
             filteredElements = [];
@@ -118,37 +121,5 @@
                 this.refreshData();
             }
         });
-    }, true, true);
-    CCJS.addPlugin('add-attribute',function(){
-        if(!this.currentSelectedElementNode)
-            return;
-        var attribute = prompt(this.language['add-attribute-name-prompt'],''),
-            value = prompt(this.language['add-attribute-value-prompt'],'');
-
-        if (!attribute || !value)
-            return;
-
-        this.currentSelectedElementNode.setAttribute(attribute, value);
-        this.softRefreshData();
-    }, true, true);
-    CCJS.addPlugin('innerHTML', function(){
-        if(!this.currentSelectedElementNode)
-            return;
-
-            this.showPopupElement([
-                '<div data-button="" data-close-button="true">',this.language['close-popup'],'</div>',
-                '<textarea wrap="on" spellcheck="false" placeholder="',
-                    this.language['write-innerhtml-placeholder'],
-                '" style="width:100%;height:100%">',
-                this.currentSelectedElementNode.innerHTML,
-                '</textarea>'
-            ].join(''),function(e){
-                if (e.target.nodeName == "TEXTAREA")
-                    return;
-
-                this.currentSelectedElementNode.innerHTML = this.main_popup.element.querySelector('textarea').value;
-
-                this.softRefreshData();
-            }, false, true);
     }, true, true);
 })();

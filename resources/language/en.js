@@ -1,5 +1,5 @@
 (function() {
-    window['data_language'] = {
+    module.exports = {
         'nothing_selected':'NOTHING SELECTED',
         'element-selected-is-required': 'Select an element before this action',
         'backspace-key-f5-disabled':'Backspace and F5 are disabled, for not loosing your data by mistake',

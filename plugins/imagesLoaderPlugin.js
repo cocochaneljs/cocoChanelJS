@@ -33,59 +33,59 @@
                 dataImages,
             '</div>'
         ].join(''),function(e){
-                if (e.target.getAttribute('data-load-type')) {
-                    var input = this.main_popup.element.querySelector('.load-file-png');
+            if (e.target.getAttribute('data-load-type')) {
+                var input = this.main_popup.element.querySelector('.load-file-png');
 
-                    input.onchange = function () {
-                        var file = this.files[0];
+                input.onchange = function () {
+                    var file = this.files[0];
 
-                        if (file) {
-                            var freader = new FileReader();
+                    if (file) {
+                        var freader = new FileReader();
 
-                            freader.onload = function(evt) {
-                                if (evt.target.readyState == FileReader.DONE) {
-                                        convertImgToBase64URL(evt.target.result,function(dx) {
-                                                if (me.pluginVitalData['imagesLoaderPlugin_images'].indexOf(dx) == -1)
-                                                    me.pluginVitalData['imagesLoaderPlugin_images'].push(dx);
-                                        },e.target.getAttribute('data-load-type'));
+                        freader.onload = function(evt) {
+                            if (evt.target.readyState == FileReader.DONE) {
+                                    convertImgToBase64URL(evt.target.result,function(dx) {
+                                            if (me.pluginVitalData['imagesLoaderPlugin_images'].indexOf(dx) == -1)
+                                                me.pluginVitalData['imagesLoaderPlugin_images'].push(dx);
+                                    },e.target.getAttribute('data-load-type'));
 
-                                    me.refreshData();
-                                }
-                            };
+                                me.refreshData();
+                            }
+                        };
 
-                            freader.readAsDataURL(file.slice(0,file.size-1));
+                        freader.readAsDataURL(file.slice(0,file.size-1));
 
-                            input = null;
-                        }
-                    };
-                    me.main_popup.element.classList.add('hidden');
-                }
-
-                var setAs = e.target.getAttribute('data-add-as'),
-                    index = e.target.getAttribute('data-image-index');
-
-                if (setAs && this.currentSelectedElementNode) {
-
-                    if (setAs == "background") {
-                        var style = CSSMagic.parse(this.currentSelectedElementNode.getAttribute('style') || '');
-
-                        style = CSSMagic.addStatement(style, 'background-image',"url('"+me.pluginVitalData['imagesLoaderPlugin_images'][index]+"')");
-
-                        this.currentSelectedElementNode.setAttribute('style',CSSMagic.stringify(style));
+                        input = null;
                     }
-                    if (setAs =="src") {
-                        this.currentSelectedElementNode.setAttribute('src', me.pluginVitalData['imagesLoaderPlugin_images'][index]);
-                    }
-                    me.softRefreshData();
-                    me.main_popup.element.classList.add('hidden');
+                };
+                me.main_popup.element.classList.add('hidden');
+            }
+
+            var setAs = e.target.getAttribute('data-add-as'),
+                index = e.target.getAttribute('data-image-index');
+
+            if (setAs && this.currentSelectedElementNode) {
+
+                if (setAs == "background") {
+                    var style = CSSMagic.parse(this.currentSelectedElementNode.getAttribute('style') || '');
+
+                    style = CSSMagic.addStatement(style, 'background-image',"url('"+me.pluginVitalData['imagesLoaderPlugin_images'][index]+"')");
+
+                    this.currentSelectedElementNode.setAttribute('style',CSSMagic.stringify(style));
                 }
-
-                if (index && e.target.getAttribute('data-delete')) {
-                    me.pluginVitalData['imagesLoaderPlugin_images'].splice(index,1);
-                    me.main_popup.element.classList.add('hidden');
+                if (setAs =="src") {
+                    this.currentSelectedElementNode.setAttribute('src', me.pluginVitalData['imagesLoaderPlugin_images'][index]);
                 }
+                me.softRefreshData();
+                me.main_popup.element.classList.add('hidden');
+            }
+
+            if (index && e.target.getAttribute('data-delete')) {
+                me.pluginVitalData['imagesLoaderPlugin_images'].splice(index,1);
+                me.main_popup.element.classList.add('hidden');
+            }
 
 
-            },false,true);
+        },false,true);
     });
 })();
