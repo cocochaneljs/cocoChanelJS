@@ -6,9 +6,13 @@ Requirements:
 Latest version of Chrome (not yet tested on others), I suppose Opera and Firefox will work.
 Note: Do not use InternetExplorer or you are heading towards headaches.
 
-##Install:
-1. Clone repo or download it.
-2. Launch index.html
+##Install and run:
+
+```
+npm install
+
+npm start
+```
 
 
 ##Description:
