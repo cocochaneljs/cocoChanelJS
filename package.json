@@ -1,7 +1,7 @@
 {
   "name": "cocochaneljs",
   "version": "1.0.0",
-  "description": "Requirements: Latest version of Chrome (not yet tested on others), I suppose Opera and Firefox will work. Note: Do not use InternetExplorer or you are heading towards headaches.",
+  "description": "Stand alone javascript web designer for designers!",
   "main": "main.js",
   "scripts": {
     "start": "electron ."

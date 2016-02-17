@@ -2,6 +2,7 @@ var app = require('app');
 var BrowserWindow = require('browser-window');
 
 app.commandLine.appendSwitch('disable-web-security');
+app.setName('CocoChanelJS');
 
 app.on('ready', function () {
     var mainWindow = new BrowserWindow({

@@ -62,7 +62,6 @@ CocoChanelJS.prototype.initializeElements = function() {
         '</div>'
     ].join('');
 
-
     this.main_preview = this.main_body_element.querySelector('.main_scenePreview');
     this.main_elementSelector = this.main_body_element.querySelector('.main_sceneSelector');
     this.main_elementAttributes = this.main_body_element.querySelector('.main_attributesSection');
@@ -348,20 +347,21 @@ CocoChanelJS.prototype.addPlugin = function(title, action, fastPane, checkForSel
 
     plugin.innerHTML = this.language[title] || title;
     plugin.classList.add('plugin-button');
-    plugin.setAttribute('data-plugin-requires-selection',checkForSelected? 'true': 'false');
+    plugin.setAttribute('data-plugin-requires-selection', checkForSelected ? 'true': 'false');
+
     plugin.addEventListener('click', function() {
         if (!checkForSelected || me.currentSelectedElementNode){
             action.apply(me, arguments);
         }else{
             me.refreshData();
-            alert(me.language['element-selected-is-required']);
+            window.alert(me.language['element-selected-is-required']);
         }
     }, false);
+
     if (fastPane)
         this.main_fastOptions.appendChild(plugin);
     else
         this.main_options.appendChild(plugin);
-
 };
 
 CocoChanelJS.prototype.showPreview = function() {
@@ -385,7 +385,6 @@ CocoChanelJS.prototype.cookieBackup = function() {
     };
 
     document.cookie = JSON.stringify(data);
-
 };
 
 /**
@@ -461,12 +460,13 @@ CocoChanelJS.prototype.createPopupElement = function() {
     popup.classList.add('space-around');
 
     this.main_popup.element = popup;
+    
     this.main_popup.element.addEventListener('click', function() {
         me.main_popup.callback.apply(me.main_popup.scope, arguments);
         me.onPopupElementTap.apply(me, arguments);
     }, false);
-    document.body.appendChild(popup);
 
+    document.body.appendChild(popup);
 };
 
 /**
@@ -535,10 +535,10 @@ CocoChanelJS.prototype.initializeEventListeners = function() {
 
     window.addEventListener('keydown',function (e) {
         if (['input','textarea'].indexOf(e.target.nodeName.toLowerCase())== -1){
-            if ((e.which || e.keyCode) == 116) {
-                alert(this.language['backspace-key-f5-disabled']);
-                e.preventDefault();
-            }
+            // if ((e.which || e.keyCode) == 116) {
+            //     alert(this.language['backspace-key-f5-disabled']);
+            //     e.preventDefault();
+            // }
         } else {
             //keyHandler(e);
         }
@@ -584,6 +584,7 @@ CocoChanelJS.prototype.drawSelectedElementHilighter = function() {
 CocoChanelJS.prototype.storeEditorDataInDocument = function() {
     this.root_document_data_storage.innerHTML = "'"+ JSON.stringify(this.pluginVitalData)+"'";
 };
+
 CocoChanelJS.prototype.loadEditorDataFromDocument = function() {
     var str = this.root_document_data_storage.innerHTML;
     this.pluginVitalData = JSON.parse(str.substring(1,str.length-1));

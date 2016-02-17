@@ -58,7 +58,7 @@
 
         me.showPopupElement(template.join(''), function(evt) {
             if (!evt.target.getAttribute('data-close-button'))
-                alert('Hello World');
+                window['dialog'].showErrorBox('Hello World');
         }, me, true);
-    }, true, false);
+    }, true, true);
 })();

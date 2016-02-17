@@ -24,6 +24,5 @@
         return this.languages[this.defaultLanguage];
     };
 
-
     module.exports = LanguageManager;
 })();
