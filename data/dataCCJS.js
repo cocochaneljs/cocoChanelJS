@@ -13,7 +13,7 @@
     ];
 
     window['CCJS_MESURE_UNITS'] = [
-        'px','%','em','cm','mm','in','pt','pc'
+        'px','%','em','cm','mm','in','pt','pc','auto'
     ]
 
     window['CCJS_URLS'] = {
