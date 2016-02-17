@@ -25,7 +25,7 @@ Many things will be changed to be better.
 
 ##Features:
   - Outliner:
-    - Has tree hierarchy view up to 20 levels of depth.
+    - Has tree hierarchy view up to 100 levels of depth. (too many :D)
 
   - Preview Pane:
     - Can select items on click.
