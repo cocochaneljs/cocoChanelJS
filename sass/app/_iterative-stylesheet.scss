@@ -1,0 +1,14 @@
+[data-tree-depth]:before {
+    font-size: 5px;
+    display: inline-block;
+    content: '';
+    margin-right: 2px;
+    background: -webkit-linear-gradient(top, #b8e1fc 0%, #a9d2f3 10%, #90bae4 25%, #90bcea 37%, #90bff0 50%, #6ba8e5 51%, #a2daf5 83%, #bdf3fd 100%);
+    background: linear-gradient(to bottom, #b8e1fc 0%,#a9d2f3 10%,#90bae4 25%,#90bcea 37%,#90bff0 50%,#6ba8e5 51%,#a2daf5 83%,#bdf3fd 100%);
+}
+
+@for $i from 1 through 100 {
+    [data-tree-depth="#{$i}"]::before {
+        width: 0px + $i;
+    }
+}
