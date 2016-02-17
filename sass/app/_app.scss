@@ -141,7 +141,7 @@ body {
     position: relative;
     text-rendering: geometricPrecision;
 
-    & ::before {
+    &::before {
         display: block;
         width: 2px;
         height: 100%;
@@ -231,7 +231,7 @@ body {
 .element-selection-button {
     position: relative;
 
-    & ::after {
+    &::after {
         content: '';
         position: absolute;
         left: 0;
@@ -433,7 +433,7 @@ body {
     border-radius: 2px;
     font-weight: bold;
 
-    & ::after {
+    &::after {
         content: ':';
     }
 }

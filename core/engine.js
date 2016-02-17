@@ -28,9 +28,14 @@ function CocoChanelJS(previewElement, elementSelectorElement, elementAttributesE
     this.currentSelectedElement = null;
     this.currentSelectedElementNode = null;
     this.plugins = [];
+
     this.initialize();
+
+    // this data will be stored with the html file
     this.pluginVitalData = {};
 
+    // this data will be only during runtime
+    this.liveData = {};
 }
 
 CocoChanelJS.prototype.test = function (first_argument) {

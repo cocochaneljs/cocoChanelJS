@@ -5,8 +5,8 @@
 
         me.refreshData();
 
-        if (! CCJS.pluginVitalData.flowPlugin)
-            CCJS.pluginVitalData.flowPlugin = {};
+        if (! CCJS.liveData.flowPlugin)
+            CCJS.liveData.flowPlugin = {};
 
         me.showPopupElement([
             '<div data-button="" data-close-button="true">',this.language['close-popup'],'</div>',
@@ -29,7 +29,7 @@
         if (e.target.classList.contains('new-file')) {
             me.root_document.documentElement.innerHTML = '<html><head></head><body></body></html>';
             me.refreshData();
-            delete CCJS.pluginVitalData.flowPlugin.filePath;
+            delete CCJS.liveData.flowPlugin.filePath;
         }
 
         if (e.target.classList.contains('save-file')) {
@@ -44,14 +44,14 @@
                     }]
                 };
 
-            if (CCJS.pluginVitalData.flowPlugin.filePath)
-                window['fileSystem'].writeFile(CCJS.pluginVitalData.flowPlugin.filePath, textToWrite, function (err) {
+            if (CCJS.liveData.flowPlugin.filePath)
+                window['fileSystem'].writeFile(CCJS.liveData.flowPlugin.filePath, textToWrite, function (err) {
                     if(err) console.error(err);
                 });
             else
                 window['dialog'].showSaveDialog(options, function (filePath) {
                     if (filePath) {
-                        CCJS.pluginVitalData.flowPlugin.filePath = filePath;
+                        CCJS.liveData.flowPlugin.filePath = filePath;
 
                         window['fileSystem'].writeFile(filePath, textToWrite, function (err) {
                             if(err) console.error(err);
@@ -74,7 +74,7 @@
 
             window['dialog'].showSaveDialog(options, function (filePath) {
                 if (filePath) {
-                    CCJS.pluginVitalData.flowPlugin.filePath = filePath;
+                    CCJS.liveData.flowPlugin.filePath = filePath;
 
                     window['fileSystem'].writeFile(filePath, textToWrite, function (err) {
                         if(err) console.error(err);
@@ -91,8 +91,8 @@
 
                 if (file) {
                     var freader = new FileReader();
-                    
-                    CCJS.pluginVitalData.flowPlugin.filePath = file.path;
+
+                    CCJS.liveData.flowPlugin.filePath = file.path;
 
                     freader.onloadend = function(evt) {
                         if (evt.target.readyState == FileReader.DONE) {
