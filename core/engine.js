@@ -589,5 +589,5 @@ CocoChanelJS.prototype.loadEditorDataFromDocument = function() {
     this.pluginVitalData = JSON.parse(str.substring(1,str.length-1));
 };
 
-window['CCJS'] = new CocoChanelJS();
+module.exports = CocoChanelJS;
 })();
