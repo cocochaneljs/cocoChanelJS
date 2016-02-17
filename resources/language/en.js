@@ -38,6 +38,8 @@
         'image-add-as-background': 'Set as background-image',
         'image-delete': 'Remove image from project',
         'positioning-form': 'Positioning Wizard',
-        'positioning-form-position-label': 'Position:'
+        'positioning-form-position-label': 'Position:',
+        'add-html-at-end': 'Add HTML at end',
+        'html': 'HTML'
     }
 })();

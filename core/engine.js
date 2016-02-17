@@ -395,7 +395,7 @@ CocoChanelJS.prototype.cookieBackup = function() {
 CocoChanelJS.prototype.generateUniqueId = function() {
     var timestamp = new Date().getTime(),
         timestampStr = timestamp.toString(16).toUpperCase(),
-        elements = this.getAllElements(true, '['+this.uniqueIdAttribute+'^="'+timestampStr+'"]');
+        elements = this.getAllElements('['+this.uniqueIdAttribute+'^="'+timestampStr+'"]');
 
     timestampStr += '_'+ elements.length ;
 
@@ -460,7 +460,7 @@ CocoChanelJS.prototype.createPopupElement = function() {
     popup.classList.add('space-around');
 
     this.main_popup.element = popup;
-    
+
     this.main_popup.element.addEventListener('click', function() {
         me.main_popup.callback.apply(me.main_popup.scope, arguments);
         me.onPopupElementTap.apply(me, arguments);
