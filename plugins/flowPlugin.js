@@ -5,6 +5,9 @@
 
         me.refreshData();
 
+        if (! CCJS.pluginVitalData.flowPlugin)
+            CCJS.pluginVitalData.flowPlugin = {};
+
         me.showPopupElement([
             '<div data-button="" data-close-button="true">',this.language['close-popup'],'</div>',
             '<div data-content="">',
@@ -13,6 +16,9 @@
                 '</div>',
                 '<div data-button="" class="save-file">',
                     me.language['save-design'],
+                '</div>',
+                '<div data-button="" class="save-new-file">',
+                    me.language['save-new-design'],
                 '</div>',
                 '<div data-button="">',
                     me.language['load-design'],
@@ -23,48 +29,60 @@
         if (e.target.classList.contains('new-file')) {
             me.root_document.documentElement.innerHTML = '<html><head></head><body></body></html>';
             me.refreshData();
+            delete CCJS.pluginVitalData.flowPlugin.filePath;
         }
 
         if (e.target.classList.contains('save-file')) {
-                me.storeEditorDataInDocument();
-                me.refreshData();
-
-                var fileNameToSaveAs = prompt('Enter file name:\n(it will go to downloads)\n(ADD .html at the end)','file.html');
-
-                if (! fileNameToSaveAs)
-                    return;
-
-                var textToWrite = '<html>'+ this.root_document.documentElement.innerHTML+'</html>';
-                var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
-
-                var downloadLink = document.createElement("a");
-                downloadLink.download = fileNameToSaveAs;
-                downloadLink.innerHTML = "Download File";
-                if (window.webkitURL != null)
-                {
-                    // Chrome allows the link to be clicked
-                    // without actually adding it to the DOM.
-                    downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
-                }
-                else
-                {
-                    // Firefox requires the link to be added to the DOM
-                    // before it can be clicked.
-                    downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
-                    downloadLink.onclick = destroyClickedElement;
-                    downloadLink.style.display = "none";
-                    document.body.appendChild(downloadLink);
-                }
-
-                downloadLink.click();
-
-            var data = '<html>'+ this.root_document.documentElement.innerHTML+'</html>';
-            var w=window.open();
-            w.document.open();
-            w.document.write(data);
-            w.document.close();
+            me.storeEditorDataInDocument();
             me.refreshData();
+
+            var textToWrite = '<html>'+ this.root_document.documentElement.innerHTML+'</html>',
+                options = {
+                    filters: [{
+                        name: "HTML",
+                        extensions: ['html']
+                    }]
+                };
+
+            if (CCJS.pluginVitalData.flowPlugin.filePath)
+                window['fileSystem'].writeFile(CCJS.pluginVitalData.flowPlugin.filePath, textToWrite, function (err) {
+                    if(err) console.error(err);
+                });
+            else
+                window['dialog'].showSaveDialog(options, function (filePath) {
+                    if (filePath) {
+                        CCJS.pluginVitalData.flowPlugin.filePath = filePath;
+
+                        window['fileSystem'].writeFile(filePath, textToWrite, function (err) {
+                            if(err) console.error(err);
+                        });
+                    }
+                });
         }
+
+        if (e.target.classList.contains('save-new-file')) {
+            me.storeEditorDataInDocument();
+            me.refreshData();
+
+            var textToWrite = '<html>'+ this.root_document.documentElement.innerHTML+'</html>',
+                options = {
+                    filters: [{
+                        name: "HTML",
+                        extensions: ['html']
+                    }]
+                };
+
+            window['dialog'].showSaveDialog(options, function (filePath) {
+                if (filePath) {
+                    CCJS.pluginVitalData.flowPlugin.filePath = filePath;
+
+                    window['fileSystem'].writeFile(filePath, textToWrite, function (err) {
+                        if(err) console.error(err);
+                    });
+                }
+            });
+        }
+
         if (e.target.classList.contains('load-file')) {
             var input = this.main_popup.element.querySelector('.load-file');
 
@@ -73,6 +91,8 @@
 
                 if (file) {
                     var freader = new FileReader();
+                    
+                    CCJS.pluginVitalData.flowPlugin.filePath = file.path;
 
                     freader.onloadend = function(evt) {
                         if (evt.target.readyState == FileReader.DONE) {

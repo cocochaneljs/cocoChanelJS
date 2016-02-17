@@ -25,6 +25,7 @@
         'file': 'File',
         'add-image-data':'Load & Assign Image',
         'load-png-file': 'Load image as PNG',
+        'save-new-design': 'Save As Design',
         'save-design': 'Save Design',
         'load-design': 'Load Design',
         'new-design': 'New Design',
