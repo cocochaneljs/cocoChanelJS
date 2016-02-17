@@ -1,0 +1,22 @@
+{
+  "name": "cocochaneljs",
+  "version": "1.0.0",
+  "description": "Requirements: Latest version of Chrome (not yet tested on others), I suppose Opera and Firefox will work. Note: Do not use InternetExplorer or you are heading towards headaches.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rokyed/cocoChanelJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rokyed/cocoChanelJS/issues"
+  },
+  "homepage": "https://github.com/rokyed/cocoChanelJS#readme",
+  "devDependencies": {
+    "electron-prebuilt": "^0.36.7"
+  }
+}
