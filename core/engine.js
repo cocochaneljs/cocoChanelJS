@@ -1,5 +1,5 @@
 ( function() {
-function CocoChanelJS(previewElement, elementSelectorElement, elementAttributesElement, elementExtrasEelement, optionPane,fastPane) {
+function CocoChanelJS() {
     this.language = window['data_language'];
     this.uniqueIdAttribute = 'data-ccjs-element';
     this.nonRemovableNodes = ['HTML','HEAD','BODY','STYLE','data-storage-element'];
@@ -11,12 +11,9 @@ function CocoChanelJS(previewElement, elementSelectorElement, elementAttributesE
         selectedStyleElement: null,
     };
     this.delayReload = 300;
-    this.main_preview = previewElement;
-    this.main_elementSelector =elementSelectorElement;
-    this.main_elementAttributes = elementAttributesElement;
-    this.main_elementExtras = elementExtrasEelement;
-    this.main_options = optionPane;
-    this.main_fastOptions = fastPane;
+
+    this.initializeElements();
+
     this.main_popup = {};
     this.elementCounter = 0;
     this.root_document = null;
@@ -41,6 +38,41 @@ function CocoChanelJS(previewElement, elementSelectorElement, elementAttributesE
 CocoChanelJS.prototype.test = function (first_argument) {
     console.log([first_argument,this]);
 };
+
+CocoChanelJS.prototype.initializeElements = function() {
+    this.main_body_element = document.createElement('div');
+    this.main_body_element.className = "flex column fullSpace";
+    this.main_body_element.innerHTML = [
+        '<div class="bodyPane flex row flex-one">',
+            '<div class="propertiesPane fastPane flex column">',
+            '</div>',
+            '<div class="previewPane flex-one flex column">',
+                '<iframe class="main_scenePreview flex-one"></iframe>',
+            '</div>',
+            '<div class="propertiesPane flex column">',
+                '<div class="optionsPane flex row">',
+                '</div>',
+                '<div class="main_sceneSelector flex-one flex column">',
+                '</div>',
+                '<div class="main_attributesSection flex-one flex column">',
+                '</div>',
+                '<div class="main_extrasSection flex-one flex column">',
+                '</div>',
+            '</div>',
+        '</div>'
+    ].join('');
+
+
+    this.main_preview = this.main_body_element.querySelector('.main_scenePreview');
+    this.main_elementSelector = this.main_body_element.querySelector('.main_sceneSelector');
+    this.main_elementAttributes = this.main_body_element.querySelector('.main_attributesSection');
+    this.main_elementExtras = this.main_body_element.querySelector('.main_extrasSection');
+    this.main_options = this.main_body_element.querySelector('.optionsPane');
+    this.main_fastOptions = this.main_body_element.querySelector('.fastPane');
+
+    document.body.appendChild(this.main_body_element);
+};
+
 
 CocoChanelJS.prototype.initialize = function() {
     // origin lie
@@ -557,12 +589,5 @@ CocoChanelJS.prototype.loadEditorDataFromDocument = function() {
     this.pluginVitalData = JSON.parse(str.substring(1,str.length-1));
 };
 
-window['CCJS'] = new CocoChanelJS(
-    document.querySelector('.main_scenePreview'),
-    document.querySelector('.main_sceneSelector'),
-    document.querySelector('.main_attributesSection'),
-    document.querySelector('.main_extrasSection'),
-    document.querySelector('.optionsPane'),
-    document.querySelector('.fastPane')
-);
+window['CCJS'] = new CocoChanelJS();
 })();
