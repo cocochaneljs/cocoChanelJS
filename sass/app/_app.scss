@@ -323,11 +323,6 @@ body {
         cursor: default;
     }
 
-    & * {
-        display: inline-block;
-        margin: auto auto;
-    }
-
     & div[data-content] {
         background:#fff;
         overflow: hidden;
@@ -481,4 +476,18 @@ body {
         width: 100%;
         margin: 0;
     }
+}
+
+
+#codemirror-editor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+}
+
+.CodeMirror {
+    height: 100% !important;
 }

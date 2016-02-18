@@ -1,7 +1,22 @@
 ( function() {
+    // beautify uses it's own define that's why we load it before
+
+    window['beautify_js'] = require('js-beautify'); // also available under "js" export
+    window['beautify_css'] = require('js-beautify').css;
+    window['beautify_html'] = require('js-beautify').html;
+
+    window['define'] = require('define');
+
     window['remote'] = require('remote');
     window['dialog'] = window['remote'].require('dialog');
     window['fileSystem'] = require('fs');
+    window['codemirror'] = require('codemirror');
+
+    require('codemirror/mode/javascript/javascript');
+    require('codemirror/mode/css/css');
+    require('codemirror/mode/htmlmixed/htmlmixed');
+    require('codemirror/addon/comment/comment');
+    require('codemirror/addon/wrap/hardwrap');
 
     // data
     require('./data/automatedStyleGenerator');

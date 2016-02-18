@@ -949,11 +949,6 @@ body {
   cursor: default;
 }
 /* line 326, ../../sass/app/_app.scss */
-.popup * {
-  display: inline-block;
-  margin: auto auto;
-}
-/* line 331, ../../sass/app/_app.scss */
 .popup div[data-content] {
   background: #fff;
   overflow: hidden;
@@ -979,7 +974,7 @@ body {
   -ms-flex-pack: start;
   justify-content: flex-start;
 }
-/* line 357, ../../sass/app/_app.scss */
+/* line 352, ../../sass/app/_app.scss */
 .popup > div[data-button] {
   -webkit-transition: all 100ms linear;
   -moz-transition: all 100ms linear;
@@ -987,17 +982,17 @@ body {
   -ms-transition: all 100ms linear;
   transition: all 100ms linear;
 }
-/* line 365, ../../sass/app/_app.scss */
+/* line 360, ../../sass/app/_app.scss */
 .popup style {
   display: none !important;
 }
 
-/* line 370, ../../sass/app/_app.scss */
+/* line 365, ../../sass/app/_app.scss */
 [data-not-touch] {
   background: #d33;
 }
 
-/* line 374, ../../sass/app/_app.scss */
+/* line 369, ../../sass/app/_app.scss */
 .popup div[data-button], .input-option {
   cursor: pointer;
   resize: none;
@@ -1009,22 +1004,22 @@ body {
   border-radius: 2px;
 }
 
-/* line 385, ../../sass/app/_app.scss */
+/* line 380, ../../sass/app/_app.scss */
 .input-option {
   border: none;
   min-height: 20px;
 }
 
-/* line 390, ../../sass/app/_app.scss */
+/* line 385, ../../sass/app/_app.scss */
 .popup div[data-button]:hover {
   background-color: #aad;
 }
 
-/* line 395, ../../sass/app/_app.scss */
+/* line 390, ../../sass/app/_app.scss */
 [data-content] [data-info] {
   padding: 4px;
 }
-/* line 399, ../../sass/app/_app.scss */
+/* line 394, ../../sass/app/_app.scss */
 [data-content] [data-option] {
   margin: 4px 0;
   padding: 4px;
@@ -1043,7 +1038,7 @@ body {
   box-sizing: border-box;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
-/* line 417, ../../sass/app/_app.scss */
+/* line 412, ../../sass/app/_app.scss */
 [data-content] [data-option] * {
   white-space: nowrap;
   display: inline-block;
@@ -1052,7 +1047,7 @@ body {
   box-sizing: content-box;
 }
 
-/* line 427, ../../sass/app/_app.scss */
+/* line 422, ../../sass/app/_app.scss */
 [data-option-label] {
   background: #efefff;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.9);
@@ -1062,12 +1057,12 @@ body {
   border-radius: 2px;
   font-weight: bold;
 }
-/* line 436, ../../sass/app/_app.scss */
+/* line 431, ../../sass/app/_app.scss */
 [data-option-label]::after {
   content: ':';
 }
 
-/* line 441, ../../sass/app/_app.scss */
+/* line 436, ../../sass/app/_app.scss */
 [data-close-button] {
   position: fixed;
   right: 5px;
@@ -1076,28 +1071,28 @@ body {
   background: #fff;
 }
 
-/* line 449, ../../sass/app/_app.scss */
+/* line 444, ../../sass/app/_app.scss */
 [data-option-value]:hover {
   background: #edf;
 }
 
-/* line 453, ../../sass/app/_app.scss */
+/* line 448, ../../sass/app/_app.scss */
 [data-option-value][data-selected] {
   background: #99f;
 }
 
-/* line 457, ../../sass/app/_app.scss */
+/* line 452, ../../sass/app/_app.scss */
 .no-overflow[data-content] {
   overflow: auto !important;
 }
 
-/* line 463, ../../sass/app/_app.scss */
+/* line 458, ../../sass/app/_app.scss */
 .block [data-content], .block [data-option] {
   display: inline-block;
   min-width: 100%;
 }
 
-/* line 468, ../../sass/app/_app.scss */
+/* line 463, ../../sass/app/_app.scss */
 .column[data-content] {
   -webkit-box-orient: vertical !important;
   -webkit-box-direction: normal !important;
@@ -1108,10 +1103,25 @@ body {
   -ms-flex-wrap: nowrap !important;
   flex-wrap: nowrap !important;
 }
-/* line 478, ../../sass/app/_app.scss */
+/* line 473, ../../sass/app/_app.scss */
 .column[data-content] [data-info] {
   padding: 4px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
   width: 100%;
   margin: 0;
+}
+
+/* line 482, ../../sass/app/_app.scss */
+#codemirror-editor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+}
+
+/* line 491, ../../sass/app/_app.scss */
+.CodeMirror {
+  height: 100% !important;
 }

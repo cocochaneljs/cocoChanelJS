@@ -472,6 +472,9 @@ CocoChanelJS.prototype.createPopupElement = function() {
 /**
  * executed by plugins, helps performing actions on the specific plugin
  * it already has events in order to listen for clicks
+ *
+ * @NOTE it is syncronized, so no need for callback after render.
+ *
  * @param {String} data HTML code that will be inserted into popup, close button not included by default
  * @param {Function} callback
  * @param {Object/Context} scope

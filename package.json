@@ -20,6 +20,8 @@
     "electron-prebuilt": "^0.36.7"
   },
   "dependencies": {
-    "ace": "git+https://github.com/ajaxorg/ace.git"
+    "codemirror": "^5.10.0",
+    "define": "^1.0.1",
+    "js-beautify": "^1.6.2"
   }
 }
