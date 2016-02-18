@@ -17,6 +17,8 @@
     require('codemirror/mode/htmlmixed/htmlmixed');
     require('codemirror/addon/comment/comment');
     require('codemirror/addon/wrap/hardwrap');
+    require('codemirror/addon/hint/show-hint');
+    require('codemirror/addon/hint/html-hint');
 
     // data
     require('./data/automatedStyleGenerator');

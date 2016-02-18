@@ -28,6 +28,8 @@
             mode: 'javascript',
             lineNumbers: true,
             lineWrapping: true,
+            extraKeys: {"Ctrl-Space": "autocomplete"},
+
             theme: 'monokai'
         });
 
@@ -62,6 +64,8 @@
             mode: 'css',
             lineNumbers: true,
             lineWrapping: true,
+            extraKeys: {"Ctrl-Space": "autocomplete"},
+
             theme: 'monokai'
         });
 
@@ -122,6 +126,49 @@
             mode:  currentMode,
             lineNumbers: true,
             lineWrapping: true,
+            extraKeys: {"Ctrl-Space": "autocomplete"},
+
+            theme: 'monokai'
+        });
+    }, true, false);
+
+    CCJS.addPlugin('edit-style',function(){
+        if(!this.currentSelectedElementNode)
+            return;
+
+        var template = [
+            '<div data-button="" data-close-button="true">',this.language['close-popup'],'</div>',
+            '<div data-content="" style="position:relative;">',
+                '<div id="codemirror-editor"></div>',
+            '</div>'
+        ],
+        me = this,
+        editorTarget,
+        wholeCode = this.currentSelectedElementNode.getAttribute('style'),
+        beautify_options = {
+            indent_size: 2
+        },
+        currentMode = "css";
+        wholeCode = window['beautify_css'](wholeCode, beautify_options);
+
+
+        me.showPopupElement(template.join(''), function(evt) {
+            if (evt.target.getAttribute('data-close-button')) {
+                me.currentSelectedElementNode.setAttribute('style',window['codemirrorEditor'].getValue());
+                window['codemirrorEditor'] = null;
+                me.refreshData();
+            }
+        }, me, true);
+
+        editorTarget = me.main_popup.element.querySelector('#codemirror-editor');
+
+        window['codemirrorEditor'] = codemirror(editorTarget, {
+            value: wholeCode,
+            mode:  currentMode,
+            lineNumbers: true,
+            lineWrapping: true,
+            extraKeys: {"Ctrl-Space": "autocomplete"},
+
             theme: 'monokai'
         });
     }, true, false);

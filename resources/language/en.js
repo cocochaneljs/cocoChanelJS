@@ -33,6 +33,7 @@
         'edit-inner-html': 'Edit selected',
         'add-css': 'Add style element',
         'add-javascript': 'Add script',
+        'edit-style': 'Edit style',
         'duplicate-element': 'Duplicate Element',
         'write-innerhtml-placeholder': 'NOTE: THIS OVERRIDES ANY ELEMENT IN THE INNER HTML!!\ninnerHTML:',
         'close-popup':'Close Popup [X]',
