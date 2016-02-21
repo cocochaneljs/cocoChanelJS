@@ -2,7 +2,7 @@
 function CocoChanelJS() {
     this.language = LMInstance.getLanguage();
     this.uniqueIdAttribute = 'data-ccjs-element';
-    this.nonRemovableNodes = ['HTML','HEAD','BODY','STYLE','data-storage-element'];
+    this.nonRemovableNodes = ['HTML','HEAD','BODY','data-storage-element'];
     this.untoucheableNodes = 'data-not-touch';
     this.unstyleableNodes ='data-not-style';
     this.hilighter = {

@@ -2,7 +2,7 @@
 
     /*
     this plugin is actually the loading animation when refreshing
-    the code was copied from codepen.io details below for credits. 
+    the code was copied from codepen.io details below for credits.
 
     Helix Loader
     A PEN BY Opher Vishnia
@@ -288,10 +288,10 @@
     }
 
     loader.classList.add('loader');
+
     loader.innerHTML = html.join('');
     style.innerHTML = styleHTML.join('');
-    document.head.appendChild(style);
 
+    document.head.appendChild(style);
     element.appendChild(loader);
-    console.log('here');
 })();

@@ -11,6 +11,9 @@
 
         me.showPopupElement(template.join(''), function(evt) {
             if (evt.target.getAttribute('data-close-button')) {
+                if (window['codemirrorEditor'].getValue() == "")
+                    return;
+
                 var jsScript = me.addElement('script');
                 jsScript.setAttribute('type','text/javascript');
                 jsScript.innerHTML = window['codemirrorEditor'].getValue();
@@ -44,6 +47,9 @@
 
         me.showPopupElement(template.join(''), function(evt) {
             if (evt.target.getAttribute('data-close-button')) {
+                if (window['codemirrorEditor'].getValue() == "")
+                    return;
+                    
                 var jsScript = me.addElement('style');
                 jsScript.setAttribute('type','text/css');
                 jsScript.innerHTML = window['codemirrorEditor'].getValue();
