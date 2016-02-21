@@ -128,10 +128,7 @@ CocoChanelJS.prototype.onElementAttributesChanged = function() {
 
     this.softRefreshData();
 };
-CocoChanelJS.prototype.onElementExtrasChanged = function() {
-    //@TODO
-    console.log('extra change!!');
-};
+
 CocoChanelJS.prototype.setCurrentSelectedElement = function(dataSelector, dataType, id) {
     this.currentSelectedElement = {
         dataSelector: dataSelector,
@@ -296,20 +293,6 @@ CocoChanelJS.prototype.listAllAttributes = function() {
     this.main_elementAttributes.innerHTML = attributes;
 };
 
-CocoChanelJS.prototype.listAllExtras = function() {
-    //@TODO
-    var extras = "";
-
-    if (this.currentSelectedElementNode) {
-
-    }else {
-        extras = "<div class='alert'>"+this.language['nothing_selected']+"</div>";
-    }
-
-
-    this.main_elementExtras.innerHTML = extras;
-};
-
 CocoChanelJS.prototype.addElement = function(type) {
     var element = this.root_document.createElement(type);
 
@@ -419,12 +402,12 @@ CocoChanelJS.prototype.showPreview = function() {
 
     //takes all the root_document and spews it out as a string
     this.main_preview.src = '';
-    this.main_preview.parentNode.setAttribute('data-preview-loading','true');
+    this.main_body_element.parentNode.setAttribute('data-preview-loading','true');
 
     this.___REFRESH_TIMER___ = window.setTimeout(function() {
         me.main_preview.src = 'data:text/html;charset=utf-8,' + encodeURI(me.root_document.documentElement.innerHTML);
         //me.main_preview.contentWindow.postMessage('hi',"*");
-        me.main_preview.parentNode.removeAttribute('data-preview-loading');
+        me.main_body_element.parentNode.removeAttribute('data-preview-loading');
     },this.delayReload);
 };
 
@@ -471,7 +454,6 @@ CocoChanelJS.prototype.softRefreshData =function() {
     this.indexAllItems();
     this.listAllAttributes();
     this.listAllElements();
-    this.listAllExtras();
     this.showPreview();
     this.highlightSelectedElement();
     this.toggleButtons();
@@ -580,10 +562,6 @@ CocoChanelJS.prototype.initializeEventListeners = function() {
 
     this.main_elementAttributes.addEventListener('change', function() {
         me.onElementAttributesChanged.apply(me, arguments);
-    }, false);
-
-    this.main_elementExtras.addEventListener('change', function() {
-        me.onElementExtrasChanged.apply(me, arguments);
     }, false);
 
     window.addEventListener('keydown',function (e) {

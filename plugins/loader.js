@@ -9,19 +9,21 @@
 
     http://codepen.io/OpherV/pen/yeGeqZ
     */
-    var element = CCJS.main_previewPane;
+    var element = CCJS.main_elementExtras;
     var html = [],
         styleHTML = [
             '.loader {',
             '  position: absolute;',
             '  width: 15rem;',
             '  height: 15rem;',
-            '  left: 50%;',
-            '  top: 50%;',
+            '  left: 0;',
+            '  top: 0;',
             '  -moz-transform: translateX(-50%) translateY(-50%) rotate(-90deg) scaleX(-1);',
             '  -ms-transform: translateX(-50%) translateY(-50%) rotate(-90deg) scaleX(-1);',
             '  -webkit-transform: translateX(-50%) translateY(-50%) rotate(-90deg) scaleX(-1);',
             '  transform: translateX(-50%) translateY(-50%) rotate(-90deg) scaleX(-1);',
+            '  -webkit-transform: scale(0.8);',
+            '  transform: scale(0.8);',
             '}',
             '.loader div {',
             '  position: absolute;',
