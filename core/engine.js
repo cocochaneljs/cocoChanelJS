@@ -64,6 +64,7 @@ CocoChanelJS.prototype.initializeElements = function() {
         '</div>'
     ].join('');
 
+    this.main_previewPane = this.main_body_element.querySelector('.previewPane');
     this.main_preview = this.main_body_element.querySelector('.main_scenePreview');
     this.main_elementSelector = this.main_body_element.querySelector('.main_sceneSelector');
     this.main_elementAttributes = this.main_body_element.querySelector('.main_attributesSection');

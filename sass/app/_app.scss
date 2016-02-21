@@ -80,28 +80,43 @@ body {
     height: 100%;
 }
 
-.main_scenePreview {
-    width: 100%;
-    border: none;
-}
 
 .previewPane {
     background-color: #fafafa;
     background: -webkit-radial-gradient(center, ellipse, #efefdf 0%, #e0e0d0 100%);
     background: radial-gradient(ellipse at center, #efefdf 0%,#e0e0d0 100%);
     position: relative;
-}
-[data-preview-loading="true"]::after {
-    will-change: all;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.1);
-    background-position: center;
-    background-repeat: no-repeat;
-    content: '';
+    * {
+        visibility: hidden;
+    }
+
+    .main_scenePreview {
+        width: 100%;
+        border: none;
+        visibility: visible;
+    }
+    &[data-preview-loading="true"] {
+        &::before {
+            will-change: all;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.1);
+            background-position: center;
+            background-repeat: no-repeat;
+            content: '';
+        }
+
+        * {
+            visibility: visible;
+        }
+
+        .main_scenePreview {
+            visibility: hidden !important;
+        }
+    }
 }
 
 .fastPane {
