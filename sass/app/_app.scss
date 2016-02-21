@@ -281,6 +281,15 @@ body {
 
     &[data-not-touch] {
         background: #d33;
+        color: #fff;
+        & .id-listing {
+            color: #afa;
+        }
+
+        & .class-listing {
+            color: #aaf;
+
+        }
     }
 }
 
