@@ -44,15 +44,12 @@
 
         this.softRefreshData();
     }, true, true);
-    
+
     CCJS.addPlugin('delete-element',function(){
         this.removeElement();
     }, true, true);
 
     CCJS.addPlugin('dom-order-up',function(){
-        if (!this.currentSelectedElementNode)
-            return;
-
         if(! this.currentSelectedElementNode.previousSibling || ! this.currentSelectedElementNode.parentNode)
             return;
 
@@ -61,9 +58,6 @@
     }, true, true);
 
     CCJS.addPlugin('dom-order-down',function(){
-        if (!this.currentSelectedElementNode)
-            return;
-
         if(! this.currentSelectedElementNode.nextSibling || ! this.currentSelectedElementNode.parentNode)
             return;
 
@@ -72,7 +66,7 @@
     }, true, true);
 
     CCJS.addPlugin('dom-move-up',function(){
-        if (!this.currentSelectedElementNode || this.nonRemovableNodes.indexOf(this.currentSelectedElementNode.parentNode.nodeName) != -1)
+        if (this.nonRemovableNodes.indexOf(this.currentSelectedElementNode.parentNode.nodeName) != -1)
             return;
 
         this.currentSelectedElementNode.parentNode.parentNode.appendChild(this.currentSelectedElementNode);

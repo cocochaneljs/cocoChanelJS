@@ -131,5 +131,5 @@
 
     CCJS.addPlugin('hard-refresh',function(){
         this.refreshData();
-    }, true);
+    }, false);
 })();

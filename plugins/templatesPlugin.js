@@ -1,8 +1,5 @@
 (function() {
     CCJS.addPlugin('add-lorem-ipsum',function(){
-        if (!this.currentSelectedElementNode)
-            return;
-
         var lorem = [
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
             ' Nunc lacinia vitae turpis vitae laoreet. Phasellus accumsan feugiat libero,',
@@ -25,5 +22,5 @@
         this.currentSelectedElementNode.appendChild(lipsumElement);
 
         this.refreshData();
-    }, true);
+    }, true, true);
 })();

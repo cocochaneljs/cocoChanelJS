@@ -48,4 +48,9 @@
 
     // config and plugins load
     window['CMInstance'] = new ConfigManager();
+
+
+    setTimeout(function(){
+        window['CCJS'].refreshData();
+    }, 300);
 })();

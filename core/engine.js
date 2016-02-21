@@ -43,20 +43,22 @@ CocoChanelJS.prototype.initializeElements = function() {
     this.main_body_element = document.createElement('div');
     this.main_body_element.className = "flex column fullSpace";
     this.main_body_element.innerHTML = [
-        '<div class="bodyPane flex row flex-one">',
-            '<div class="propertiesPane fastPane flex column">',
+        '<div class="mainPane flex column flex-one">',
+            '<div class="optionsPane flex row">',
             '</div>',
-            '<div class="previewPane flex-one flex column">',
-                '<iframe class="main_scenePreview flex-one"></iframe>',
-            '</div>',
-            '<div class="propertiesPane flex column">',
-                '<div class="optionsPane flex row">',
+            '<div class="bodyPane flex row flex-one">',
+                '<div class="propertiesPane fastPane flex column">',
                 '</div>',
-                '<div class="main_sceneSelector flex-one flex column">',
+                '<div class="previewPane flex-one flex column">',
+                    '<iframe class="main_scenePreview flex-one"></iframe>',
                 '</div>',
-                '<div class="main_attributesSection flex-one flex column">',
-                '</div>',
-                '<div class="main_extrasSection flex-one flex column">',
+                '<div class="propertiesPane flex column">',
+                    '<div class="main_sceneSelector flex-one flex column">',
+                    '</div>',
+                    '<div class="main_attributesSection flex-one flex column">',
+                    '</div>',
+                    '<div class="main_extrasSection flex-one flex column">',
+                    '</div>',
                 '</div>',
             '</div>',
         '</div>'
@@ -350,11 +352,15 @@ CocoChanelJS.prototype.addPlugin = function(title, action, fastPane, checkForSel
     plugin.setAttribute('data-plugin-requires-selection', checkForSelected ? 'true': 'false');
 
     plugin.addEventListener('click', function() {
-        if (!checkForSelected || me.currentSelectedElementNode){
+        if (checkForSelected) {
+            if(me.currentSelectedElementNode){
+                action.apply(me, arguments);
+            }else{
+                me.refreshData();
+                window.alert(me.language['element-selected-is-required']);
+            }
+        } else {
             action.apply(me, arguments);
-        }else{
-            me.refreshData();
-            window.alert(me.language['element-selected-is-required']);
         }
     }, false);
 

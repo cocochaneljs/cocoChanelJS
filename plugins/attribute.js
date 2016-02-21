@@ -1,8 +1,5 @@
 (function() {
     CCJS.addPlugin('add-attribute',function(){
-        if(!this.currentSelectedElementNode)
-            return;
-
         var template = [
             '<div data-button="" data-close-button="true">',this.language['close-popup'],'</div>',
             '<div data-content="" class="column">',
@@ -29,5 +26,5 @@
             }
         }, me, true);
 
-    }, true, false);
+    }, true, true);
 })();

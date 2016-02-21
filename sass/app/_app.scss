@@ -109,18 +109,25 @@ body {
     width:150px !important;
 }
 .optionsPane {
-    max-height: 40px;
-    min-height: 40px;
+    max-height: 30px;
+    min-height: 30px;
     width: 100%;
-    border-bottom: 1px solid #aad;
+    border-bottom: 1px solid rgba(0,0,0,0.3);
 
     overflow-x:auto;
     overflow-y: hidden;
+    position: relative;
 }
 
 .optionsPane > div,
 .fastPane >div {
-    box-shadow:0 2px 1px  rgba(0,0,0,0.3);
+    //box-shadow:0 2px 1px  rgba(0,0,0,0.3);
+
+}
+
+.plugin-button {
+    position: relative;
+    text-rendering: geometricPrecision;
     border-bottom:1px solid #999;
     padding: 0 3px;
     cursor: pointer;
@@ -130,16 +137,13 @@ body {
     text-align: center;
     white-space: nowrap;
     margin: 2px 2px;
-}
+    box-sizing: border-box;
 
-.optionsPane > div:hover,
-.fastPane >div:hover {
-    background: #aad;
-}
-
-.plugin-button {
-    position: relative;
-    text-rendering: geometricPrecision;
+    .optionsPane > & {
+        min-height: 100%;
+        max-height: 100%;
+        margin: 0 2px;
+    }
 
     &::before {
         display: block;
@@ -150,23 +154,23 @@ body {
         top: 0;
         background-color: #aad;
         content: '';
+
+    }
+    &:hover {
+        background: #aad;
     }
 }
-
-.plugin-button {
+.plugin-disabled {
     &::before {
-        background-color: #d00;
+        background-color: #d00 !important;
     }
-
     &:hover {
-        background: #d00 !important;
+        background-color: #d00 !important;
     }
 }
 
 .propertiesPane {
     width: 200px;
-    border-left: 1px solid #aad;
-    border-right: 1px solid #aad;
 }
 
 
@@ -185,8 +189,9 @@ body {
     overflow-x: hidden;
     overflow-y: auto;
     max-height: 31%;
-    box-shadow:0 2px 1px rgba(0,0,0,0.3);
+    //box-shadow:0 2px 1px rgba(0,0,0,0.3);
 
+    border-bottom: 1px solid rgba(0,0,0,0.3);
 }
 
 .main_sceneSelector > div {
@@ -196,10 +201,10 @@ body {
 .main_sceneSelector > div,
 .main_attributesSection > div,
 .main_extrasSection >div {
-    box-shadow:0 2px 1px rgba(0,0,0,0.3);
+    //box-shadow:0 2px 1px rgba(0,0,0,0.3);
     overflow: hidden;
     border-bottom:1px solid #999;
-    border-radius: 2px;
+    //border-radius: 2px;
     min-height: 15px;
     line-height: 15px;
     margin: 1px 0;
@@ -374,7 +379,7 @@ body {
     padding: 4px;
     font-size: 14px;
     margin: 4px;
-    border-radius: 2px;
+    //border-radius: 2px;
 }
 
 .input-option {
@@ -425,7 +430,7 @@ body {
     padding: 4px;
     font-size: 14px;
     margin: 4px;
-    border-radius: 2px;
+    //border-radius: 2px;
     font-weight: bold;
 
     &::after {

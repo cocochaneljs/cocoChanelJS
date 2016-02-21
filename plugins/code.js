@@ -1,8 +1,5 @@
 (function() {
     CCJS.addPlugin('add-javascript',function(){
-        if(!this.currentSelectedElementNode)
-            return;
-
         var template = [
             '<div data-button="" data-close-button="true">',this.language['close-popup'],'</div>',
             '<div data-content="" style="position:relative;">',
@@ -33,12 +30,9 @@
             theme: 'monokai'
         });
 
-    }, true, false);
+    }, true, true);
 
     CCJS.addPlugin('add-css',function(){
-        if(!this.currentSelectedElementNode)
-            return;
-
         var template = [
             '<div data-button="" data-close-button="true">',this.language['close-popup'],'</div>',
             '<div data-content="" style="position:relative;">',
@@ -69,12 +63,9 @@
             theme: 'monokai'
         });
 
-    }, true, false);
+    }, true, true);
 
     CCJS.addPlugin('edit-inner-html',function(){
-        if(!this.currentSelectedElementNode)
-            return;
-
         var template = [
             '<div data-button="" data-close-button="true">',this.language['close-popup'],'</div>',
             '<div data-content="" style="position:relative;">',
@@ -130,12 +121,9 @@
 
             theme: 'monokai'
         });
-    }, true, false);
+    }, true, true);
 
     CCJS.addPlugin('edit-style',function(){
-        if(!this.currentSelectedElementNode)
-            return;
-
         var template = [
             '<div data-button="" data-close-button="true">',this.language['close-popup'],'</div>',
             '<div data-content="" style="position:relative;">',
@@ -171,5 +159,5 @@
 
             theme: 'monokai'
         });
-    }, true, false);
+    }, true, true);
 })();
