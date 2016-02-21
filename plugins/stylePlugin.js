@@ -173,6 +173,6 @@
                 }
             }
         }
-    }, true, true);
+    }, "element-settings", true);
 
 })();

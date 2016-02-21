@@ -66,7 +66,7 @@ body {
 }
 .flex-full {
     -webkit-flex: 1 0 100%;
-    -webkit-box-flex: 1;
+    -webkit-box-flex: 1 0 100%;
         -ms-flex: 1 0 100%;
             flex: 1 0 100%;
 }
@@ -107,22 +107,29 @@ body {
 .fastPane {
     overflow-y: auto;
     width:150px !important;
+    .plugin-category {
+        border-bottom: 1px solid rgba(0,0,0,0.3);
+        margin: 2px 0;
+        .plugin-category-title {
+            background: #aad;
+            border-bottom: 1px solid rgba(0,0,0,0.3);
+            width: 100%;
+            cursor: pointer;
+        }
+        .plugin-category-inner {
+
+        }
+    }
 }
 .optionsPane {
-    max-height: 30px;
-    min-height: 30px;
+    max-height: 22px;
+    min-height: 22px;
     width: 100%;
     border-bottom: 1px solid rgba(0,0,0,0.3);
 
     overflow-x:auto;
     overflow-y: hidden;
     position: relative;
-}
-
-.optionsPane > div,
-.fastPane >div {
-    //box-shadow:0 2px 1px  rgba(0,0,0,0.3);
-
 }
 
 .plugin-button {
@@ -172,7 +179,6 @@ body {
 .propertiesPane {
     width: 200px;
 }
-
 
 .main_scenePreview *:hover:after {
     content:'';
@@ -225,6 +231,7 @@ body {
         border: none;
         outline: none;
     }
+
     & label {
         -webkit-box-flex: 0;
         -webkit-flex: 0 0 100px;
@@ -253,6 +260,7 @@ body {
         color: #327;
 
     }
+
     & .element-tiny-info {
         background: none;
         overflow: hidden;
@@ -261,6 +269,7 @@ body {
         max-width: 80px;
         width: 80px;
     }
+
     & div {
         font-size: 8px;
         line-height: 8px;
@@ -268,6 +277,10 @@ body {
         margin-right: 2px;
         padding: 1px 0;
 
+    }
+
+    &[data-not-touch] {
+        background: #d33;
     }
 }
 
@@ -294,7 +307,7 @@ body {
 .alert {
     font-weight: bold;
     text-align: center;
-    color: #f88;
+    color: #d33;
     flex: 1;
 }
 .popup {
@@ -324,7 +337,7 @@ body {
         width: 100%;
         height: 100%;
         left: 0;
-        background: rgba(10,0,4,0.4);
+        background: rgba(0,0,40,0.4);
         cursor: default;
     }
 
@@ -365,93 +378,104 @@ body {
     & style {
         display: none !important;
     }
-}
 
-[data-not-touch] {
-    background: #d33;
-}
-
-.popup div[data-button], .input-option {
-    cursor: pointer;
-    resize: none;
-    box-sizing: border-box;
-    box-shadow:0 1px 2px rgba(0,0,0,0.9);
-    padding: 4px;
-    font-size: 14px;
-    margin: 4px;
-    //border-radius: 2px;
-}
-
-.input-option {
-    border: none;
-    min-height: 20px;
-}
-
-.popup div[data-button]:hover {
-    background-color: #aad;
-}
-
-[data-content] {
-    & [data-info] {
-        padding:4px;
+    & div[data-button],
+    & .input-option {
+        cursor: pointer;
+        resize: none;
+        box-sizing: border-box;
+        box-shadow:0 1px 2px rgba(0,0,0,0.9);
+        padding: 4px;
+        font-size: 14px;
+        margin: 4px;
+        //border-radius: 2px;
     }
 
-    & [data-option] {
-        margin: 4px 0;
-        padding: 4px;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-flow: row wrap;
-            -ms-flex-flow: row wrap;
-                flex-flow: row wrap;
-        -webkit-box-flex: 1;
-        -webkit-flex: 1 0 100px;
-            -ms-flex: 1 0 100px;
-                flex: 1 0 100px;
-        width: 100%;
-        box-sizing: border-box;
-        box-shadow:0 2px 2px rgba(0,0,0,0.2);
+    & .input-option {
+        border: none;
+        min-height: 20px;
+    }
 
-        & * {
-            white-space: nowrap;
-            display: inline-block;
-            max-height:20px;
-            margin: 4px;
-            box-sizing: content-box;
+    & div[data-button]:hover {
+        background-color: #aad;
+    }
+
+    & [data-option-label] {
+        background: #efefff;
+        box-shadow:0px 1px 2px rgba(0,0,0,0.9);
+        padding: 4px;
+        font-size: 14px;
+        margin: 4px;
+        //border-radius: 2px;
+        font-weight: bold;
+
+        &::after {
+            content: ':';
         }
     }
-}
 
-[data-option-label] {
-    background: #efefff;
-    box-shadow:0px 1px 2px rgba(0,0,0,0.9);
-    padding: 4px;
-    font-size: 14px;
-    margin: 4px;
-    //border-radius: 2px;
-    font-weight: bold;
-
-    &::after {
-        content: ':';
+    & [data-close-button] {
+        position: fixed;
+        right: 5px;
+        top: 5px;
+        z-index: 1000;
+        background: #fff;
     }
-}
 
-[data-close-button] {
-    position: fixed;
-    right: 5px;
-    top: 5px;
-    z-index: 1000;
-    background: #fff;
-}
+    & [data-option-value] {
+        &:hover {
+            background: #edf;
+        }
+        &[data-selected] {
+            background: #99f;
+        }
+    }
 
-[data-option-value]:hover {
-    background: #edf;
-}
+    & [data-content] {
+        & [data-info] {
+            padding:4px;
+        }
 
-[data-option-value][data-selected] {
-    background: #99f;
+        & [data-option] {
+            margin: 4px 0;
+            padding: 4px;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex-flow: row wrap;
+                -ms-flex-flow: row wrap;
+                    flex-flow: row wrap;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1 0 100px;
+                -ms-flex: 1 0 100px;
+                    flex: 1 0 100px;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow:0 2px 2px rgba(0,0,0,0.2);
+
+            & * {
+                white-space: nowrap;
+                display: inline-block;
+                max-height:20px;
+                margin: 4px;
+                box-sizing: content-box;
+            }
+        }
+    }
+
+    & #codemirror-editor {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: 0;
+    }
+
+    & .CodeMirror {
+        height: 100% !important;
+    }
 }
 
 .no-overflow[data-content] {
@@ -461,9 +485,10 @@ body {
 .block {
     & [data-content],
     & [data-option] {
-    display: inline-block;
-    min-width: 100%;
-}}
+        display: inline-block;
+        min-width: 100%;
+    }
+}
 
 .column[data-content] {
     -webkit-box-orient: vertical !important;
@@ -481,18 +506,4 @@ body {
         width: 100%;
         margin: 0;
     }
-}
-
-
-#codemirror-editor {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: 0;
-}
-
-.CodeMirror {
-    height: 100% !important;
 }

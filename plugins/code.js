@@ -30,7 +30,7 @@
             theme: 'monokai'
         });
 
-    }, true, true);
+    }, "code", true);
 
     CCJS.addPlugin('add-css',function(){
         var template = [
@@ -63,7 +63,7 @@
             theme: 'monokai'
         });
 
-    }, true, true);
+    }, "code", true);
 
     CCJS.addPlugin('edit-inner-html',function(){
         var template = [
@@ -121,7 +121,7 @@
 
             theme: 'monokai'
         });
-    }, true, true);
+    }, "code", true);
 
     CCJS.addPlugin('edit-style',function(){
         var template = [
@@ -159,5 +159,5 @@
 
             theme: 'monokai'
         });
-    }, true, true);
+    }, "code", true);
 })();

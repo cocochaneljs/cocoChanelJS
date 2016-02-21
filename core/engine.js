@@ -364,10 +364,53 @@ CocoChanelJS.prototype.addPlugin = function(title, action, fastPane, checkForSel
         }
     }, false);
 
-    if (fastPane)
-        this.main_fastOptions.appendChild(plugin);
-    else
+    if (fastPane) {
+        if (typeof fastPane === "string") {
+            this.addToCategory(plugin, fastPane);
+        } else {
+            this.main_fastOptions.appendChild(plugin);
+        }
+    } else {
         this.main_options.appendChild(plugin);
+    }
+};
+
+CocoChanelJS.prototype.addCategory = function(categoryName) {
+    var me = this,
+        catergoryElement = me.main_fastOptions.querySelector('[data-category-name="'+categoryName+'"]'),
+        categoryTitle,
+        categoryInner;
+
+    if (catergoryElement)
+        return catergoryElement.querySelector('.plugin-category-inner');
+
+    categoryElement = document.createElement('div');
+    categoryElement.setAttribute('data-category-name', categoryName);
+    categoryTitle = document.createElement('div');
+    categoryInner = document.createElement('div');
+    categoryElement.className = "plugin-category";
+    categoryTitle.className = "plugin-category-title";
+    categoryInner.className = "plugin-category-inner";
+    categoryTitle.innerHTML = this.language[categoryName] || categoryName;
+    categoryElement.appendChild(categoryTitle);
+    categoryElement.appendChild(categoryInner);
+
+    categoryTitle.addEventListener('click',function () {
+        if (categoryInner.classList.contains('hidden'))
+            categoryInner.classList.remove('hidden');
+        else
+            categoryInner.classList.add('hidden');
+    });
+
+    me.main_fastOptions.appendChild(categoryElement);
+
+    return categoryElement.querySelector('.plugin-category-inner');
+};
+
+CocoChanelJS.prototype.addToCategory = function(element, categoryName) {
+    var categoryInner = this.addCategory(categoryName);
+
+    categoryInner.appendChild(element);
 };
 
 CocoChanelJS.prototype.showPreview = function() {

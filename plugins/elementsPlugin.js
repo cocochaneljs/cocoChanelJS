@@ -19,7 +19,7 @@
                 this.addElement(e.target.getAttribute('data-type'));
         }, me);
 
-    }, true, true);
+    }, "element", true);
 
     CCJS.addPlugin('duplicate-element', function(){
         if(this.nonRemovableNodes.indexOf(this.currentSelectedElementNode.nodeName) != -1)
@@ -43,11 +43,11 @@
             subElements[k].removeAttribute('data-ccjs-element');
 
         this.softRefreshData();
-    }, true, true);
+    }, "element", true);
 
     CCJS.addPlugin('delete-element',function(){
         this.removeElement();
-    }, true, true);
+    }, "element", true);
 
     CCJS.addPlugin('dom-order-up',function(){
         if(! this.currentSelectedElementNode.previousSibling || ! this.currentSelectedElementNode.parentNode)
@@ -55,7 +55,7 @@
 
         this.currentSelectedElementNode.parentNode.insertBefore(this.currentSelectedElementNode, this.currentSelectedElementNode.previousSibling);
         this.softRefreshData();
-    }, true, true);
+    }, "element-ordering", true);
 
     CCJS.addPlugin('dom-order-down',function(){
         if(! this.currentSelectedElementNode.nextSibling || ! this.currentSelectedElementNode.parentNode)
@@ -63,7 +63,7 @@
 
         this.currentSelectedElementNode.parentNode.insertBefore(this.currentSelectedElementNode.nextSibling, this.currentSelectedElementNode);
         this.softRefreshData();
-    }, true, true);
+    }, "element-ordering", true);
 
     CCJS.addPlugin('dom-move-up',function(){
         if (this.nonRemovableNodes.indexOf(this.currentSelectedElementNode.parentNode.nodeName) != -1)
@@ -71,7 +71,7 @@
 
         this.currentSelectedElementNode.parentNode.parentNode.appendChild(this.currentSelectedElementNode);
         this.softRefreshData();
-    }, true, true);
+    }, "element-ordering", true);
 
     CCJS.addPlugin('dom-move-down',function(){
         var elementsFromParent = this.currentSelectedElementNode.parentNode.children,
@@ -115,5 +115,5 @@
                 this.refreshData();
             }
         });
-    }, true, true);
+    }, "element-ordering", true);
 })();

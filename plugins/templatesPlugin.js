@@ -22,5 +22,5 @@
         this.currentSelectedElementNode.appendChild(lipsumElement);
 
         this.refreshData();
-    }, true, true);
+    }, "element", true);
 })();

@@ -43,6 +43,10 @@
         'positioning-form': 'Positioning Wizard',
         'positioning-form-position-label': 'Position:',
         'add-html-at-end': 'Add HTML at end',
-        'html': 'HTML'
+        'html': 'HTML',
+        'code': 'Code',
+        'element': 'Element',
+        'element-settings': 'Element settings',
+        'element-ordering': 'Element ordering'
     }
 })();

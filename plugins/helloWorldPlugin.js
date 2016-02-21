@@ -60,5 +60,5 @@
             if (!evt.target.getAttribute('data-close-button'))
                 window['dialog'].showErrorBox('Hello World');
         }, me, true);
-    }, true, true);
+    }, "tests", true);
 })();
