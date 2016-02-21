@@ -105,7 +105,7 @@ body {
 }
 [data-preview-loading="true"] {
     .main_extrasSection {
-        visibility: visible !important; 
+        visibility: visible !important;
     }
 }
 
@@ -206,15 +206,16 @@ body {
     max-width: 100%;
 }
 .main_sceneSelector {
-    max-height: 50%;
+    max-height: 55%;
 }
 .main_attributesSection {
-    max-height: 30%;
+    max-height: 35%;
 }
 .main_extrasSection {
-    max-height: 20%;
+    max-height: 10%;
     border: none !important;
     visibility: hidden;
+    overflow: hidden;
     > * {
         border: none !important;
     }
