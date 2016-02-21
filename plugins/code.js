@@ -86,7 +86,7 @@
         currentType = this.currentSelectedElementNode.nodeName.toLowerCase(),
         wholeCode = this.currentSelectedElementNode.innerHTML,
         beautify_options = {
-            indent_size: 2
+            indent_size: 4
         },
         currentMode;
 
@@ -115,7 +115,7 @@
             if (evt.target.getAttribute('data-close-button')) {
                 me.currentSelectedElementNode.innerHTML = window['codemirrorEditor'].getValue();
                 window['codemirrorEditor'] = null;
-                me.refreshData();
+                me.softRefreshData();
             }
         }, me, true);
 
@@ -146,7 +146,7 @@
         editorTarget,
         wholeCode = this.currentSelectedElementNode.getAttribute('style'),
         beautify_options = {
-            indent_size: 2
+            indent_size: 4
         },
         currentMode = "css";
         wholeCode = window['beautify_css'](wholeCode, beautify_options);
@@ -156,7 +156,7 @@
             if (evt.target.getAttribute('data-close-button')) {
                 me.currentSelectedElementNode.setAttribute('style',window['codemirrorEditor'].getValue());
                 window['codemirrorEditor'] = null;
-                me.refreshData();
+                me.softRefreshData();
             }
         }, me, true);
 

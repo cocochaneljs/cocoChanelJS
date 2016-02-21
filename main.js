@@ -6,6 +6,7 @@ app.setName('CocoChanelJS');
 
 app.on('ready', function () {
     var mainWindow = new BrowserWindow({
+        show: false,
         width: 1000,
         height: 700,
         minWidth: 1000,
@@ -16,6 +17,7 @@ app.on('ready', function () {
             "web-security": false
         }
     });
-    
+    mainWindow.setMenu(null);
     mainWindow.loadURL('file://' + __dirname + '/index.html');
+    mainWindow.show();
 });
