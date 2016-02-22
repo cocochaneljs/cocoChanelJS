@@ -1,15 +1,7 @@
 .selected {
-    -moz-animation-duration: 300ms;
-    -webkit-animation-duration: 300ms;
-    animation-duration: 300ms;
-    -moz-animation-name: selectionslidein;
-    -webkit-animation-name: selectionslidein;
+    animation-duration: 1000ms;
     animation-name: selectionslidein;
-    -moz-animation-iteration-count: infinite;
-    -webkit-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
-    -moz-animation-direction: alternate-reverse;
-    -webkit-animation-direction: alternate-reverse;
     animation-direction: alternate;
 }
 
@@ -19,24 +11,6 @@
     }
 
     to {
-        background: #aaf;
-    }
-}
-@-webkit-keyframes selectionslidein {
-    from {
-        background: #aad;
-    }
-
-    to {
-        background: #aaf;
-    }
-}
-@-moz-keyframes selectionslidein {
-    from {
-        background: #aad;
-    }
-
-    to {
-        background: #aaf;
+        background: #bbf;
     }
 }
