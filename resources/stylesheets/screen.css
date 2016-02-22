@@ -102,7 +102,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   flex: 1;
 }
 
-/* line 28, ../../sass/app/_flexes.scss */
+/* line 29, ../../sass/app/_flexes.scss */
 .flex-full {
   flex: 1 0 100%;
 }
