@@ -11,10 +11,12 @@
     */
     var element = CCJS.main_elementExtras;
     var html = [
-        '<div class="dot"></div>',
-        '<div class="dot"></div>',
-        '<div class="dot"></div>',
-        '<div class="dot"></div>'
+        '<div class="loader">',
+            '<div class="dot"></div>',
+            '<div class="dot"></div>',
+            '<div class="dot"></div>',
+            '<div class="dot"></div>',
+        '</div>'
         ],
         styleHTML = [
             '.loader * {',
@@ -74,14 +76,10 @@
             '}'
         ];
 
-    var loader = document.createElement('div');
     var style = document.createElement('style');
 
-    loader.classList.add('loader');
-
-    loader.innerHTML = html.join('');
     style.innerHTML = styleHTML.join('');
 
     document.head.appendChild(style);
-    element.appendChild(loader);
+    element.innerHTML = html.join('');
 })();
