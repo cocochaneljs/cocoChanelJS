@@ -616,10 +616,7 @@ CocoChanelJS.prototype.drawSelectedElementHilighter = function() {
     if (this.currentSelectedElementNode)
         this.currentSelectedElementNode.setAttribute(this.hilighter.selectedElementAttribute,'true');
 
-    if (! this.hilighter.selectedStyleElement)
-        this.hilighter.selectedStyleElement = this.root_document.querySelector('['+this.hilighter.selectedElementStyle+']');
-
-    if (! this.hilighter.selectedStyleElement) {
+    if ( !this.root_document.querySelector('['+this.hilighter.selectedElementStyle+']')) {
         var hilit = this.root_document.createElement('style');
 
         this.hilighter.selectedStyleElement = hilit;
@@ -629,6 +626,7 @@ CocoChanelJS.prototype.drawSelectedElementHilighter = function() {
         hilit.innerHTML = CCJS_GEN_INJECTION_CSS('['+ this.hilighter.selectedElementAttribute+']');
 
         this.root_head.appendChild(hilit);
+        this.hilighter.selectedStyleElement = hilit;
     }
 };
 
