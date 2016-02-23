@@ -100,16 +100,14 @@
                 '/*origin lie*/',
                 'document.origin = "https://github.com/rokyed/cocoChanelJS.git";',
                 'document.addEventListener("click",function(e){',
-                    'top.postMessage(JSON.stringify(["click",e.target.nodeName,e.target.getAttribute("',
+                    'console.log(JSON.stringify(["click",e.target.nodeName,e.target.getAttribute("',
                     uniqueIdAttribute,
                     '")]),"*");',
-                    'console.log("click");',
                 '});',
                 'document.addEventListener("hover",function(e){',
-                    'top.postMessage(JSON.stringify(["hover",e.target.nodeName,e.target.getAttribute("',
+                    'console.log(JSON.stringify(["hover",e.target.nodeName,e.target.getAttribute("',
                     uniqueIdAttribute,
                     '")]),"*");',
-                    'console.log("hover");',
                 '});',
             '})();'
         ].join('');

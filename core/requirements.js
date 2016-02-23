@@ -1,6 +1,7 @@
 ( function() {
     // beautify uses it's own define that's why we load it before
-
+    const ipcMain = require('electron').ipcMain;
+    
     window['beautify_js'] = require('js-beautify'); // also available under "js" export
     window['beautify_css'] = require('js-beautify').css;
     window['beautify_html'] = require('js-beautify').html;

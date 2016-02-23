@@ -57,7 +57,11 @@ body {
 
 [data-preview-loading="true"] {
     .main_extrasSection {
-        visibility: visible !important;
+        .main_loading_state {
+            * {
+                visibility: visible !important;
+            }
+        }
     }
 }
 
@@ -180,12 +184,29 @@ body {
 .main_extrasSection {
     max-height: 10%;
     border: none !important;
-    visibility: hidden;
+    position: relative;
     overflow: hidden;
     > * {
         border: none !important;
+        display: block !important;
     }
-
+    .main_loading_state {
+        max-width: 40px;
+        min-width: 40px;
+        height: 100%;
+        position: relative;
+        background:#fff;
+        * {
+            visibility: hidden;
+        }
+    }
+    .console-outcast {
+        border: 1px solid rgba(0,0,0,0.3);
+        color: #d33;
+        background: #444;
+        visibility: visible;
+        flex: 1;
+    }
 }
 
 .main_sceneSelector > div {

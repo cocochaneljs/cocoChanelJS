@@ -10,7 +10,7 @@ function CocoChanelJS() {
         selectedElementStyle: 'data-ccjs-hilighter',
         selectedStyleElement: null,
     };
-    this.delayReload = 300;
+    this.delayReload = 0;
 
     this.initializeElements();
 
@@ -50,14 +50,14 @@ CocoChanelJS.prototype.initializeElements = function() {
                 '<div class="propertiesPane fastPane flex column">',
                 '</div>',
                 '<div class="previewPane flex-one flex column">',
-                    '<iframe class="main_scenePreview flex-one"></iframe>',
+                    '<webview class="main_scenePreview flex-one" disablewebsecurity nodeintegration></webview>',
                 '</div>',
                 '<div class="propertiesPane flex column">',
                     '<div class="main_sceneSelector flex-one flex column">',
                     '</div>',
                     '<div class="main_attributesSection flex-one flex column">',
                     '</div>',
-                    '<div class="main_extrasSection flex-one flex column">',
+                    '<div class="main_extrasSection flex-one flex row">',
                         '<div class="main_loading_state">',
                             '<div id="loading-marker-animation-state">',
                                 '<div>',
@@ -68,6 +68,7 @@ CocoChanelJS.prototype.initializeElements = function() {
                                 '</div>',
                             '</div>',
                         '</div>',
+                        '<div class="console-outcast"></div>',
                     '</div>',
                 '</div>',
             '</div>',
@@ -586,8 +587,17 @@ CocoChanelJS.prototype.initializeEventListeners = function() {
     }, false);
 
     //  @TODO event linkage for iframe not working yet
-    window.addEventListener('message', function(evt) {
-        var data = JSON.parse(evt.data);
+    me.main_preview.addEventListener('console-message', function(evt) {
+        var data;
+
+        try {
+            data = JSON.parse(evt.message);
+        } catch (e) {
+            me.setConsoleOutcast(['view console: "', evt.message, '"'].join(''));
+        }
+
+        if (!data)
+            return;
 
         if(data[0] == "click")
             me.onPreviewElementClicked.apply(me, [data]);
@@ -629,6 +639,14 @@ CocoChanelJS.prototype.storeEditorDataInDocument = function() {
 CocoChanelJS.prototype.loadEditorDataFromDocument = function() {
     var str = this.root_document_data_storage.innerHTML;
     this.pluginVitalData = JSON.parse(str.substring(1,str.length-1));
+};
+
+CocoChanelJS.prototype.getLoaderElement = function () {
+    return this.main_elementExtras.querySelector('.main_loading_state');
+};
+
+CocoChanelJS.prototype.setConsoleOutcast = function(message) {
+    this.main_elementExtras.querySelector('.console-outcast').innerHTML = message;
 };
 
 module.exports = CocoChanelJS;

@@ -9,7 +9,7 @@
 
     http://codepen.io/ispal/pen/mVaaJe
     */
-    var element = CCJS.main_elementExtras;
+    var element = CCJS.getLoaderElement();
     var html = [
         '<div class="loader">',
             '<div class="dot"></div>',
@@ -26,25 +26,24 @@
             '}',
             '.loader {',
             '  position: absolute !important;',
-            '  top: 50%;',
-            '  left: 50%;',
-            '  width: 50px;',
-            '  height: 50px;',
+            '  top: 55px;',
+            '  left: 20px;',
+            '  width: 30px;',
+            '  height: 30px;',
             '  margin-top: -25px !important;',
-            '  margin-left: -25px !important;',
             '  overflow: visible !important;',
-            '  perspective: 50px;',
+            '  perspective: 20px;',
             '  transform-style: perserve-3d;',
             '}',
             '.dot {',
             '  position: absolute;',
             '  top: 50%;',
             '  left: 50%;',
-            '  width: 50px;',
-            '  height: 20px;',
+            '  width: 20px;',
+            '  height: 10px;',
             '  margin-top: -25px;',
             '  margin-left: -25px;',
-            '  border: 5px solid #d33;',
+            '  border: 2px solid #d33;',
             '  box-shadow: 0 0 2px 2px rgba(0,0,0,0.3), inset 0 0 2px 2px rgba(0,0,0,0.3);',
             '  transform-style: perserve-3d;',
             '  transform: scale(0) rotateX(60deg);',
