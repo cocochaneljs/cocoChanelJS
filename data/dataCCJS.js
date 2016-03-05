@@ -25,14 +25,14 @@
 
     function CCJS_ELEMENT_LIST_STRUCTURE (data) {
         return [
-            '<div ',
+            '<div title="', data.selectTitle, '" ',
             (data.extraDATA ? data.extraDATA: ''),
             ' class="element-selection-button ',
             (data.itemClass ? data.itemClass: ''),
             '" data-tree-depth="',data.treeDepth,'"',
             (data.isUntoucheable ? (data.untoucheable + '="true"') :''),
-            'data-selector="', data.dataSelector,'" data-type="',data.dataType,'">',
-                '<div class="flex column collapse-element" ',
+            'data-selector="', data.dataSelector, '" data-type="',data.dataType,'">',
+                '<div title="', data.collapseTitle, '" class="flex column collapse-element" ',
                     (!! data.collapsed ? 'data-element-list-collapsed="true"': ''),
                 ,'>',
                     (data.collapsed ? "+" : "-"),

@@ -309,7 +309,9 @@ CocoChanelJS.prototype.getAllElementsAsList = function(elements) {
             isUntoucheable: elements[i].isUntoucheable,
             untoucheable: this.untoucheableNodes,
             dataSelector: elements[i].uniqueID,
-            treeDepth: elements[i].nodeDepth
+            treeDepth: elements[i].nodeDepth,
+            selectTitle: elements[i].isUntoucheable ? this.language['untoucheable-select'] : this.language['element-select'],
+            collapseTitle: this.language['collapse-expand-select']
         });
     }
 
@@ -380,13 +382,23 @@ CocoChanelJS.prototype.removeElement = function() {
 };
 
 // creates plugins that give access to the core, so we could add stuff to the core without modifying the whole core.
-CocoChanelJS.prototype.addPlugin = function(title, action, fastPane, checkForSelected) {
+CocoChanelJS.prototype.addPlugin = function(config) {
     var me = this,
+        title = config.title,
+        action = config.action,
+        fastPane = (config.fastPane === false || config.inFastPane === false) ? false : true,
+        checkForSelected = config.checkForSelectedElement || config.checkForSelected,
+        description = config.tooltipDescription,
+        category = config.category,
         plugin = document.createElement('div');
+
 
     plugin.innerHTML = this.language[title] || title;
     plugin.classList.add('plugin-button');
     plugin.setAttribute('data-plugin-requires-selection', checkForSelected ? 'true': 'false');
+
+    if (description)
+        plugin.setAttribute('title', this.language[description] || description);
 
     EventListenerWrapper.addEventListener(plugin,
         'click',
@@ -407,8 +419,8 @@ CocoChanelJS.prototype.addPlugin = function(title, action, fastPane, checkForSel
     );
 
     if (fastPane) {
-        if (typeof fastPane === "string") {
-            this.addToCategory(plugin, fastPane);
+        if (category) {
+            this.addToCategory(plugin, category);
         } else {
             this.main_fastOptions.appendChild(plugin);
         }

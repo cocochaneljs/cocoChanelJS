@@ -46,19 +46,23 @@
 // here is the demonstration
 
 // (function() {
-//     CCJS.addPlugin('Hello world!',function(){
-//         var me = this,
-//             template = [
-//                 // this line is very important if personalizedClose is true , without this line you can't exit
-//                 '<div data-button="" data-close-button="true">',this.language['close-popup'],'</div>',
-//                 '<div data-content="">',
-//                     'Hello World!!',
-//                 '</div>'
-//             ];
+//     CCJS.addPlugin({
+//         title: 'Hello world!',
+//         action: function(){
+//             var me = this,
+//                 template = [
+//                     // this line is very important if personalizedClose is true , without this line you can't exit
+//                     '<div data-button="" data-close-button="true">',this.language['close-popup'],'</div>',
+//                     '<div data-content="">',
+//                         'Hello World!!',
+//                     '</div>'
+//                 ];
 //
-//         me.showPopupElement(template.join(''), function(evt) {
-//             if (!evt.target.getAttribute('data-close-button'))
-//                 window['dialog'].showErrorBox('Hello World');
-//         }, me, true);
-//     }, "tests", true);
+//             me.showPopupElement(template.join(''), function(evt) {
+//                 if (!evt.target.getAttribute('data-close-button'))
+//                     window['dialog'].showErrorBox('Hello World');
+//             }, me, true);
+//         },
+//         category: "tests"
+//     });
 // })();

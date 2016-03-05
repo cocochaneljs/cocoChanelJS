@@ -48,6 +48,13 @@
         'positioning-form-position-label': 'Position:',
         'element': 'Element',
         'element-settings': 'Element settings',
-        'element-ordering': 'Element ordering'
+        'element-ordering': 'Element ordering',
+        'element-select': 'Select element',
+        'collapse-expand-select': 'Expand or collapse',
+        'untoucheable-select': 'This element cannot be selected/edited.',
+        'file-description': 'Load, save the documents you are working on.',
+        'about-description': 'About cocoChanelJS',
+        'hard-refresh-description': 'This refreshes the whole document and application core, this will unselect the selected element',
+        'image-loader-description': 'Load external images and use them as image and background-image.'
     }
 })();
