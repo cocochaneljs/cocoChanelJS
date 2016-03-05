@@ -240,59 +240,6 @@ body {
     }
 }
 
-.element-selection-button {
-    position: relative;
-
-    &::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-    }
-
-    & .id-listing {
-        color: #723;
-    }
-
-    & .class-listing {
-        color: #327;
-
-    }
-
-    & .element-tiny-info {
-        background: none;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        max-width: 80px;
-        width: 80px;
-    }
-
-    & div {
-        font-size: 8px;
-        line-height: 8px;
-        margin-left: 2px;
-        margin-right: 2px;
-        padding: 1px 0;
-
-    }
-
-    &[data-not-touch] {
-        background: #d33;
-        color: #fff;
-        & .id-listing {
-            color: #afa;
-        }
-
-        & .class-listing {
-            color: #aaf;
-
-        }
-    }
-}
-
 .main_sceneSelector > div:hover,
 .main_attributesSection > div:hover,
 .main_extrasSection >div:hover {

@@ -1,0 +1,54 @@
+.element-selection-button {
+    position: relative;
+    min-height: 15px;
+    max-height: 15px;
+
+    & .id-listing {
+        color: #723;
+    }
+
+    & .class-listing {
+        color: #327;
+
+    }
+
+    & .element-tiny-info {
+        background: none;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: 80px;
+        width: 80px;
+    }
+
+    & div {
+        font-size: 8px;
+        line-height: 8px;
+        margin-left: 2px;
+        margin-right: 2px;
+        padding: 1px 0;
+
+    }
+
+    &[data-not-touch] {
+        background: #d33;
+        color: #fff;
+        & .id-listing {
+            color: #afa;
+        }
+
+        & .class-listing {
+            color: #aaf;
+
+        }
+    }
+
+    .collapse-element {
+        width: 15px;
+        line-height: 13px;
+        background-color: #fff;
+        text-align: center;
+        border-radius: 25%;
+        box-shadow: inset 0 -1px 1px 1px rgba(0,0,0,0.1);
+    }
+}

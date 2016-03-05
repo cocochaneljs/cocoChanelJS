@@ -2,7 +2,7 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-/* line 17, ../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 17, ../../../../../home/rokyed/.rvm/gems/ruby-2.2.1/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -24,45 +24,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../../home/rokyed/.rvm/gems/ruby-2.2.1/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../../home/rokyed/.rvm/gems/ruby-2.2.1/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../../home/rokyed/.rvm/gems/ruby-2.2.1/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../../home/rokyed/.rvm/gems/ruby-2.2.1/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../../home/rokyed/.rvm/gems/ruby-2.2.1/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../../home/rokyed/.rvm/gems/ruby-2.2.1/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../../home/rokyed/.rvm/gems/ruby-2.2.1/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../../home/rokyed/.rvm/gems/ruby-2.2.1/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
@@ -5402,66 +5402,14 @@ body {
   flex: 0 0 80px;
 }
 
-/* line 243, ../../sass/app/_app.scss */
-.element-selection-button {
-  position: relative;
-}
-/* line 246, ../../sass/app/_app.scss */
-.element-selection-button::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-}
-/* line 255, ../../sass/app/_app.scss */
-.element-selection-button .id-listing {
-  color: #723;
-}
-/* line 259, ../../sass/app/_app.scss */
-.element-selection-button .class-listing {
-  color: #327;
-}
-/* line 264, ../../sass/app/_app.scss */
-.element-selection-button .element-tiny-info {
-  background: none;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  max-width: 80px;
-  width: 80px;
-}
-/* line 273, ../../sass/app/_app.scss */
-.element-selection-button div {
-  font-size: 8px;
-  line-height: 8px;
-  margin-left: 2px;
-  margin-right: 2px;
-  padding: 1px 0;
-}
-/* line 282, ../../sass/app/_app.scss */
-.element-selection-button[data-not-touch] {
-  background: #d33;
-  color: #fff;
-}
-/* line 285, ../../sass/app/_app.scss */
-.element-selection-button[data-not-touch] .id-listing {
-  color: #afa;
-}
-/* line 289, ../../sass/app/_app.scss */
-.element-selection-button[data-not-touch] .class-listing {
-  color: #aaf;
-}
-
-/* line 298, ../../sass/app/_app.scss */
+/* line 245, ../../sass/app/_app.scss */
 .main_sceneSelector > div:hover,
 .main_attributesSection > div:hover,
 .main_extrasSection > div:hover {
   background: #aab;
 }
 
-/* line 306, ../../sass/app/_app.scss */
+/* line 253, ../../sass/app/_app.scss */
 .optionsPane > div,
 .main_extrasSection > div,
 .main_attributesSection > div,
@@ -5471,12 +5419,12 @@ body {
   transition: all 50ms linear;
 }
 
-/* line 310, ../../sass/app/_app.scss */
+/* line 257, ../../sass/app/_app.scss */
 .hidden {
   display: none;
 }
 
-/* line 313, ../../sass/app/_app.scss */
+/* line 260, ../../sass/app/_app.scss */
 .alert {
   font-weight: bold;
   text-align: center;
@@ -5484,7 +5432,7 @@ body {
   flex: 1;
 }
 
-/* line 319, ../../sass/app/_app.scss */
+/* line 266, ../../sass/app/_app.scss */
 .popup {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
   z-index: 100;
@@ -5498,7 +5446,7 @@ body {
   background: #fff;
   cursor: default;
 }
-/* line 333, ../../sass/app/_app.scss */
+/* line 280, ../../sass/app/_app.scss */
 .popup::before {
   color: #fff;
   font-weight: bolder;
@@ -5515,7 +5463,7 @@ body {
   background: rgba(0, 0, 20, 0.7);
   cursor: default;
 }
-/* line 350, ../../sass/app/_app.scss */
+/* line 297, ../../sass/app/_app.scss */
 .popup div[data-content] {
   background: #fff;
   overflow: hidden;
@@ -5528,16 +5476,16 @@ body {
   align-items: flex-start;
   justify-content: flex-start;
 }
-/* line 363, ../../sass/app/_app.scss */
+/* line 310, ../../sass/app/_app.scss */
 .popup > div[data-button] {
   -webkit-transition: all 100ms linear;
   transition: all 100ms linear;
 }
-/* line 368, ../../sass/app/_app.scss */
+/* line 315, ../../sass/app/_app.scss */
 .popup style {
   display: none !important;
 }
-/* line 373, ../../sass/app/_app.scss */
+/* line 320, ../../sass/app/_app.scss */
 .popup div[data-button], .popup .input-option {
   cursor: pointer;
   resize: none;
@@ -5547,16 +5495,16 @@ body {
   font-size: 14px;
   margin: 4px;
 }
-/* line 384, ../../sass/app/_app.scss */
+/* line 331, ../../sass/app/_app.scss */
 .popup .input-option {
   border: none;
   min-height: 20px;
 }
-/* line 389, ../../sass/app/_app.scss */
+/* line 336, ../../sass/app/_app.scss */
 .popup div[data-button]:hover {
   background-color: #aad;
 }
-/* line 393, ../../sass/app/_app.scss */
+/* line 340, ../../sass/app/_app.scss */
 .popup [data-option-label] {
   background: #efefff;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.9);
@@ -5565,11 +5513,11 @@ body {
   margin: 4px;
   font-weight: bold;
 }
-/* line 402, ../../sass/app/_app.scss */
+/* line 349, ../../sass/app/_app.scss */
 .popup [data-option-label]::after {
   content: ':';
 }
-/* line 407, ../../sass/app/_app.scss */
+/* line 354, ../../sass/app/_app.scss */
 .popup [data-close-button] {
   position: fixed;
   right: 5px;
@@ -5579,19 +5527,19 @@ body {
   background: #fff;
   text-align: center;
 }
-/* line 418, ../../sass/app/_app.scss */
+/* line 365, ../../sass/app/_app.scss */
 .popup [data-option-value]:hover {
   background: #edf;
 }
-/* line 421, ../../sass/app/_app.scss */
+/* line 368, ../../sass/app/_app.scss */
 .popup [data-option-value][data-selected] {
   background: #99f;
 }
-/* line 427, ../../sass/app/_app.scss */
+/* line 374, ../../sass/app/_app.scss */
 .popup [data-content] [data-info] {
   padding: 4px;
 }
-/* line 431, ../../sass/app/_app.scss */
+/* line 378, ../../sass/app/_app.scss */
 .popup [data-content] [data-option] {
   margin: 4px 0;
   padding: 4px;
@@ -5602,7 +5550,7 @@ body {
   box-sizing: border-box;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
-/* line 441, ../../sass/app/_app.scss */
+/* line 388, ../../sass/app/_app.scss */
 .popup [data-content] [data-option] * {
   white-space: nowrap;
   display: inline-block;
@@ -5610,7 +5558,7 @@ body {
   margin: 4px;
   box-sizing: content-box;
 }
-/* line 451, ../../sass/app/_app.scss */
+/* line 398, ../../sass/app/_app.scss */
 .popup #codemirror-editor {
   position: absolute;
   top: 0;
@@ -5619,33 +5567,87 @@ body {
   bottom: 0;
   margin: 0;
 }
-/* line 460, ../../sass/app/_app.scss */
+/* line 407, ../../sass/app/_app.scss */
 .popup .CodeMirror {
   height: 100% !important;
 }
 
-/* line 465, ../../sass/app/_app.scss */
+/* line 412, ../../sass/app/_app.scss */
 .no-overflow[data-content] {
   overflow: auto !important;
 }
 
-/* line 471, ../../sass/app/_app.scss */
+/* line 418, ../../sass/app/_app.scss */
 .block [data-content], .block [data-option] {
   display: inline-block;
   min-width: 100%;
 }
 
-/* line 477, ../../sass/app/_app.scss */
+/* line 424, ../../sass/app/_app.scss */
 .column[data-content] {
   flex-direction: column !important;
   flex-wrap: nowrap !important;
 }
-/* line 481, ../../sass/app/_app.scss */
+/* line 428, ../../sass/app/_app.scss */
 .column[data-content] [data-info] {
   padding: 4px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
   width: 100%;
   margin: 0;
+}
+
+/* line 1, ../../sass/app/app/_element-selection-button.scss */
+.element-selection-button {
+  position: relative;
+  min-height: 15px;
+  max-height: 15px;
+}
+/* line 6, ../../sass/app/app/_element-selection-button.scss */
+.element-selection-button .id-listing {
+  color: #723;
+}
+/* line 10, ../../sass/app/app/_element-selection-button.scss */
+.element-selection-button .class-listing {
+  color: #327;
+}
+/* line 15, ../../sass/app/app/_element-selection-button.scss */
+.element-selection-button .element-tiny-info {
+  background: none;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 80px;
+  width: 80px;
+}
+/* line 24, ../../sass/app/app/_element-selection-button.scss */
+.element-selection-button div {
+  font-size: 8px;
+  line-height: 8px;
+  margin-left: 2px;
+  margin-right: 2px;
+  padding: 1px 0;
+}
+/* line 33, ../../sass/app/app/_element-selection-button.scss */
+.element-selection-button[data-not-touch] {
+  background: #d33;
+  color: #fff;
+}
+/* line 36, ../../sass/app/app/_element-selection-button.scss */
+.element-selection-button[data-not-touch] .id-listing {
+  color: #afa;
+}
+/* line 40, ../../sass/app/app/_element-selection-button.scss */
+.element-selection-button[data-not-touch] .class-listing {
+  color: #aaf;
+}
+/* line 46, ../../sass/app/app/_element-selection-button.scss */
+.element-selection-button .collapse-element {
+  width: 15px;
+  line-height: 13px;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 25%;
+  box-shadow: inset 0 -1px 1px 1px rgba(0, 0, 0, 0.1);
 }
 
 /* line 1, ../../sass/app/_loading-anim.scss */

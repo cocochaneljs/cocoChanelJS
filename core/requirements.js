@@ -1,10 +1,11 @@
 ( function() {
     // beautify uses it's own define that's why we load it before
     const ipcMain = require('electron').ipcMain;
-    
+
     window['beautify_js'] = require('js-beautify'); // also available under "js" export
     window['beautify_css'] = require('js-beautify').css;
     window['beautify_html'] = require('js-beautify').html;
+    window['underscorejs'] = require('underscore');
 
     window['define'] = require('define');
 
@@ -31,6 +32,9 @@
     require('./misc/miscFunctions');
     require('./misc/cssMagic');
     require('./misc/differentLogics');
+
+    // event listener wrapper
+    window['EventListenerWrapper'] = require('./core/event-listener-wrapper');
 
     //language
     window['LanguageManager'] = require('./core/language-manager');

@@ -22,6 +22,7 @@
   "dependencies": {
     "codemirror": "^5.10.0",
     "define": "^1.0.1",
-    "js-beautify": "^1.6.2"
+    "js-beautify": "^1.6.2",
+    "underscore": "^1.8.3"
   }
 }
