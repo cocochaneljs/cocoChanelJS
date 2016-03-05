@@ -1,3 +1,6 @@
+var inDevelopment = true;
+
+
 var app = require('app');
 var BrowserWindow = require('browser-window');
 
@@ -17,7 +20,11 @@ app.on('ready', function () {
             "web-security": false
         }
     });
-    mainWindow.setMenu(null);
+
+    if (! inDevelopment) {
+        mainWindow.setMenu(null);
+    }
+
     mainWindow.loadURL('file://' + __dirname + '/index.html');
     mainWindow.show();
 });

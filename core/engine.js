@@ -5,6 +5,9 @@ function CocoChanelJS() {
     this.nonRemovableNodes = ['HTML','HEAD','BODY','data-storage-element'];
     this.untoucheableNodes = 'data-not-touch';
     this.unstyleableNodes ='data-not-style';
+    this.keywords = {
+        collapsed: 'data-element-list-collapsed'
+    };
     this.hilighter = {
         selectedElementAttribute: 'data-ccjs-selected',
         selectedElementStyle: 'data-ccjs-hilighter',
@@ -108,6 +111,9 @@ CocoChanelJS.prototype.clearSelection = function() {
 };
 CocoChanelJS.prototype.onPreviewElementClicked = function(e) {
     this.setCurrentSelectedElement(e[2],e[1]);
+
+    this.propagateRemoveAttribute(this.currentSelectedElementNode, this.keywords.collapsed);
+
     this.softRefreshData();
 };
 CocoChanelJS.prototype.onPreviewElementHover = function(e) {
@@ -116,14 +122,35 @@ CocoChanelJS.prototype.onPreviewElementHover = function(e) {
 };
 
 CocoChanelJS.prototype.onElementSelected = function(e) {
-    var eTarget = e.target;
+    var eTarget = e.getTarget('.element-selection-button', 10),
+        collapseTarget = e.getTarget('.collapse-element'),
+        collapse;
+
+    if (! eTarget)
+        return;
+
+    if (collapseTarget) {
+        collapse = collapseTarget.getAttribute(this.keywords.collapsed);
+
+        this.collapseSpecificElement(
+            eTarget.getAttribute('data-selector'),
+            eTarget.getAttribute('data-type'),
+            (! collapse)
+        );
+        this.refreshData();
+        return;
+    }
 
     if (eTarget.getAttribute(this.untoucheableNodes)) {
         this.refreshData();
         return;
     }
 
-    this.setCurrentSelectedElement(eTarget.getAttribute('data-selector'), eTarget.getAttribute('data-type'));
+    this.setCurrentSelectedElement(
+        eTarget.getAttribute('data-selector'),
+        eTarget.getAttribute('data-type')
+    );
+
     this.softRefreshData();
 };
 
@@ -140,6 +167,18 @@ CocoChanelJS.prototype.onElementAttributesChanged = function() {
     this.softRefreshData();
 };
 
+CocoChanelJS.prototype.collapseSpecificElement = function(dataSelector, dataType, collapse) {
+    var element = this.getSpecificElement(dataSelector, dataType);;
+
+    if (element) {
+        if (collapse) {
+            element.setAttribute(this.keywords.collapsed, 'true');
+        } else {
+            element.removeAttribute(this.keywords.collapsed);
+        }
+    }
+};
+
 CocoChanelJS.prototype.setCurrentSelectedElement = function(dataSelector, dataType, id) {
     this.currentSelectedElement = {
         dataSelector: dataSelector,
@@ -147,15 +186,27 @@ CocoChanelJS.prototype.setCurrentSelectedElement = function(dataSelector, dataTy
         id: id
     };
 
-    if (this.currentSelectedElement.dataSelector){
-        this.currentSelectedElementNode = this.selectSpecificElement(dataSelector);
-        console.log('selected with dataSelector');
+    this.currentSelectedElementNode = this.getSpecificElement(dataSelector, dataType);
+};
 
-    } else if(this.currentSelectedElement.dataType){
-        this.currentSelectedElementNode = this.selectSpecificElement(false, dataType);
-        console.log('selected with dataType');
+CocoChanelJS.prototype.getSpecificElement = function (dataSelector, dataType) {
+    if (dataSelector) {
+        console.log('grabbed with dataSelector:', dataSelector);
+
+        return this.selectSpecificElement(dataSelector)
     }
-}
+
+    console.log('grabbed with dataType:', dataType);
+
+    return this.selectSpecificElement(false, dataType);
+};
+
+CocoChanelJS.prototype.selectSpecificElement = function(attrib, selector) {
+    if (attrib)
+        return this.root_document.querySelector('[' + this.uniqueIdAttribute + '="' + attrib + '"]');
+
+    return this.root_document.querySelector(selector);
+};
 
 CocoChanelJS.prototype.implementDocument = function(skipDocumentCreation) {
     if (!skipDocumentCreation)
@@ -209,29 +260,37 @@ CocoChanelJS.prototype.listAllElements = function() {
 };
 
 CocoChanelJS.prototype.getAllElements = function(withSelector) {
-    return this.root_document.querySelectorAll(withSelector ? withSelector : '*');
+    var tree = this.reccursiveTreeExplore(this.root_document_html,1);
+
+    return window['underscorejs'].flatten(tree);
 };
 
-CocoChanelJS.prototype.reccursiveTreeExplore = function(element) {
-    if (element.children.length == 0)
-        return {
-            uniqueID:  element.getAttribute ? element.getAttribute(this.uniqueIdAttribute) :'',
-            nodeName: element.nodeName,
-            nodeClass: element.className,
-            nodeID: element.id
-        };
+CocoChanelJS.prototype.propagateRemoveAttribute = function(element, attribute) {
+    if (element.parentNode)
+        this.propagateRemoveAttribute(element.parentNode, attribute);
 
-        var arr = [{
-            uniqueID: element.getAttribute ? element.getAttribute(this.uniqueIdAttribute) :'',
-            nodeName: element.nodeName,
-            nodeClass: element.className,
-            nodeID: element.id
-        }];
+    if (element.removeAttribute)
+        element.removeAttribute(attribute);
+};
 
-        for (var i = 0,ln = element.children.length; i< ln;i++)
-            arr.push(this.reccursiveTreeExplore(element.children[i]));
+CocoChanelJS.prototype.reccursiveTreeExplore = function(element, depth) {
+    var arr = [{
+        uniqueID: element.getAttribute ? element.getAttribute(this.uniqueIdAttribute) :'',
+        nodeName: element.nodeName,
+        nodeClass: element.className,
+        nodeID: element.id,
+        nodeDepth: depth,
+        collapsed: element.getAttribute ? (element.getAttribute(this.keywords.collapsed) ? true : false): false,
+        isUntoucheable: element.getAttribute ? (element.getAttribute(this.untoucheableNodes) ? true: false) : false
+    }];
 
+    if (element.children.length == 0 || element.getAttribute && element.getAttribute(this.keywords.collapsed))
         return arr;
+
+    for (var i = 0,ln = element.children.length; i< ln;i++)
+        arr.push(this.reccursiveTreeExplore(element.children[i], depth + 1));
+
+    return arr;
 };
 
 CocoChanelJS.prototype.getAllElementsAsList = function(elements) {
@@ -243,28 +302,18 @@ CocoChanelJS.prototype.getAllElementsAsList = function(elements) {
     for (var i = 0, ln = elements.length; i<ln;i++) {
         str+= CCJS_ELEMENT_LIST_STRUCTURE({
             extraDATA: 'data-button',
-            id: elements[i].id,
-            className: elements[i].className,
+            id: elements[i].nodeID,
+            className: elements[i].nodeClass,
             dataType: elements[i].nodeName,
-            isUntoucheable: elements[i].getAttribute(this.untoucheableNodes) ? true: false,
+            collapsed: elements[i].collapsed,
+            isUntoucheable: elements[i].isUntoucheable,
             untoucheable: this.untoucheableNodes,
-            dataSelector: elements[i].getAttribute(this.uniqueIdAttribute),
-            treeDepth: this.calcDepth(elements[i])
+            dataSelector: elements[i].uniqueID,
+            treeDepth: elements[i].nodeDepth
         });
     }
 
     return str;
-};
-
-CocoChanelJS.prototype.calcDepth = function(element, count){
-    count = count || 0;
-
-    if (element.parentNode) {
-        count++;
-        return this.calcDepth(element.parentNode, count);
-    } else {
-        return count;
-    }
 };
 
 CocoChanelJS.prototype.highlightSelectedElement = function() {
@@ -330,13 +379,6 @@ CocoChanelJS.prototype.removeElement = function() {
     this.refreshData();
 };
 
-CocoChanelJS.prototype.selectSpecificElement = function(attrib, selector) {
-    if (attrib)
-        return this.root_document.querySelector('[' + this.uniqueIdAttribute + '="' + attrib + '"]');
-
-    return this.root_document.querySelector(selector);
-};
-
 // creates plugins that give access to the core, so we could add stuff to the core without modifying the whole core.
 CocoChanelJS.prototype.addPlugin = function(title, action, fastPane, checkForSelected) {
     var me = this,
@@ -346,18 +388,23 @@ CocoChanelJS.prototype.addPlugin = function(title, action, fastPane, checkForSel
     plugin.classList.add('plugin-button');
     plugin.setAttribute('data-plugin-requires-selection', checkForSelected ? 'true': 'false');
 
-    plugin.addEventListener('click', function() {
-        if (checkForSelected) {
-            if(me.currentSelectedElementNode){
+    EventListenerWrapper.addEventListener(plugin,
+        'click',
+        function() {
+            if (checkForSelected) {
+                if(me.currentSelectedElementNode){
+                    action.apply(me, arguments);
+                }else{
+                    me.refreshData();
+                    window.alert(me.language['element-selected-is-required']);
+                }
+            } else {
                 action.apply(me, arguments);
-            }else{
-                me.refreshData();
-                window.alert(me.language['element-selected-is-required']);
             }
-        } else {
-            action.apply(me, arguments);
-        }
-    }, false);
+        },
+        me,
+        false
+    );
 
     if (fastPane) {
         if (typeof fastPane === "string") {
@@ -390,12 +437,12 @@ CocoChanelJS.prototype.addCategory = function(categoryName) {
     categoryElement.appendChild(categoryTitle);
     categoryElement.appendChild(categoryInner);
 
-    categoryTitle.addEventListener('click',function () {
+    EventListenerWrapper.addEventListener(categoryTitle,'click',function () {
         if (categoryInner.classList.contains('hidden'))
             categoryInner.classList.remove('hidden');
         else
             categoryInner.classList.add('hidden');
-    });
+    }, this);
 
     me.main_fastOptions.appendChild(categoryElement);
 
@@ -504,10 +551,10 @@ CocoChanelJS.prototype.createPopupElement = function() {
 
     this.main_popup.element = popup;
 
-    this.main_popup.element.addEventListener('click', function() {
+    EventListenerWrapper.addEventListener(this.main_popup.element, 'click', function() {
         me.main_popup.callback.apply(me.main_popup.scope, arguments);
         me.onPopupElementTap.apply(me, arguments);
-    }, false);
+    } ,this , false);
 
     document.body.appendChild(popup);
 };
@@ -567,43 +614,46 @@ CocoChanelJS.prototype.indexAllItems = function() {
 
 CocoChanelJS.prototype.initializeEventListeners = function() {
     var me = this;
-    this.main_elementSelector.addEventListener('click', function() {
-        me.onElementSelected.apply(me, arguments);
-    }, false);
+    EventListenerWrapper.addEventListener(
+        this.main_elementSelector,
+        'click',
+        this.onElementSelected,
+        this,
+        false
+    );
 
-    this.main_elementAttributes.addEventListener('change', function() {
-        me.onElementAttributesChanged.apply(me, arguments);
-    }, false);
-
-    window.addEventListener('keydown',function (e) {
-        if (['input','textarea'].indexOf(e.target.nodeName.toLowerCase())== -1){
-            // if ((e.which || e.keyCode) == 116) {
-            //     alert(this.language['backspace-key-f5-disabled']);
-            //     e.preventDefault();
-            // }
-        } else {
-            //keyHandler(e);
-        }
-    }, false);
+    EventListenerWrapper.addEventListener(
+        this.main_elementAttributes,
+        'change',
+        this.onElementAttributesChanged,
+        this,
+        false
+    );
 
     //  @TODO event linkage for iframe not working yet
-    me.main_preview.addEventListener('console-message', function(evt) {
-        var data;
+    EventListenerWrapper.addEventListener(
+        this.main_preview,
+        'console-message',
+        function(evt) {
+            var data;
 
-        try {
-            data = JSON.parse(evt.message);
-        } catch (e) {
-            me.setConsoleOutcast(['view console: "', evt.message, '"'].join(''));
-        }
+            try {
+                data = JSON.parse(evt.message);
+            } catch (e) {
+                me.setConsoleOutcast(['view console: "', evt.message, '"'].join(''));
+            }
 
-        if (!data)
-            return;
+            if (!data)
+                return;
 
-        if(data[0] == "click")
-            me.onPreviewElementClicked.apply(me, [data]);
-        if(data[0] == "hover")
-            me.onPreviewElementHover.apply(me, [data]);
-    }, false);
+            if(data[0] == "click")
+                me.onPreviewElementClicked.apply(me, [data]);
+            if(data[0] == "hover")
+                me.onPreviewElementHover.apply(me, [data]);
+        },
+        this,
+        false
+    );
 };
 
 CocoChanelJS.prototype.drawSelectedElementHilighter = function() {
