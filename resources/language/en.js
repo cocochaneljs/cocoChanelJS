@@ -55,6 +55,11 @@
         'file-description': 'Load, save the documents you are working on.',
         'about-description': 'About cocoChanelJS',
         'hard-refresh-description': 'This refreshes the whole document and application core, this will unselect the selected element',
-        'image-loader-description': 'Load external images and use them as image and background-image.'
+        'image-loader-description': 'Load external images and use them as image and background-image.',
+        'outliner-description': 'Outliner, navigate trough the elements in your document.',
+        'attributes-description': 'Selected element attributes are listed here.',
+        'edit-attribute': 'You can edit attributes here. Or use the plugins available to edit them easier.',
+        'fast-pane-description': 'Easy accessible plugins are in this side panel named "fast pane".',
+        'category-description': 'Expand / collapse this category. Plugins are using categories to be easier to find.'
     }
 })();

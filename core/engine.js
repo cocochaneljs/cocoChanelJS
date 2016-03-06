@@ -86,7 +86,15 @@ CocoChanelJS.prototype.initializeElements = function() {
     this.main_options = this.main_body_element.querySelector('.optionsPane');
     this.main_fastOptions = this.main_body_element.querySelector('.fastPane');
 
+    this.initializeTranslation();
+
     document.body.appendChild(this.main_body_element);
+};
+
+CocoChanelJS.prototype.initializeTranslation = function() {
+    this.main_elementSelector.setAttribute('title', this.translateKey('outliner-description'));
+    this.main_elementAttributes.setAttribute('title', this.translateKey('attributes-description'));
+    this.main_fastOptions.setAttribute('title', this.translateKey('fast-pane-description'));
 };
 
 
@@ -310,8 +318,8 @@ CocoChanelJS.prototype.getAllElementsAsList = function(elements) {
             untoucheable: this.untoucheableNodes,
             dataSelector: elements[i].uniqueID,
             treeDepth: elements[i].nodeDepth,
-            selectTitle: elements[i].isUntoucheable ? this.language['untoucheable-select'] : this.language['element-select'],
-            collapseTitle: this.language['collapse-expand-select']
+            selectTitle: elements[i].isUntoucheable ? this.translateKey('untoucheable-select') : this.translateKey('element-select'),
+            collapseTitle: this.translateKey('collapse-expand-select')
         });
     }
 
@@ -340,7 +348,7 @@ CocoChanelJS.prototype.listAllAttributes = function() {
 
     if (this.currentSelectedElementNode) {
         for (var i = 0, ln = this.currentSelectedElementNode.attributes.length; i < ln; i++) {
-            attributes +=['<div><label>',
+            attributes +=['<div><label title="',this.translateKey('edit-attribute') ,'">',
                 this.currentSelectedElementNode.attributes[i].name,
             ':</label><input data-attribute-data="',
             this.currentSelectedElementNode.attributes[i].name,
@@ -349,7 +357,7 @@ CocoChanelJS.prototype.listAllAttributes = function() {
             '"></div>'].join('');
         }
     }else {
-        attributes = "<div class='alert'>"+this.language['nothing_selected']+"</div>";
+        attributes = "<div class='alert'>" + this.translateKey('nothing_selected') + "</div>";
     }
 
     this.main_elementAttributes.innerHTML = attributes;
@@ -393,12 +401,12 @@ CocoChanelJS.prototype.addPlugin = function(config) {
         plugin = document.createElement('div');
 
 
-    plugin.innerHTML = this.language[title] || title;
+    plugin.innerHTML = this.translateKey(title);
     plugin.classList.add('plugin-button');
     plugin.setAttribute('data-plugin-requires-selection', checkForSelected ? 'true': 'false');
 
     if (description)
-        plugin.setAttribute('title', this.language[description] || description);
+        plugin.setAttribute('title', this.translateKey(description));
 
     EventListenerWrapper.addEventListener(plugin,
         'click',
@@ -440,12 +448,13 @@ CocoChanelJS.prototype.addCategory = function(categoryName) {
 
     categoryElement = document.createElement('div');
     categoryElement.setAttribute('data-category-name', categoryName);
+    categoryElement.setAttribute('title', this.translateKey('category-description'));
     categoryTitle = document.createElement('div');
     categoryInner = document.createElement('div');
     categoryElement.className = "plugin-category";
     categoryTitle.className = "plugin-category-title";
     categoryInner.className = "plugin-category-inner";
-    categoryTitle.innerHTML = this.language[categoryName] || categoryName;
+    categoryTitle.innerHTML = this.translateKey(categoryName);
     categoryElement.appendChild(categoryTitle);
     categoryElement.appendChild(categoryInner);
 
@@ -708,6 +717,10 @@ CocoChanelJS.prototype.getLoaderElement = function () {
 CocoChanelJS.prototype.setConsoleOutcast = function(message) {
     this.main_elementExtras.querySelector('.console-outcast').innerHTML = message;
 };
+
+CocoChanelJS.prototype.translateKey = function(key) {
+    return this.language[key] || key;
+}
 
 module.exports = CocoChanelJS;
 })();
