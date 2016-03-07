@@ -15,6 +15,7 @@ app.on('ready', function () {
         minWidth: 1000,
         minHeight: 700,
         title: 'CocoChanelJS',
+        icon: __dirname + '/resources/logo/final.png',
         "node-integration": "iframe", // and this line
         "web-preferences": {
             "web-security": false
