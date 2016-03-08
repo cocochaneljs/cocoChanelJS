@@ -1,6 +1,5 @@
 (function () {
     function ConfigManager () {
-        this.loadPlugins();
     }
 
     ConfigManager.prototype.loadConfig = function() {
@@ -18,10 +17,8 @@
     };
 
     ConfigManager.prototype.loadPlugins = function () {
-        var normalizedPath = require("path").join("app/plugins");
-
-        fileSystem.readdirSync(normalizedPath).forEach(function(file) {
-          require("../plugins/" + file);
+        fileSystem.readdirSync(window['CCJS-MAIN-URLS'].app.plugins).forEach(function(file) {
+            require("../plugins/" + file);
         });
     };
 

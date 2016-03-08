@@ -2,16 +2,13 @@
     function LanguageManager () {
         this.defaultLanguage = "en";
         this.languages = {};
-
-        this.loadLanguages();
     }
 
     LanguageManager.prototype.loadLanguages = function () {
-        var normalizedPath = require("path").join("app/resources/language"),
-            me = this;
+        var me = this;
 
-        fileSystem.readdirSync(normalizedPath).forEach(function(file) {
-            me.languages[file.split('.')[0]] = require("../resources/language/" + file);
+        fileSystem.readdirSync(window['CCJS-MAIN-URLS'].app.language).forEach(function(file) {
+            me.languages[file.split('.')[0]] = require("../language/" + file);
         });
     };
 

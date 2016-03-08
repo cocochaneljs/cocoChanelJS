@@ -9,19 +9,22 @@ var options = {
     ignore: 'node_modules/(electron-prebuilt|electron-packager|asar)'
 };
 
-
-var asar = require('asar');
-
-var src = './app';
-var dest = 'app.asar';
-
-asar.createPackage(src, dest, function() {
-    console.log('asar: DONE!');
-
-    packager(options, function done (err, appPath) {
-        console.log('packager: DONE!');
-
-        //console.log(err);
-        //console.log(appPath);
-    });
+//  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//  !!! we want the app to be open source even deployed !!!
+//  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//
+// var asar = require('asar');
+//
+// var src = './app';
+// var dest = 'app.asar';
+//
+// asar.createPackage(src, dest, function() {
+//     console.log('asar: DONE!');
+//
+//
+// });
+//
+//
+packager(options, function done (err, appPath) {
+    console.log('packager: DONE!');
 });
