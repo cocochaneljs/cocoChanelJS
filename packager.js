@@ -3,6 +3,7 @@ var options = {
     arch: 'x64',
     dir: '.',
     platform: 'darwin',
+    all: true, // overrides platform and arch, builds all platforms and architectures
     'app-category-type': 'web',
     out: '../cocoChanelJS-dist',
     overwrite: true,
