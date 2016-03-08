@@ -18,7 +18,7 @@
     };
 
     ConfigManager.prototype.loadPlugins = function () {
-        var normalizedPath = require("path").join("plugins");
+        var normalizedPath = require("path").join("app/plugins");
 
         fileSystem.readdirSync(normalizedPath).forEach(function(file) {
           require("../plugins/" + file);

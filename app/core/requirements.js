@@ -1,4 +1,10 @@
 ( function() {
+
+    var base = './',
+        misc = base + 'misc/',
+        core = base + 'core/',
+        data = base + 'data/';
+
     // beautify uses it's own define that's why we load it before
     const ipcMain = require('electron').ipcMain;
 
@@ -23,27 +29,27 @@
     require('codemirror/addon/hint/html-hint');
 
     // data
-    require('./data/automatedStyleGenerator');
-    require('./data/dataCCJS');
-    require('./data/dataObjects');
+    require(data + 'automatedStyleGenerator');
+    require(data + 'dataCCJS');
+    require(data + 'dataObjects');
 
     // miscenlaneous
-    require('./misc/keyHandler');
-    require('./misc/miscFunctions');
-    require('./misc/cssMagic');
-    require('./misc/differentLogics');
+    require(misc + 'keyHandler');
+    require(misc + 'miscFunctions');
+    require(misc + 'cssMagic');
+    require(misc + 'differentLogics');
 
     // event listener wrapper
-    window['EventListenerWrapper'] = require('./core/event-listener-wrapper');
+    window['EventListenerWrapper'] = require(core + 'event-listener-wrapper');
 
     //language
-    window['LanguageManager'] = require('./core/language-manager');
+    window['LanguageManager'] = require(core + 'language-manager');
 
     //engine
-    window['CocoChanelJS'] = require('./core/engine');
+    window['CocoChanelJS'] = require(core + 'engine');
 
     //config and plugins
-    window['ConfigManager'] = require('./core/config-manager');
+    window['ConfigManager'] = require(core + 'config-manager');
 
     //language manager start
     window['LMInstance'] = new LanguageManager();

@@ -2,11 +2,14 @@ var packager = require('electron-packager');
 var options = {
     arch: 'x64',
     dir: '.',
-    platform: 'all',
-    all: true,
+    platform: 'darwin',
     'app-category-type': 'web',
-    out: './dist',
-    ignore: "node_modules/(electron-packager|electron-prebuilt)"
+    out: '../cocoChanelJS-dist',
+    overwrite: true,
+    ignore: 'node_modules/(electron-prebuilt|electron-packager)'
 };
 
-packager(options, function done (err, appPath) {});
+packager(options, function done (err, appPath) {
+    console.log(err);
+    console.log(appPath);
+});

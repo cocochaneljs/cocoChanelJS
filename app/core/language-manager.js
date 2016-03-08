@@ -7,11 +7,10 @@
     }
 
     LanguageManager.prototype.loadLanguages = function () {
-        var normalizedPath = require("path").join("resources/language"),
+        var normalizedPath = require("path").join("app/resources/language"),
             me = this;
 
         fileSystem.readdirSync(normalizedPath).forEach(function(file) {
-
             me.languages[file.split('.')[0]] = require("../resources/language/" + file);
         });
     };

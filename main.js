@@ -15,7 +15,7 @@ app.on('ready', function () {
         minWidth: 1000,
         minHeight: 700,
         title: 'CocoChanelJS',
-        icon: __dirname + '/resources/logo/final.png',
+        icon: __dirname + '/app/resources/logo/final.png',
         "node-integration": "iframe", // and this line
         "web-preferences": {
             "web-security": false
@@ -26,6 +26,10 @@ app.on('ready', function () {
         mainWindow.setMenu(null);
     }
 
-    mainWindow.loadURL('file://' + __dirname + '/index.html');
+    mainWindow.loadURL('file://' + __dirname + '/app/index.html');
     mainWindow.show();
+});
+
+app.on('window-all-closed', function() {
+    app.quit();
 });
