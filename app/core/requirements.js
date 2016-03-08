@@ -28,27 +28,27 @@
         require('codemirror/addon/hint/html-hint');
 
         // data
-        require(appURLS.base.data + '/automatedStyleGenerator');
-        require(appURLS.base.data + '/dataCCJS');
-        require(appURLS.base.data + '/dataObjects');
+        require(appURLS.app.data + '/automatedStyleGenerator');
+        require(appURLS.app.data + '/dataCCJS');
+        require(appURLS.app.data + '/dataObjects');
 
         // miscenlaneous
-        require(appURLS.base.misc + '/keyHandler');
-        require(appURLS.base.misc + '/miscFunctions');
-        require(appURLS.base.misc + '/cssMagic');
-        require(appURLS.base.misc + '/differentLogics');
+        require(appURLS.app.misc + '/keyHandler');
+        require(appURLS.app.misc + '/miscFunctions');
+        require(appURLS.app.misc + '/cssMagic');
+        require(appURLS.app.misc + '/differentLogics');
 
         // event listener wrapper
-        window['EventListenerWrapper'] = require(appURLS.base.core + '/event-listener-wrapper');
+        window['EventListenerWrapper'] = require(appURLS.app.core + '/event-listener-wrapper');
 
         //language
-        window['LanguageManager'] = require(appURLS.base.core + '/language-manager');
+        window['LanguageManager'] = require(appURLS.app.core + '/language-manager');
 
         //engine
-        window['CocoChanelJS'] = require(appURLS.base.core + '/engine');
+        window['CocoChanelJS'] = require(appURLS.app.core + '/engine');
 
         //config and plugins
-        window['ConfigManager'] = require(appURLS.base.core + '/config-manager');
+        window['ConfigManager'] = require(appURLS.app.core + '/config-manager');
 
         //language manager start and load languages
         window['LMInstance'] = new LanguageManager();

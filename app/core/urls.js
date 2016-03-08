@@ -1,10 +1,9 @@
 ( function() {
     var exports = module.exports = {};
+    var path = require('path');
     var urls = {},
         parents = {
-            base: '.',
-            app: './app',
-            parent: '..'
+            app: '..'
         },
         subs = {
             base: '',
@@ -20,8 +19,9 @@
         exports[p] = {};
 
         for (var s in subs) {
-            exports[p][s] = parents[p] + subs[s];
+            exports[p][s] = path.join(__dirname, parents[p], subs[s]);
         }
 
     }
+    debugger;
 })();
