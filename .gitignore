@@ -3,3 +3,4 @@ dist/
 .swp
 .sass-cache
 .DS_Store
+*.asar
