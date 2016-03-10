@@ -48,11 +48,7 @@ body {
     background: -webkit-radial-gradient(center, ellipse, #efefdf 0%, #e0e0d0 100%);
     background: radial-gradient(ellipse at center, #efefdf 0%,#e0e0d0 100%);
     position: relative;
-
-    .main_scenePreview {
-        width: 100%;
-        border: none;
-    }
+    overflow: hidden;
 }
 
 [data-preview-loading="true"] {

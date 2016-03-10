@@ -2,7 +2,7 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-/* line 17, ../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 17, ../../../../../../home/rokyed/.rvm/gems/ruby-2.2.1/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -24,45 +24,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../../../home/rokyed/.rvm/gems/ruby-2.2.1/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../../../home/rokyed/.rvm/gems/ruby-2.2.1/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../../../home/rokyed/.rvm/gems/ruby-2.2.1/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../../../home/rokyed/.rvm/gems/ruby-2.2.1/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../../../home/rokyed/.rvm/gems/ruby-2.2.1/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../../../home/rokyed/.rvm/gems/ruby-2.2.1/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../../../home/rokyed/.rvm/gems/ruby-2.2.1/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../Library/Ruby/Gems/2.0.0/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../../../home/rokyed/.rvm/gems/ruby-2.2.1/gems/compass-0.12.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
@@ -5195,36 +5195,32 @@ body {
   background: -webkit-radial-gradient(center, ellipse, #efefdf 0%, #e0e0d0 100%);
   background: radial-gradient(ellipse at center, #efefdf 0%, #e0e0d0 100%);
   position: relative;
-}
-/* line 52, ../../sass/app/_app.scss */
-.previewPane .main_scenePreview {
-  width: 100%;
-  border: none;
+  overflow: hidden;
 }
 
-/* line 61, ../../sass/app/_app.scss */
+/* line 57, ../../sass/app/_app.scss */
 [data-preview-loading="true"] .main_extrasSection .main_loading_state * {
   visibility: visible !important;
 }
 
-/* line 68, ../../sass/app/_app.scss */
+/* line 64, ../../sass/app/_app.scss */
 .main_loading_state {
   width: 100%;
   height: 100%;
 }
 
-/* line 73, ../../sass/app/_app.scss */
+/* line 69, ../../sass/app/_app.scss */
 .fastPane {
   overflow-y: auto;
   overflow-x: hidden;
   width: 120px !important;
 }
-/* line 78, ../../sass/app/_app.scss */
+/* line 74, ../../sass/app/_app.scss */
 .fastPane .plugin-category {
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   margin: 1px 0;
 }
-/* line 82, ../../sass/app/_app.scss */
+/* line 78, ../../sass/app/_app.scss */
 .fastPane .plugin-category .plugin-category-title {
   background: #d33;
   color: #fff;
@@ -5233,12 +5229,12 @@ body {
   width: 100%;
   cursor: pointer;
 }
-/* line 89, ../../sass/app/_app.scss */
+/* line 85, ../../sass/app/_app.scss */
 .fastPane .plugin-category .plugin-category-title:hover {
   background: #aad;
 }
 
-/* line 98, ../../sass/app/_app.scss */
+/* line 94, ../../sass/app/_app.scss */
 .optionsPane {
   max-height: 22px;
   min-height: 22px;
@@ -5249,7 +5245,7 @@ body {
   position: relative;
 }
 
-/* line 109, ../../sass/app/_app.scss */
+/* line 105, ../../sass/app/_app.scss */
 .plugin-button {
   position: relative;
   text-rendering: geometricPrecision;
@@ -5264,13 +5260,13 @@ body {
   margin: 1px 1px;
   box-sizing: border-box;
 }
-/* line 123, ../../sass/app/_app.scss */
+/* line 119, ../../sass/app/_app.scss */
 .optionsPane > .plugin-button {
   min-height: 100%;
   max-height: 100%;
   margin: 0 1px;
 }
-/* line 129, ../../sass/app/_app.scss */
+/* line 125, ../../sass/app/_app.scss */
 .plugin-button::before {
   display: block;
   width: 2px;
@@ -5281,27 +5277,27 @@ body {
   background-color: #aad;
   content: '';
 }
-/* line 140, ../../sass/app/_app.scss */
+/* line 136, ../../sass/app/_app.scss */
 .plugin-button:hover {
   background: #aad;
 }
 
-/* line 145, ../../sass/app/_app.scss */
+/* line 141, ../../sass/app/_app.scss */
 .plugin-disabled::before {
   background-color: #d00 !important;
 }
-/* line 148, ../../sass/app/_app.scss */
+/* line 144, ../../sass/app/_app.scss */
 .plugin-disabled:hover {
   background-color: #d00 !important;
   color: #fff;
 }
 
-/* line 154, ../../sass/app/_app.scss */
+/* line 150, ../../sass/app/_app.scss */
 .propertiesPane {
   width: 230px;
 }
 
-/* line 158, ../../sass/app/_app.scss */
+/* line 154, ../../sass/app/_app.scss */
 .main_scenePreview *:hover:after {
   content: '';
   width: 100%;
@@ -5311,7 +5307,7 @@ body {
   opacity: 0.3;
 }
 
-/* line 169, ../../sass/app/_app.scss */
+/* line 165, ../../sass/app/_app.scss */
 .main_sceneSelector,
 .main_attributesSection,
 .main_extrasSection {
@@ -5323,29 +5319,29 @@ body {
   max-width: 100%;
 }
 
-/* line 178, ../../sass/app/_app.scss */
+/* line 174, ../../sass/app/_app.scss */
 .main_sceneSelector {
   max-height: 55%;
 }
 
-/* line 181, ../../sass/app/_app.scss */
+/* line 177, ../../sass/app/_app.scss */
 .main_attributesSection {
   max-height: 35%;
 }
 
-/* line 184, ../../sass/app/_app.scss */
+/* line 180, ../../sass/app/_app.scss */
 .main_extrasSection {
   max-height: 10%;
   border: none !important;
   position: relative;
   overflow: hidden;
 }
-/* line 189, ../../sass/app/_app.scss */
+/* line 185, ../../sass/app/_app.scss */
 .main_extrasSection > * {
   border: none !important;
   display: block !important;
 }
-/* line 193, ../../sass/app/_app.scss */
+/* line 189, ../../sass/app/_app.scss */
 .main_extrasSection .main_loading_state {
   max-width: 40px;
   min-width: 40px;
@@ -5353,11 +5349,11 @@ body {
   position: relative;
   background: #fff;
 }
-/* line 199, ../../sass/app/_app.scss */
+/* line 195, ../../sass/app/_app.scss */
 .main_extrasSection .main_loading_state * {
   visibility: hidden;
 }
-/* line 203, ../../sass/app/_app.scss */
+/* line 199, ../../sass/app/_app.scss */
 .main_extrasSection .console-outcast {
   border: 1px solid rgba(0, 0, 0, 0.3);
   color: #d33;
@@ -5366,12 +5362,12 @@ body {
   flex: 1;
 }
 
-/* line 212, ../../sass/app/_app.scss */
+/* line 208, ../../sass/app/_app.scss */
 .main_sceneSelector > div {
   font-size: 10px;
 }
 
-/* line 218, ../../sass/app/_app.scss */
+/* line 214, ../../sass/app/_app.scss */
 .main_sceneSelector > div,
 .main_attributesSection > div,
 .main_extrasSection > div {
@@ -5385,7 +5381,7 @@ body {
   display: flex;
   margin: 1px 1px;
 }
-/* line 231, ../../sass/app/_app.scss */
+/* line 227, ../../sass/app/_app.scss */
 .main_sceneSelector > div input,
 .main_attributesSection > div input,
 .main_extrasSection > div input {
@@ -5394,21 +5390,21 @@ body {
   border: none;
   outline: none;
 }
-/* line 238, ../../sass/app/_app.scss */
+/* line 234, ../../sass/app/_app.scss */
 .main_sceneSelector > div label,
 .main_attributesSection > div label,
 .main_extrasSection > div label {
   flex: 0 0 80px;
 }
 
-/* line 245, ../../sass/app/_app.scss */
+/* line 241, ../../sass/app/_app.scss */
 .main_sceneSelector > div:hover,
 .main_attributesSection > div:hover,
 .main_extrasSection > div:hover {
   background: #aab;
 }
 
-/* line 253, ../../sass/app/_app.scss */
+/* line 249, ../../sass/app/_app.scss */
 .optionsPane > div,
 .main_extrasSection > div,
 .main_attributesSection > div,
@@ -5418,12 +5414,12 @@ body {
   transition: all 50ms linear;
 }
 
-/* line 257, ../../sass/app/_app.scss */
+/* line 253, ../../sass/app/_app.scss */
 .hidden {
   display: none;
 }
 
-/* line 260, ../../sass/app/_app.scss */
+/* line 256, ../../sass/app/_app.scss */
 .alert {
   font-weight: bold;
   text-align: center;
@@ -5431,7 +5427,7 @@ body {
   flex: 1;
 }
 
-/* line 266, ../../sass/app/_app.scss */
+/* line 262, ../../sass/app/_app.scss */
 .popup {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
   z-index: 100;
@@ -5445,7 +5441,7 @@ body {
   background: #fff;
   cursor: default;
 }
-/* line 280, ../../sass/app/_app.scss */
+/* line 276, ../../sass/app/_app.scss */
 .popup::before {
   color: #fff;
   font-weight: bolder;
@@ -5462,7 +5458,7 @@ body {
   background: rgba(0, 0, 20, 0.7);
   cursor: default;
 }
-/* line 297, ../../sass/app/_app.scss */
+/* line 293, ../../sass/app/_app.scss */
 .popup div[data-content] {
   background: #fff;
   overflow: hidden;
@@ -5475,16 +5471,16 @@ body {
   align-items: flex-start;
   justify-content: flex-start;
 }
-/* line 310, ../../sass/app/_app.scss */
+/* line 306, ../../sass/app/_app.scss */
 .popup > div[data-button] {
   -webkit-transition: all 100ms linear;
   transition: all 100ms linear;
 }
-/* line 315, ../../sass/app/_app.scss */
+/* line 311, ../../sass/app/_app.scss */
 .popup style {
   display: none !important;
 }
-/* line 320, ../../sass/app/_app.scss */
+/* line 316, ../../sass/app/_app.scss */
 .popup div[data-button], .popup .input-option {
   cursor: pointer;
   resize: none;
@@ -5494,16 +5490,16 @@ body {
   font-size: 14px;
   margin: 4px;
 }
-/* line 331, ../../sass/app/_app.scss */
+/* line 327, ../../sass/app/_app.scss */
 .popup .input-option {
   border: none;
   min-height: 20px;
 }
-/* line 336, ../../sass/app/_app.scss */
+/* line 332, ../../sass/app/_app.scss */
 .popup div[data-button]:hover {
   background-color: #aad;
 }
-/* line 340, ../../sass/app/_app.scss */
+/* line 336, ../../sass/app/_app.scss */
 .popup [data-option-label] {
   background: #efefff;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.9);
@@ -5512,11 +5508,11 @@ body {
   margin: 4px;
   font-weight: bold;
 }
-/* line 349, ../../sass/app/_app.scss */
+/* line 345, ../../sass/app/_app.scss */
 .popup [data-option-label]::after {
   content: ':';
 }
-/* line 354, ../../sass/app/_app.scss */
+/* line 350, ../../sass/app/_app.scss */
 .popup [data-close-button] {
   position: fixed;
   right: 5px;
@@ -5526,19 +5522,19 @@ body {
   background: #fff;
   text-align: center;
 }
-/* line 365, ../../sass/app/_app.scss */
+/* line 361, ../../sass/app/_app.scss */
 .popup [data-option-value]:hover {
   background: #edf;
 }
-/* line 368, ../../sass/app/_app.scss */
+/* line 364, ../../sass/app/_app.scss */
 .popup [data-option-value][data-selected] {
   background: #99f;
 }
-/* line 374, ../../sass/app/_app.scss */
+/* line 370, ../../sass/app/_app.scss */
 .popup [data-content] [data-info] {
   padding: 4px;
 }
-/* line 378, ../../sass/app/_app.scss */
+/* line 374, ../../sass/app/_app.scss */
 .popup [data-content] [data-option] {
   margin: 4px 0;
   padding: 4px;
@@ -5549,7 +5545,7 @@ body {
   box-sizing: border-box;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
-/* line 388, ../../sass/app/_app.scss */
+/* line 384, ../../sass/app/_app.scss */
 .popup [data-content] [data-option] * {
   white-space: nowrap;
   display: inline-block;
@@ -5557,7 +5553,7 @@ body {
   margin: 4px;
   box-sizing: content-box;
 }
-/* line 398, ../../sass/app/_app.scss */
+/* line 394, ../../sass/app/_app.scss */
 .popup #codemirror-editor {
   position: absolute;
   top: 0;
@@ -5566,28 +5562,28 @@ body {
   bottom: 0;
   margin: 0;
 }
-/* line 407, ../../sass/app/_app.scss */
+/* line 403, ../../sass/app/_app.scss */
 .popup .CodeMirror {
   height: 100% !important;
 }
 
-/* line 412, ../../sass/app/_app.scss */
+/* line 408, ../../sass/app/_app.scss */
 .no-overflow[data-content] {
   overflow: auto !important;
 }
 
-/* line 418, ../../sass/app/_app.scss */
+/* line 414, ../../sass/app/_app.scss */
 .block [data-content], .block [data-option] {
   display: inline-block;
   min-width: 100%;
 }
 
-/* line 424, ../../sass/app/_app.scss */
+/* line 420, ../../sass/app/_app.scss */
 .column[data-content] {
   flex-direction: column !important;
   flex-wrap: nowrap !important;
 }
-/* line 428, ../../sass/app/_app.scss */
+/* line 424, ../../sass/app/_app.scss */
 .column[data-content] [data-info] {
   padding: 4px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
@@ -5653,6 +5649,166 @@ body {
 /* line 56, ../../sass/app/app/_element-selection-button.scss */
 .element-selection-button .collapse-element:hover {
   background-color: #afa;
+}
+
+/* line 1, ../../sass/app/app/_main-preview.scss */
+.main_scenePreview {
+  width: 100%;
+  border: none;
+  overflow: hidden;
+  transform-box: border-box;
+  box-sizing: border-box;
+}
+/* line 8, ../../sass/app/app/_main-preview.scss */
+.main_scenePreview::shadow {
+  animation: none;
+  animation-delay: 0;
+  animation-direction: normal;
+  animation-duration: 0;
+  animation-fill-mode: none;
+  animation-iteration-count: 1;
+  animation-name: none;
+  animation-play-state: running;
+  animation-timing-function: ease;
+  backface-visibility: visible;
+  background: 0;
+  background-attachment: scroll;
+  background-clip: border-box;
+  background-color: transparent;
+  background-image: none;
+  background-origin: padding-box;
+  background-position: 0 0;
+  background-position-x: 0;
+  background-position-y: 0;
+  background-repeat: repeat;
+  background-size: auto auto;
+  border: 0;
+  border-style: none;
+  border-width: medium;
+  border-color: inherit;
+  border-bottom: 0;
+  border-bottom-color: inherit;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-style: none;
+  border-bottom-width: medium;
+  border-collapse: separate;
+  border-image: none;
+  border-left: 0;
+  border-left-color: inherit;
+  border-left-style: none;
+  border-left-width: medium;
+  border-radius: 0;
+  border-right: 0;
+  border-right-color: inherit;
+  border-right-style: none;
+  border-right-width: medium;
+  border-spacing: 0;
+  border-top: 0;
+  border-top-color: inherit;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-top-style: none;
+  border-top-width: medium;
+  bottom: auto;
+  box-shadow: none;
+  box-sizing: content-box;
+  caption-side: top;
+  clear: none;
+  clip: auto;
+  color: inherit;
+  columns: auto;
+  column-count: auto;
+  column-fill: balance;
+  column-gap: normal;
+  column-rule: medium none currentColor;
+  column-rule-color: currentColor;
+  column-rule-style: none;
+  column-rule-width: none;
+  column-span: 1;
+  column-width: auto;
+  content: normal;
+  counter-increment: none;
+  counter-reset: none;
+  cursor: auto;
+  direction: ltr;
+  display: inline;
+  empty-cells: show;
+  float: none;
+  font: normal;
+  font-family: inherit;
+  font-size: medium;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  height: auto;
+  hyphens: none;
+  left: auto;
+  letter-spacing: normal;
+  line-height: normal;
+  list-style: none;
+  list-style-image: none;
+  list-style-position: outside;
+  list-style-type: disc;
+  margin: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  max-height: none;
+  max-width: none;
+  min-height: 0;
+  min-width: 0;
+  opacity: 1;
+  orphans: 0;
+  outline: 0;
+  outline-color: invert;
+  outline-style: none;
+  outline-width: medium;
+  overflow: visible;
+  overflow-x: visible;
+  overflow-y: visible;
+  padding: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  page-break-after: auto;
+  page-break-before: auto;
+  page-break-inside: auto;
+  perspective: none;
+  perspective-origin: 50% 50%;
+  position: static;
+  /* May need to alter quotes for different locales (e.g fr) */
+  quotes: '\201C' '\201D' '\2018' '\2019';
+  right: auto;
+  tab-size: 8;
+  table-layout: auto;
+  text-align: inherit;
+  text-align-last: auto;
+  text-decoration: none;
+  text-decoration-color: inherit;
+  text-decoration-line: none;
+  text-decoration-style: solid;
+  text-indent: 0;
+  text-shadow: none;
+  text-transform: none;
+  top: auto;
+  transform: none;
+  transform-style: flat;
+  transition: none;
+  transition-delay: 0s;
+  transition-duration: 0s;
+  transition-property: none;
+  transition-timing-function: ease;
+  unicode-bidi: normal;
+  vertical-align: baseline;
+  visibility: visible;
+  white-space: normal;
+  widows: 0;
+  width: auto;
+  word-spacing: normal;
+  z-index: auto;
 }
 
 /* line 1, ../../sass/app/_loading-anim.scss */

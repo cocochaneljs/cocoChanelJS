@@ -66,7 +66,6 @@
                 '-webkit-animation-direction: alternate-reverse;',
                 'animation-direction: alternate-reverse;',
             '}',
-
             '@-moz-keyframes slidein {',
                 'from {',
                     'outline: 2px dotted #00d;',
