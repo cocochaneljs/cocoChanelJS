@@ -1,4 +1,4 @@
-![Logo](https://github.com/rokyed/cocoChanelJS/blob/master/app/resources/logo/inkscape-ccjs-logo-256.png)
+[![Logo](https://github.com/rokyed/cocoChanelJS/blob/master/app/resources/logo/inkscape-ccjs-logo-256.png)](https://github.com/rokyed/cocoChanelJS)
 # cocoChanelJS
 
 [![Support](https://supporter.60devs.com/api/b/458567f23de2355cbd6f551a6637e702)](https://supporter.60devs.com/give/458567f23de2355cbd6f551a6637e702)
