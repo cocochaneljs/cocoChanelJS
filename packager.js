@@ -1,15 +1,4 @@
 var packager = require('electron-packager');
-var options = {
-    arch: 'x64',
-    dir: '.',
-    platform: 'darwin',
-    all: true, // overrides platform and arch, builds all platforms and architectures
-    'app-category-type': 'web',
-    out: '../cocoChanelJS-dist',
-    overwrite: true,
-    ignore: 'node_modules/(electron-prebuilt|electron-packager|asar)',
-    icon: './app/resources/logo/inkscape-ccjs-logo'
-};
 
 //  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //  !!! we want the app to be open source even deployed !!!
@@ -25,8 +14,63 @@ var options = {
 //
 //
 // });
-//
-//
-packager(options, function done (err, appPath) {
-    console.log('packager: DONE!');
+
+
+// osx
+packager({
+        arch: 'all',
+        dir: '.',
+        platform: 'darwin',
+        'app-category-type': 'web',
+        out: '../cocoChanelJS-dist',
+        overwrite: true,
+        ignore: 'node_modules/(electron-prebuilt|electron-packager|asar)',
+        icon: './app/resources/logo/inkscape-ccjs-logo'
+    }, function (err, appPath) {
+        done('Mac OSX', err, appPath);
+
 });
+
+// linux
+packager({
+        arch: 'all',
+        dir: '.',
+        platform: 'linux',
+        'app-category-type': 'web',
+        out: '../cocoChanelJS-dist',
+        overwrite: true,
+        ignore: 'node_modules/(electron-prebuilt|electron-packager|asar)',
+        icon: './app/resources/logo/inkscape-ccjs-logo'
+    }, function (err, appPath) {
+        done('Linux', err, appPath);
+});
+
+// windows
+packager({
+        arch: 'all',
+        dir: '.',
+        platform: 'darwin',
+        'app-category-type': 'web',
+        out: '../cocoChanelJS-dist',
+        overwrite: true,
+        ignore: 'node_modules/(electron-prebuilt|electron-packager|asar)',
+        icon: './app/resources/logo/inkscape-ccjs-logo'
+    }, function (err, appPath) {
+        done('Windows', err, appPath);
+});
+
+
+function done(app, err, appPath) {
+    console.log('\n\n');
+    console.log(app,'TASK DONE');
+
+    if (appPath && appPath.length)
+        console.log('URLs:' , appPath);
+    else
+        console.log('NOT COMPILED');
+
+    if (err)
+        console.log('Error:', err);
+
+    console.log('\n\n');
+}
