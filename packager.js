@@ -7,7 +7,8 @@ var options = {
     'app-category-type': 'web',
     out: '../cocoChanelJS-dist',
     overwrite: true,
-    ignore: 'node_modules/(electron-prebuilt|electron-packager|asar)'
+    ignore: 'node_modules/(electron-prebuilt|electron-packager|asar)',
+    icon: './app/resources/logo/inkscape-ccjs-logo'
 };
 
 //  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

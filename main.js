@@ -3,11 +3,13 @@ var inDevelopment = true;
 
 var app = require('app');
 var BrowserWindow = require('browser-window');
+var Tray = require('tray');
 
 app.commandLine.appendSwitch('disable-web-security');
 app.setName('CocoChanelJS');
 
 app.on('ready', function () {
+    var appIcon = new Tray(__dirname + '/app/resources/logo/inkscape-ccjs-logo.png');
     var mainWindow = new BrowserWindow({
         show: false,
         width: 1000,
@@ -15,7 +17,7 @@ app.on('ready', function () {
         minWidth: 1000,
         minHeight: 700,
         title: 'CocoChanelJS',
-        icon: __dirname + '/app/resources/logo/final.png',
+        icon: __dirname + '/app/resources/logo/inkscape-ccjs-logo.png',
         "node-integration": "iframe", // and this line
         "web-preferences": {
             "web-security": false
