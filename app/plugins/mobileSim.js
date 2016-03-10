@@ -42,13 +42,10 @@
             preview.setAttribute('style', style.join(';'));
             preview.setAttribute('width', previewWidth+"px");
             preview.setAttribute('height', previewHeight+"px");
-            debugger;
-
         } else {
             preview.removeAttribute('style');
             preview.removeAttribute('width');
             preview.removeAttribute('height');
-
         }
     }, 16);
 
