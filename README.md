@@ -1,7 +1,7 @@
+![Logo](https://github.com/rokyed/cocoChanelJS/blob/master/app/resources/logo/inkscape-ccjs-logo-256.png)
 # cocoChanelJS
 
 [![Support](https://supporter.60devs.com/api/b/458567f23de2355cbd6f551a6637e702)](https://supporter.60devs.com/give/458567f23de2355cbd6f551a6637e702)
-
 
 #### Requirements:
 In order to run the project as developer or compile it, you will need **Node.js**.
