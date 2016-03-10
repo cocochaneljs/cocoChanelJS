@@ -6,6 +6,8 @@
 #### Requirements:
 In order to run the project as developer or compile it, you will need **Node.js**.
 
+Also if you want to work on the style you will need **Compass**.
+
 #### Set up: 
 
 Clone the repo. *If you are here I assume you know already a bit of git.*
@@ -32,6 +34,11 @@ the destination directory will be:
 ```
 relative to the clone directory.
 
+
+For the styles, run: 
+```bash
+compass watch
+```
 
 #### Q&A:
 ##### If I want to contribute? 
