@@ -11,8 +11,9 @@
         if (previewWidth && previewHeight) {
             var style = [],
                 scale = 1,
+                width = previewWidth,
+                height = previewHeight,
                 scaleX, scaleY;
-
 
             if (previewWidth  > previewParentBox.width)
                 scaleX = previewParentBox.width / previewWidth;
@@ -28,30 +29,38 @@
                 scale = scaleY || 1;
             }
 
-            style.push('width:'+previewWidth+'px');
-            style.push('height:'+previewHeight+'px');
-            style.push('min-width:'+previewWidth+'px');
-            style.push('min-height:'+previewHeight+'px');
+
 
             if (scale < 1) {
-                style.push('transform-origin: top left');
-                style.push('transform: scale('+scale+')');
-
+                preview.setZoomFactor(scale);
+                width = width * scale;
+                height = height * scale;
             }
 
+            style.push('width:'+width+'px');
+            style.push('height:'+height+'px');
+            style.push('min-width:'+width+'px');
+            style.push('min-height:'+height+'px');
+            style.push('max-width:'+width+'px');
+            style.push('max-height:'+height+'px');
+
             preview.setAttribute('style', style.join(';'));
-            preview.setAttribute('width', previewWidth+"px");
-            preview.setAttribute('height', previewHeight+"px");
+
+            // hack for a bug with object in webview
+            CCJS.main_preview.shadowRoot.childNodes[0].style.height = '100%';
+
         } else {
             preview.removeAttribute('style');
-            preview.removeAttribute('width');
-            preview.removeAttribute('height');
+            preview.setZoomFactor(1);
+
+            // hack for a bug with object in webview
+            CCJS.main_preview.shadowRoot.childNodes[0].style.height = previewParentBox.height +"px";
         }
     }, 16);
 
     // normal view
     CCJS.addPlugin({
-        title: 'normal',
+        title: 'mobile-simulation-normal',
         action: function(){
             this.main_preview.removeAttribute('data-width');
             this.main_preview.removeAttribute('data-height');
@@ -61,7 +70,7 @@
 
     // flip between portrait and landscape
     CCJS.addPlugin({
-        title: 'flip-view',
+        title: 'mobile-simulation-flip',
         action: function(){
             var previewWidth = this.main_preview.getAttribute('data-width'),
                 previewHeight = this.main_preview.getAttribute('data-height');
@@ -75,23 +84,83 @@
         category: "mobile-simulation"
     });
 
-    // adding screen sizes
-    var screenSizes = [{
-        x: 320,
-        y: 480
-    }];
+    CCJS.addPlugin({
+        title: 'iPhone 4S (320,480)',
+        action: function(){
+            this.main_preview.setAttribute('data-width','320');
+            this.main_preview.setAttribute('data-height','480');
+            this.softRefreshData();
+        },
+        category: "mobile-simulation"
+    });
 
-    for (var i = 0; i < screenSizes.length; i++) {
-        var strX = screenSizes[i].x,
-            strY = screenSizes[i].y;
+    CCJS.addPlugin({
+        title: 'iPhone 5S (320,568)',
+        action: function(){
+            this.main_preview.setAttribute('data-width','320');
+            this.main_preview.setAttribute('data-height','568');
+            this.softRefreshData();
+        },
+        category: "mobile-simulation"
+    });
 
-        CCJS.addPlugin({
-            title: strX + ' X ' + strY,
-            action: function(){
-                this.main_preview.setAttribute('data-width',strX);
-                this.main_preview.setAttribute('data-height',strY);
-            },
-            category: "mobile-simulation"
-        });
-    }
+    CCJS.addPlugin({
+        title: 'iPhone 6 (375,667)',
+        action: function(){
+            this.main_preview.setAttribute('data-width','375');
+            this.main_preview.setAttribute('data-height','667');
+            this.softRefreshData();
+        },
+        category: "mobile-simulation"
+    });
+
+    CCJS.addPlugin({
+        title: 'iPhone 6+ (414,736)',
+        action: function(){
+            this.main_preview.setAttribute('data-width','414');
+            this.main_preview.setAttribute('data-height','736');
+            this.softRefreshData();
+        },
+        category: "mobile-simulation"
+    });
+
+    CCJS.addPlugin({
+        title: 'Phone (320,640)',
+        action: function(){
+            this.main_preview.setAttribute('data-width','320');
+            this.main_preview.setAttribute('data-height','640');
+            this.softRefreshData();
+        },
+        category: "mobile-simulation"
+    });
+
+    CCJS.addPlugin({
+        title: 'iPad (768,1024)',
+        action: function(){
+            this.main_preview.setAttribute('data-width','768');
+            this.main_preview.setAttribute('data-height','1024');
+            this.softRefreshData();
+        },
+        category: "mobile-simulation"
+    });
+
+    CCJS.addPlugin({
+        title: 'Tablet (601,906)',
+        action: function(){
+            this.main_preview.setAttribute('data-width','601');
+            this.main_preview.setAttribute('data-height','906');
+            this.softRefreshData();
+        },
+        category: "mobile-simulation"
+    });
+
+    CCJS.addPlugin({
+        title: 'Tablet (800,1200)',
+        action: function(){
+            this.main_preview.setAttribute('data-width','800');
+            this.main_preview.setAttribute('data-height','1280');
+            this.softRefreshData();
+        },
+        category: "mobile-simulation"
+    });
 })();

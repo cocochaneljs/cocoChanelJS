@@ -9,7 +9,7 @@ app.commandLine.appendSwitch('disable-web-security');
 app.setName('CocoChanelJS');
 
 app.on('ready', function () {
-    var appIcon = new Tray(__dirname + '/app/resources/logo/inkscape-ccjs-logo.png');
+//    var appIcon = new Tray(__dirname + '/app/resources/logo/inkscape-ccjs-logo.png');
     var mainWindow = new BrowserWindow({
         show: false,
         width: 1000,

@@ -6,14 +6,14 @@
         this.initWrappers();
     }
 
-    EventListenerWrapper.prototype.addEventListener = function(element, eventName, callback, scope, thirdParam) {
+    EventListenerWrapper.prototype.addEventListener = function(element, eventName, callback, scope, useCapture) {
         var me = this,
             listener = {
                 element: element,
                 eventName: eventName,
                 callback: callback,
                 scope: scope,
-                thirdParam: thirdParam
+                useCapture: useCapture
             };
 
         listener.fnx = function (e) {
@@ -24,7 +24,7 @@
             listener.callback.apply(listener.scope, arguments);
         };
 
-        listener.element.addEventListener(listener.eventName, listener.fnx, listener.thirdParam);
+        listener.element.addEventListener(listener.eventName, listener.fnx, listener.useCapture);
         this.listeners.push(listener);
     };
 
@@ -32,14 +32,14 @@
         var listener = this.getListener(element, eventName),
             index = this.indexListener(listener);
 
-        listener.element.removeEventListener(listener.eventName,listener.fnx,listener.thirdParam);
+        listener.element.removeEventListener(listener.eventName,listener.fnx,listener.useCapture);
 
         delete listener.element;
         delete listener.eventName;
         delete listener.callback;
         delete listener.scope;
         delete listener.fnx;
-        delete listener.thirdParam;
+        delete listener.useCapture;
 
     };
 

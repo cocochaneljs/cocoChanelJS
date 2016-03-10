@@ -60,6 +60,9 @@
         'attributes-description': 'Selected element attributes are listed here.',
         'edit-attribute': 'You can edit attributes here. Or use the plugins available to edit them easier.',
         'fast-pane-description': 'Easy accessible plugins are in this side panel named "fast pane".',
-        'category-description': 'Expand / collapse this category. Plugins are using categories to be easier to find.'
+        'category-description': 'Expand / collapse this category. Plugins are using categories to be easier to find.',
+        'mobile-simulation': 'Mobile Simulation',
+        'mobile-simulation-normal': 'Normal View',
+        'mobile-simulation-flip': 'Portrait / Landscape'
     }
 })();
