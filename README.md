@@ -2,38 +2,51 @@
 
 [![Support](https://supporter.60devs.com/api/b/458567f23de2355cbd6f551a6637e702)](https://supporter.60devs.com/give/458567f23de2355cbd6f551a6637e702)
 
-Requirements:
-Latest version of Chrome (not yet tested on others), I suppose Opera and Firefox will work.
-Note: Do not use InternetExplorer or you are heading towards headaches.
 
-##Install and run:
+#### Requirements:
+In order to run the project as developer or compile it, you will need **Node.js**.
 
-```
+#### Set up: 
+
+Clone the repo. *If you are here I assume you know already a bit of git.*
+
+When you are done clonning, install node modules:
+```bash
 npm install
+```
 
+When the modules are done installing:
+
+Run *(for developer)*: 
+```bash
 npm start
 ```
 
+Run *(to compile the project, it compiles (tries to) for all the platforms and all architectures)*:
+```bash
+node packager.js
+```
+the destination directory will be: 
+```bash
+../cocoChanelJS-dist
+```
+relative to the clone directory.
 
-##Description:
-It's an HTML designer. It's the begining, it will grow exponentially, allows plugins.
 
+#### Q&A:
+##### If I want to contribute? 
+GO FOR IT, YESSSS ALL THE WAY !! 
 
-It's made for the ones who want to design web pages and not use proprietary softwares such as: Photoshop.
+##### What are the standards?
+We are competing against comercial tools, you know the drill, the best for the best!!
 
-Many things will be changed to be better.
+#### The story (TM;DR):
+We use at work Photoshop and realized that, I don't like it, is so complicated... and why is eating up 4GB of space ...
+why a tool that was never purposed for web designing is doing just that? Makes no sense... and looked at the comunity, realized that we don't have a comunity web designer tool that's like a standard, like Photoshop.
 
-##Features:
-  - Outliner:
-    - Has tree hierarchy view up to 100 levels of depth. (too many :D)
+I decided that, I want cocoChanelJS to be better than Photoshop, I want it to be free and forever. Standards are high but nothing's impossible.
 
-  - Preview Pane:
-    - Can select items on click.
+For the moment, I am alone on the project, but I am open to have other people join in, create plugins, improve the core, make the tool the best in the world at what's purposed to be, a web designer. The best web designer.
 
-  - New Design:
-    - I will always improve on the app design, the idea is to be easy to use, and fast.
-
-  - Full support for HTML:
-    - Since it's an HTML environment, it's easier to get acurate preview of the page
-
-## still on. (working on it when i get free time)
+#### Project status:
+######Still aliveeee!!!  (working on it when i get free time)
