@@ -82,81 +82,66 @@
     });
 
     CCJS.addPlugin({
-        title: 'iPhone 4S (320,480)',
-        action: function(){
-            this.main_preview.setAttribute('data-width','320');
-            this.main_preview.setAttribute('data-height','480');
-            this.softRefreshData();
-        },
-        category: "mobile-simulation"
-    });
+        title: 'mobile-simulation-view',
+        action: function() {
+            var me = this,
+                screenSizes = [{
+                    title: 'iPhone 4S',
+                    w: 320,
+                    h: 480
+                }, {
+                    title: 'iPhone 5S',
+                    w: 320,
+                    h: 568
+                }, {
+                    title: 'iPhone 6',
+                    w: 375,
+                    h: 667
+                }, {
+                    title: 'iPhone 6S',
+                    w: 414,
+                    h: 736
+                }, {
+                    title: 'iPad',
+                    w: 768,
+                    h: 1024
+                }, {
+                    title: 'Phone',
+                    w: 320,
+                    h: 640
+                }, {
+                    title: 'Tablet',
+                    w: 601,
+                    h: 906
+                }, {
+                    title: 'Tablet',
+                    w: 800,
+                    h: 1200
+                }],
+                data = "";
 
-    CCJS.addPlugin({
-        title: 'iPhone 5S (320,568)',
-        action: function(){
-            this.main_preview.setAttribute('data-width','320');
-            this.main_preview.setAttribute('data-height','568');
-            this.softRefreshData();
-        },
-        category: "mobile-simulation"
-    });
+            for (var i = 0, ln = screenSizes.length; i < ln; i++) {
+                data += [
+                    '<div data-button="true" data-view="true" data-width="',screenSizes[i].w,'" data-height="',screenSizes[i].h,'" >',
+                        screenSizes[i].title,'&nbsp;(',screenSizes[i].w,',',screenSizes[i].h,')',
+                    '</div>'
+                ].join('');
+            }
 
-    CCJS.addPlugin({
-        title: 'iPhone 6 (375,667)',
-        action: function(){
-            this.main_preview.setAttribute('data-width','375');
-            this.main_preview.setAttribute('data-height','667');
-            this.softRefreshData();
-        },
-        category: "mobile-simulation"
-    });
+            me.showPopupElement([
+                '<div data-button="" data-close-button="true">',me.translateKey('close-popup'),'</div>',
+                '<div data-content="">',
+                    data,
+                '</div>'
+            ].join(''),function(e){
+                var target = e.getTarget('[data-button][data-view]',3);
 
-    CCJS.addPlugin({
-        title: 'iPhone 6+ (414,736)',
-        action: function(){
-            this.main_preview.setAttribute('data-width','414');
-            this.main_preview.setAttribute('data-height','736');
-            this.softRefreshData();
-        },
-        category: "mobile-simulation"
-    });
-
-    CCJS.addPlugin({
-        title: 'Phone (320,640)',
-        action: function(){
-            this.main_preview.setAttribute('data-width','320');
-            this.main_preview.setAttribute('data-height','640');
-            this.softRefreshData();
-        },
-        category: "mobile-simulation"
-    });
-
-    CCJS.addPlugin({
-        title: 'iPad (768,1024)',
-        action: function(){
-            this.main_preview.setAttribute('data-width','768');
-            this.main_preview.setAttribute('data-height','1024');
-            this.softRefreshData();
-        },
-        category: "mobile-simulation"
-    });
-
-    CCJS.addPlugin({
-        title: 'Tablet (601,906)',
-        action: function(){
-            this.main_preview.setAttribute('data-width','601');
-            this.main_preview.setAttribute('data-height','906');
-            this.softRefreshData();
-        },
-        category: "mobile-simulation"
-    });
-
-    CCJS.addPlugin({
-        title: 'Tablet (800,1200)',
-        action: function(){
-            this.main_preview.setAttribute('data-width','800');
-            this.main_preview.setAttribute('data-height','1280');
-            this.softRefreshData();
+                if (target) {
+                    me.main_preview.setAttribute('data-width', target.getAttribute('data-width'));
+                    me.main_preview.setAttribute('data-height', target.getAttribute('data-height'));
+                    me.main_popup.element.classList.add('hidden');
+                }
+            }, me);
         },
         category: "mobile-simulation"
     });
