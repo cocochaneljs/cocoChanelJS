@@ -29,10 +29,7 @@
                 scale = scaleY || 1;
             }
 
-
-
             if (scale < 1) {
-                preview.setZoomFactor(scale);
                 width = width * scale;
                 height = height * scale;
             }
@@ -45,7 +42,7 @@
             style.push('max-height:'+height+'px');
 
             preview.setAttribute('style', style.join(';'));
-
+            preview.setZoomFactor(scale);
             // hack for a bug with object in webview
             CCJS.main_preview.shadowRoot.childNodes[0].style.height = '100%';
 
@@ -56,7 +53,7 @@
             // hack for a bug with object in webview
             CCJS.main_preview.shadowRoot.childNodes[0].style.height = previewParentBox.height +"px";
         }
-    }, 16);
+    }, 10);
 
     // normal view
     CCJS.addPlugin({

@@ -103,14 +103,21 @@ CocoChanelJS.prototype.initialize = function() {
     document.origin = 'https://github.com/rokyed/cocoChanelJS.git';
 
     var me = this;
-
+    this.initializePreviewListeners();
     this.createPopupElement();
     this.implementDocument();
     this.initializeEventListeners();
     this.clearSelection();
     this.refreshData();
+};
 
 
+CocoChanelJS.prototype.initializePreviewListeners = function() {
+    var me = this;
+    EventListenerWrapper.addEventListener(this.main_preview, 'dom-ready', function() {
+        me.main_preview.insertCSS(CCJS_GEN_INJECTION_CSS('['+ me.hilighter.selectedElementAttribute+']'));
+        me.main_preview.executeJavaScript(CCJS_GEN_INJECTION_JS(me.uniqueIdAttribute));
+    });
 };
 
 CocoChanelJS.prototype.clearSelection = function() {
@@ -249,18 +256,6 @@ CocoChanelJS.prototype.implementDocument = function(skipDocumentCreation) {
         this.root_document_data_storage.id = 'DATA_STORAGE';
         this.root_head.appendChild(this.root_document_data_storage);
     }
-
-    if (this.root_document.querySelector('script['+this.untoucheableNodes+'][data-event-injection-script]'))
-        return;
-    var script = this.root_document.createElement('script');
-
-    script.setAttribute('type','text/javascript');
-    script.id = "EVENT_INJECT";
-    script.setAttribute(this.untoucheableNodes,'true');
-    script.setAttribute('data-event-injection-script','true')
-    script.innerHTML = CCJS_GEN_INJECTION_JS(this.uniqueIdAttribute);
-    this.root_injection_script = script;
-    this.root_head.appendChild(script);
 };
 
 CocoChanelJS.prototype.listAllElements = function() {
@@ -686,19 +681,6 @@ CocoChanelJS.prototype.drawSelectedElementHilighter = function() {
 
     if (this.currentSelectedElementNode)
         this.currentSelectedElementNode.setAttribute(this.hilighter.selectedElementAttribute,'true');
-
-    if ( !this.root_document.querySelector('['+this.hilighter.selectedElementStyle+']')) {
-        var hilit = this.root_document.createElement('style');
-
-        this.hilighter.selectedStyleElement = hilit;
-        hilit.setAttribute(this.untoucheableNodes, 'true');
-        hilit.setAttribute(this.hilighter.selectedElementStyle, 'true');
-        hilit.id = 'SELECTION-HILIGHTER';
-        hilit.innerHTML = CCJS_GEN_INJECTION_CSS('['+ this.hilighter.selectedElementAttribute+']');
-
-        this.root_head.appendChild(hilit);
-        this.hilighter.selectedStyleElement = hilit;
-    }
 };
 
 CocoChanelJS.prototype.storeEditorDataInDocument = function() {
@@ -720,7 +702,7 @@ CocoChanelJS.prototype.setConsoleOutcast = function(message) {
 
 CocoChanelJS.prototype.translateKey = function(key) {
     return this.language[key] || key;
-}
+};
 
 module.exports = CocoChanelJS;
 })();
