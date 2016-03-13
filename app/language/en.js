@@ -64,6 +64,7 @@
         'mobile-simulation': 'Mobile Simulation',
         'mobile-simulation-normal': 'Normal View',
         'mobile-simulation-flip': 'Portrait / Landscape',
-        'mobile-simulation-view': 'Simulate View'
+        'mobile-simulation-view': 'Simulate View',
+        'right-side-pane-close-button': 'Close Pane'
     }
 })();

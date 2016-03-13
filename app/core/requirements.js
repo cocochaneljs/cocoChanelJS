@@ -63,13 +63,15 @@
 
         // plugin load at the end
         window['CMInstance'].loadPlugins();
-    }
-    catch (e) {
-        // this is solely to show errors in production version
+        window['CMInstance'].loadSidePlugins();
+
+        setTimeout(function(){
+            window['CCJS'].refreshData();
+        }, 300);
+    } catch (e) {
+        console.log(e);
         alert(e);
     }
 
-    setTimeout(function(){
-        window['CCJS'].refreshData();
-    }, 300);
+
 })();

@@ -1,0 +1,43 @@
+.right-side-pane {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 230px;
+    background-color: rgba(0,0,0,0.8);
+    color: #fff;
+
+    .close-button {
+        width: 100%;
+        cursor: pointer;
+        background: #d33;
+        text-align: center;
+        height: 20px;
+        line-height: 20px;
+    }
+
+    .right-side-pane-inner {
+        position: relative;
+        flex: 1 1 auto;
+        max-height: calc(100% - 20px);
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        .right-side-pane-plugin {
+            margin: 2px 1px;
+            border: 1px solid rgba(255,255,255,0.6);
+
+            .right-side-pane-plugin-title {
+                bottom-border: 1px solid rgba(255,255,255,0.6);
+                background-color: rgba(255,255,255,0.1);
+                text-align: center;
+            }
+            .right-side-pane-plugin-content {
+                position: relative;
+                input {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

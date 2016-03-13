@@ -49,7 +49,7 @@ CSS_MAGIC.prototype.purge = function (cssObject) {
     return cssObject;
 }
 
-CSS_MAGIC.prototype.split = function (string,byCharacter) {
+CSS_MAGIC.prototype.split = function (string, byCharacter) {
     var arr = [],
         currentStringBuildup = "",
         inParanthesis = false;

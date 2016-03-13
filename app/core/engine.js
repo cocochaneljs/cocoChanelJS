@@ -18,6 +18,7 @@ function CocoChanelJS() {
     this.initializeElements();
 
     this.main_popup = {};
+    this.main_rightSidePane = null;
     this.elementCounter = 0;
     this.root_document = null;
     this.root_document_html = null;
@@ -27,7 +28,8 @@ function CocoChanelJS() {
     this.root_injection_script = null;
     this.currentSelectedElement = null;
     this.currentSelectedElementNode = null;
-    this.plugins = [];
+    this.rightSidePanePlugins = [];
+    this.activeRightSidePanePlugins = [];
 
     this.initialize();
 
@@ -104,7 +106,8 @@ CocoChanelJS.prototype.initialize = function() {
 
     var me = this;
     this.initializePreviewListeners();
-    this.createPopupElement();
+    this.initializePopupElement();
+    this.initalizeRightSidePane();
     this.implementDocument();
     this.initializeEventListeners();
     this.clearSelection();
@@ -124,15 +127,17 @@ CocoChanelJS.prototype.clearSelection = function() {
     this.currentSelectedElement = null;
     this.currentSelectedElementNode =null;
 };
-CocoChanelJS.prototype.onPreviewElementClicked = function(e, showSideMenu) {
+CocoChanelJS.prototype.onPreviewElementClicked = function(e, showRightSidePane) {
     this.setCurrentSelectedElement(e[2],e[1]);
 
     this.propagateRemoveAttribute(this.currentSelectedElementNode, this.keywords.collapsed);
 
     this.softRefreshData();
 
-    if (showSideMenu)
-        this.showSideMenu();
+    if (showRightSidePane)
+        this.showRightSidePane();
+    else
+        this.hideRightSidePane();
 };
 
 CocoChanelJS.prototype.onElementSelected = function(e) {
@@ -168,7 +173,9 @@ CocoChanelJS.prototype.onElementSelected = function(e) {
     this.softRefreshData();
 
     if (e.which == 3)
-        this.showSideMenu();
+        this.showRightSidePane();
+    else
+        this.hideRightSidePane();
 };
 
 CocoChanelJS.prototype.onElementAttributesChanged = function() {
@@ -518,6 +525,7 @@ CocoChanelJS.prototype.generateUniqueId = function() {
 CocoChanelJS.prototype.refreshData = function() {
     this.currentSelectedElement = null;
     this.currentSelectedElementNode = null;
+    this.hideRightSidePane();
     this.softRefreshData();
 };
 
@@ -557,7 +565,7 @@ CocoChanelJS.prototype.toggleButtons = function() {
  * executed upon initalization creates popup which will be used during runtime
  * @returns {undefined}
  */
-CocoChanelJS.prototype.createPopupElement = function() {
+CocoChanelJS.prototype.initializePopupElement = function() {
     var me = this,
         popup = document.createElement('div');
 
@@ -711,12 +719,97 @@ CocoChanelJS.prototype.setConsoleOutcast = function(message) {
     this.main_elementExtras.querySelector('.console-outcast').innerHTML = message;
 };
 
-CocoChanelJS.prototype.showSideMenu = function () {
+CocoChanelJS.prototype.initalizeRightSidePane = function() {
+    var me = this,
+        rsp = document.createElement('div');
+
+    rsp.classList.add('right-side-pane');
+    rsp.classList.add('hidden');
+    rsp.innerHTML = [
+        '<div class="close-button">', this.translateKey('right-side-pane-close-button'), '</div>',
+        '<div class="right-side-pane-inner flex column">',
+        '</div>'
+    ].join('');
+
+    this.main_rightSidePane = rsp;
+
+    EventListenerWrapper.addEventListener(this.main_rightSidePane, 'click', function(e) {
+        me.onRightSidePaneTap.apply(me, arguments);
+
+        if (e.getTarget('.close-button'))
+            me.hideRightSidePane();
+    } ,this , false);
+
+    EventListenerWrapper.addEventListener(this.main_rightSidePane, 'change', function() {
+        me.onRightSidePaneChange.apply(me, arguments);
+    } ,this , false);
+
+    document.body.appendChild(this.main_rightSidePane);
+};
+
+CocoChanelJS.prototype.showRightSidePane = function () {
     if (! this.currentSelectedElementNode)
         return;
 
-    console.log('show side menu');
-    // show the side menu
+    var eType = this.currentSelectedElementNode.tagName,
+        html = [];
+
+    for (var i = 0, ln = this.rightSidePanePlugins.length; i < ln; i++)
+        html.push(this.generateRightSidePanePluginDom(i, eType));
+
+    this.main_rightSidePane.querySelector('.right-side-pane-inner').innerHTML = html.join('');
+    this.main_rightSidePane.classList.remove('hidden');
+
+    this.onRightSidePanePluginsInit();
+};
+
+CocoChanelJS.prototype.generateRightSidePanePluginDom = function(index, elementType) {
+    var plugin = this.rightSidePanePlugins[index],
+        html;
+
+    if (plugin.elementTypes.indexOf(elementType)  < 0)
+        return '';
+
+    html = [
+        '<div class="right-side-pane-plugin" data-rst-plugin="', index, '">',
+            '<div class="right-side-pane-plugin-title">', plugin.title, '</div>',
+            '<div class="right-side-pane-plugin-content flex column">', plugin.template.join(''), '</div>',
+        '</div>'
+    ].join('');
+
+    return html;
+};
+
+CocoChanelJS.prototype.hideRightSidePane = function () {
+    this.main_rightSidePane.classList.add('hidden');
+    this.main_rightSidePane.querySelector('.right-side-pane-inner').innerHTML = '';
+};
+
+CocoChanelJS.prototype.onRightSidePaneTap = function(e) {
+    this.onRightSidePaneApplyPlugins(e);
+};
+
+CocoChanelJS.prototype.onRightSidePaneChange = function(e) {
+    this.onRightSidePaneApplyPlugins(e);
+};
+
+CocoChanelJS.prototype.onRightSidePaneApplyPlugins = function(e) {
+    var pluginsDom = this.main_rightSidePane.querySelectorAll('[data-rst-plugin]');
+
+    for (var i = 0, ln = pluginsDom.length; i < ln; i++)
+        this.rightSidePanePlugins[pluginsDom[i].getAttribute('data-rst-plugin')].action.apply(this, [pluginsDom[i], e]);
+
+    this.softRefreshData();
+};
+CocoChanelJS.prototype.onRightSidePanePluginsInit = function() {
+    var pluginsDom = this.main_rightSidePane.querySelectorAll('[data-rst-plugin]');
+
+    for (var i = 0, ln = pluginsDom.length; i < ln; i++)
+        this.rightSidePanePlugins[pluginsDom[i].getAttribute('data-rst-plugin')].init.apply(this, [pluginsDom[i]]);
+};
+
+CocoChanelJS.prototype.addRightSidePanePlugin = function(config) {
+    this.rightSidePanePlugins.push(config);
 };
 
 CocoChanelJS.prototype.translateKey = function(key) {

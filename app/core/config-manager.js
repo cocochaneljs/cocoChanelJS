@@ -22,5 +22,11 @@
         });
     };
 
+    ConfigManager.prototype.loadSidePlugins = function() {
+        fileSystem.readdirSync(window['CCJS-MAIN-URLS'].app.sidePlugins).forEach(function(file) {
+            require("../side-plugins/" + file);
+        });
+    }
+
     module.exports = ConfigManager;
 })();

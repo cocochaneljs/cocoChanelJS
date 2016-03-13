@@ -13,6 +13,7 @@
             resources: '/resources',
             language: '/language',
             plugins: '/plugins',
+            sidePlugins: '/side-plugins',
         };
 
     for (var p in parents) {
