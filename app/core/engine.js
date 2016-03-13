@@ -124,16 +124,15 @@ CocoChanelJS.prototype.clearSelection = function() {
     this.currentSelectedElement = null;
     this.currentSelectedElementNode =null;
 };
-CocoChanelJS.prototype.onPreviewElementClicked = function(e) {
+CocoChanelJS.prototype.onPreviewElementClicked = function(e, showSideMenu) {
     this.setCurrentSelectedElement(e[2],e[1]);
 
     this.propagateRemoveAttribute(this.currentSelectedElementNode, this.keywords.collapsed);
 
     this.softRefreshData();
-};
-CocoChanelJS.prototype.onPreviewElementHover = function(e) {
-    this.setCurrentSelectedElement(e[2],e[1]);
-    this.softRefreshData();
+
+    if (showSideMenu)
+        this.showSideMenu();
 };
 
 CocoChanelJS.prototype.onElementSelected = function(e) {
@@ -167,6 +166,9 @@ CocoChanelJS.prototype.onElementSelected = function(e) {
     );
 
     this.softRefreshData();
+
+    if (e.which == 3)
+        this.showSideMenu();
 };
 
 CocoChanelJS.prototype.onElementAttributesChanged = function() {
@@ -639,6 +641,14 @@ CocoChanelJS.prototype.initializeEventListeners = function() {
     );
 
     EventListenerWrapper.addEventListener(
+        this.main_elementSelector,
+        'contextmenu',
+        this.onElementSelected,
+        this,
+        false
+    );
+
+    EventListenerWrapper.addEventListener(
         this.main_elementAttributes,
         'change',
         this.onElementAttributesChanged,
@@ -664,8 +674,9 @@ CocoChanelJS.prototype.initializeEventListeners = function() {
 
             if(data[0] == "click")
                 me.onPreviewElementClicked.apply(me, [data]);
-            if(data[0] == "hover")
-                me.onPreviewElementHover.apply(me, [data]);
+
+            if(data[0] == "right-click")
+                me.onPreviewElementClicked.apply(me, [data, true]);
         },
         this,
         false
@@ -698,6 +709,14 @@ CocoChanelJS.prototype.getLoaderElement = function () {
 
 CocoChanelJS.prototype.setConsoleOutcast = function(message) {
     this.main_elementExtras.querySelector('.console-outcast').innerHTML = message;
+};
+
+CocoChanelJS.prototype.showSideMenu = function () {
+    if (! this.currentSelectedElementNode)
+        return;
+
+    console.log('show side menu');
+    // show the side menu
 };
 
 CocoChanelJS.prototype.translateKey = function(key) {
