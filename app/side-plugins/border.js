@@ -24,6 +24,6 @@
             element.querySelector('[name="color"]').value = computedStyle['border-color'] || '';
             element.querySelector('[name="style"]').value = computedStyle['border-style'] || '';
         },
-        elementTypes: ['BODY','DIV']
+        elementTypes: ['BODY', 'DIV', 'A', 'P', 'B']
     });
 })();
