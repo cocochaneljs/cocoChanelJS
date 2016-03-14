@@ -1,20 +1,7 @@
-[data-tree-depth]{
-    &::before {
-        font-size: 10px;
-        display: inline-block;
-        content: '';
-        color:#fff;
-        padding: 0 2px;
-        background: #555;
-        text-align: center;
-        //background: -webkit-linear-gradient(left, #b8e1fc 0%, #a9d2f3 10%, #90bae4 25%, #90bcea 37%, #90bff0 50%, #6ba8e5 51%, #a2daf5 83%, #bdf3fd 100%);
-    }
-}
-
 @for $i from 1 through 1000 {
     [data-tree-depth="#{$i}"]{
         &::before {
-            content: "#{$i}";
+            content: "#{$i}" !important;
         }
     }
 }

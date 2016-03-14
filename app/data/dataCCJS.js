@@ -1,7 +1,9 @@
 (function() {
     window['CCJS_AUTHORS'] = [
         'Andrei Bazavan (Founder)',
-        'Ruslan Prytula (Architecture design advices)'
+        'Ruslan Prytula (Architecture design advices)',
+        'Melisa Veliz (Design and colorscheme advices)',
+        'Dumitru Alin (Feature sugestions)'
     ];
 
     window['CCJS_ELEMENTS'] = [
