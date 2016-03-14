@@ -28,18 +28,31 @@
         overflow-x: hidden;
         overflow-y: auto;
 
-        .right-side-pane-plugin {
-            margin: 2px 1px;
-            border: 1px solid rgba(255,255,255,0.6);
+        .right-side-pane-module {
+            margin: 2px 2px;
+            box-shadow:0 0 1px #3BCC33;
 
-            .right-side-pane-plugin-title {
+            .right-side-pane-module-title {
                 background-color: #3BCC33;
                 text-align: center;
             }
-            .right-side-pane-plugin-content {
+            .right-side-pane-module-content {
                 position: relative;
+                display: block;
                 input {
                     width: 100%;
+                    max-width: 100%;
+                    min-width: 100%;
+
+                    border: none;
+                    padding: 2px;
+                }
+                .in-row-2 {
+                    input {
+                        width: 50%;
+                        max-width: 50%;
+                        min-width: 50%;
+                    }
                 }
             }
         }

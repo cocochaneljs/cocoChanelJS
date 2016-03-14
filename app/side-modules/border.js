@@ -2,8 +2,10 @@
     CCJS.addRightSidePaneModule({
         title: 'Border',
         template: [
-            '<input type="" name="size" placeholder="Size"/>',
-            '<input type="text" name="style" placeholder="Style"/>',
+            '<div class="in-row-2">',
+                '<input type="text" name="size" placeholder="Size"/>',
+                '<input type="text" name="style" placeholder="Style"/>',
+            '</div>',
             '<input type="color" name="color" placeholder="Color"/>'
         ],
         action: function(element, event) {

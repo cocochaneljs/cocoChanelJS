@@ -2,8 +2,10 @@
     CCJS.addRightSidePaneModule({
         title: 'Size',
         template: [
-            '<input type="" name="width" placeholder="Width"/>',
-            '<input type="text" name="height" placeholder="Height"/>',
+            '<div class="in-row-2">',
+                '<input type="" name="width" placeholder="Width"/>',
+                '<input type="text" name="height" placeholder="Height"/>',
+            '</div>'
         ],
         action: function(element, event) {
             var current = this.currentSelectedElementNode,

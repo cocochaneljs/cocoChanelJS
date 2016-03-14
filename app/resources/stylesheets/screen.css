@@ -5696,22 +5696,33 @@ body {
   overflow-y: auto;
 }
 /* line 31, ../../sass/app/app/_right-side-pane.scss */
-.right-side-pane .right-side-pane-inner .right-side-pane-plugin {
-  margin: 2px 1px;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+.right-side-pane .right-side-pane-inner .right-side-pane-module {
+  margin: 2px 2px;
+  box-shadow: 0 0 1px #3BCC33;
 }
 /* line 35, ../../sass/app/app/_right-side-pane.scss */
-.right-side-pane .right-side-pane-inner .right-side-pane-plugin .right-side-pane-plugin-title {
+.right-side-pane .right-side-pane-inner .right-side-pane-module .right-side-pane-module-title {
   background-color: #3BCC33;
   text-align: center;
 }
 /* line 39, ../../sass/app/app/_right-side-pane.scss */
-.right-side-pane .right-side-pane-inner .right-side-pane-plugin .right-side-pane-plugin-content {
+.right-side-pane .right-side-pane-inner .right-side-pane-module .right-side-pane-module-content {
   position: relative;
+  display: block;
 }
-/* line 41, ../../sass/app/app/_right-side-pane.scss */
-.right-side-pane .right-side-pane-inner .right-side-pane-plugin .right-side-pane-plugin-content input {
+/* line 42, ../../sass/app/app/_right-side-pane.scss */
+.right-side-pane .right-side-pane-inner .right-side-pane-module .right-side-pane-module-content input {
   width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  border: none;
+  padding: 2px;
+}
+/* line 51, ../../sass/app/app/_right-side-pane.scss */
+.right-side-pane .right-side-pane-inner .right-side-pane-module .right-side-pane-module-content .in-row-2 input {
+  width: 50%;
+  max-width: 50%;
+  min-width: 50%;
 }
 
 /* line 1, ../../sass/app/_loading-anim.scss */
