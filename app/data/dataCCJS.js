@@ -1,6 +1,6 @@
 (function() {
     window['CCJS_AUTHORS'] = [
-        'Andrei Bazavan'
+        'Andrei Bazavan (Founder)'
     ];
 
     window['CCJS_ELEMENTS'] = [
