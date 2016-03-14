@@ -1,5 +1,5 @@
 (function () {
-    CCJS.addRightSidePanePlugin({
+    CCJS.addRightSidePaneModule({
         title: 'Border',
         template: [
             '<input type="" name="size" placeholder="Size"/>',
@@ -24,6 +24,6 @@
             element.querySelector('[name="color"]').value = computedStyle['border-color'] || '';
             element.querySelector('[name="style"]').value = computedStyle['border-style'] || '';
         },
-        elementTypes: ['BODY', 'DIV', 'A', 'P', 'B']
+        elementTypes: ['ALL']
     });
 })();

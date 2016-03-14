@@ -28,8 +28,7 @@ function CocoChanelJS() {
     this.root_injection_script = null;
     this.currentSelectedElement = null;
     this.currentSelectedElementNode = null;
-    this.rightSidePanePlugins = [];
-    this.activeRightSidePanePlugins = [];
+    this.rightSidePaneModules = [];
 
     this.initialize();
 
@@ -754,26 +753,26 @@ CocoChanelJS.prototype.showRightSidePane = function () {
     var eType = this.currentSelectedElementNode.tagName,
         html = [];
 
-    for (var i = 0, ln = this.rightSidePanePlugins.length; i < ln; i++)
-        html.push(this.generateRightSidePanePluginDom(i, eType));
+    for (var i = 0, ln = this.rightSidePaneModules.length; i < ln; i++)
+        html.push(this.generateRightSidePaneModuleDom(i, eType));
 
     this.main_rightSidePane.querySelector('.right-side-pane-inner').innerHTML = html.join('');
     this.main_rightSidePane.classList.remove('pane-hidden');
 
-    this.onRightSidePanePluginsInit();
+    this.onRightSidePaneModulesInit();
 };
 
-CocoChanelJS.prototype.generateRightSidePanePluginDom = function(index, elementType) {
-    var plugin = this.rightSidePanePlugins[index],
+CocoChanelJS.prototype.generateRightSidePaneModuleDom = function(index, elementType) {
+    var module = this.rightSidePaneModules[index],
         html;
 
-    if (plugin.elementTypes.indexOf(elementType)  < 0)
+    if (module.elementTypes.indexOf('ALL') < 0 && module.elementTypes.indexOf(elementType)  < 0)
         return '';
 
     html = [
-        '<div class="right-side-pane-plugin" data-rst-plugin="', index, '">',
-            '<div class="right-side-pane-plugin-title">', plugin.title, '</div>',
-            '<div class="right-side-pane-plugin-content flex column">', plugin.template.join(''), '</div>',
+        '<div class="right-side-pane-module" data-rst-module="', index, '">',
+            '<div class="right-side-pane-module-title">', module.title, '</div>',
+            '<div class="right-side-pane-module-content flex column">', module.template.join(''), '</div>',
         '</div>'
     ].join('');
 
@@ -786,30 +785,30 @@ CocoChanelJS.prototype.hideRightSidePane = function () {
 };
 
 CocoChanelJS.prototype.onRightSidePaneTap = function(e) {
-    this.onRightSidePaneApplyPlugins(e);
+    this.onRightSidePaneApplyModule(e);
 };
 
 CocoChanelJS.prototype.onRightSidePaneChange = function(e) {
-    this.onRightSidePaneApplyPlugins(e);
+    this.onRightSidePaneApplyModule(e);
 };
 
-CocoChanelJS.prototype.onRightSidePaneApplyPlugins = function(e) {
-    var pluginsDom = this.main_rightSidePane.querySelectorAll('[data-rst-plugin]');
+CocoChanelJS.prototype.onRightSidePaneApplyModule = function(e) {
+    var modulesDom = this.main_rightSidePane.querySelectorAll('[data-rst-module]');
 
-    for (var i = 0, ln = pluginsDom.length; i < ln; i++)
-        this.rightSidePanePlugins[pluginsDom[i].getAttribute('data-rst-plugin')].action.apply(this, [pluginsDom[i], e]);
+    for (var i = 0, ln = modulesDom.length; i < ln; i++)
+        this.rightSidePaneModules[modulesDom[i].getAttribute('data-rst-module')].action.apply(this, [modulesDom[i], e]);
 
     this.softRefreshData();
 };
-CocoChanelJS.prototype.onRightSidePanePluginsInit = function() {
-    var pluginsDom = this.main_rightSidePane.querySelectorAll('[data-rst-plugin]');
+CocoChanelJS.prototype.onRightSidePaneModulesInit = function() {
+    var modulesDom = this.main_rightSidePane.querySelectorAll('[data-rst-module]');
 
-    for (var i = 0, ln = pluginsDom.length; i < ln; i++)
-        this.rightSidePanePlugins[pluginsDom[i].getAttribute('data-rst-plugin')].init.apply(this, [pluginsDom[i]]);
+    for (var i = 0, ln = modulesDom.length; i < ln; i++)
+        this.rightSidePaneModules[modulesDom[i].getAttribute('data-rst-module')].init.apply(this, [modulesDom[i]]);
 };
 
-CocoChanelJS.prototype.addRightSidePanePlugin = function(config) {
-    this.rightSidePanePlugins.push(config);
+CocoChanelJS.prototype.addRightSidePaneModule = function(config) {
+    this.rightSidePaneModules.push(config);
 };
 
 CocoChanelJS.prototype.translateKey = function(key) {

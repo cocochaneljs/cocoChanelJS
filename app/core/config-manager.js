@@ -18,13 +18,13 @@
 
     ConfigManager.prototype.loadPlugins = function () {
         fileSystem.readdirSync(window['CCJS-MAIN-URLS'].app.plugins).forEach(function(file) {
-            require("../plugins/" + file);
+            require(window['CCJS-MAIN-URLS'].appRel.plugins + '/' + file);
         });
     };
 
-    ConfigManager.prototype.loadSidePlugins = function() {
-        fileSystem.readdirSync(window['CCJS-MAIN-URLS'].app.sidePlugins).forEach(function(file) {
-            require("../side-plugins/" + file);
+    ConfigManager.prototype.loadSideModules = function() {
+        fileSystem.readdirSync(window['CCJS-MAIN-URLS'].app.sideModules).forEach(function(file) {
+            require(window['CCJS-MAIN-URLS'].appRel.sideModules + '/' + file);
         });
     }
 

@@ -63,7 +63,7 @@
 
         // plugin load at the end
         window['CMInstance'].loadPlugins();
-        window['CMInstance'].loadSidePlugins();
+        window['CMInstance'].loadSideModules();
 
         setTimeout(function(){
             window['CCJS'].refreshData();

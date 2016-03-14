@@ -1,6 +1,7 @@
 (function() {
     window['CCJS_AUTHORS'] = [
-        'Andrei Bazavan (Founder)'
+        'Andrei Bazavan (Founder)',
+        'Ruslan Prytula (Architecture design advices)'
     ];
 
     window['CCJS_ELEMENTS'] = [
