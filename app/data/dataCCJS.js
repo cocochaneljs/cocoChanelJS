@@ -66,33 +66,16 @@
                 '-webkit-animation-direction: alternate-reverse;',
                 'animation-direction: alternate-reverse;',
             '}',
-            '@-moz-keyframes slidein {',
-                'from {',
-                    'outline: 2px dotted #00d;',
-                '}',
-
-                'to {',
-                    'outline: 2px dotted #d00;',
-                '}',
-            '}',
-
-            '@-webkit-keyframes slidein {',
-            'from {',
-                'outline: 2px dotted #00d;',
-            '}',
-
-            'to {',
-                'outline: 2px dotted #d00;',
-            '}',
-            '}',
 
             '@keyframes slidein {',
                 'from {',
-                    'outline: 2px dotted #00d;',
+                    'outline: 1px solid #9ecaed;',
+                    'box-shadow: 0 0 5px #9ecaed;',
                 '}',
 
                 'to {',
-                    'outline: 2px dotted #d00;',
+                    'outline: 1px solid #f33;',
+                    'box-shadow: 0 0 5px #f33;',
                 '}',
             '}'
         ].join('');

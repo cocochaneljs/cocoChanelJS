@@ -5153,7 +5153,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 /* line 14, ../../sass/app/_app.scss */
 ::-webkit-scrollbar-thumb {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #d33;
+  background-color: #4184f3;
 }
 
 /* line 19, ../../sass/app/_app.scss */
@@ -5166,7 +5166,7 @@ html {
 body {
   height: 100%;
   color: #000;
-  background: #efefdf;
+  background: #f5f5f5;
   /*font-family: 'Helvetica Neue';*/
   font-family: 'Roboto', sans-serif;
   text-rendering: optimizeLegibility;
@@ -5191,50 +5191,48 @@ body {
 
 /* line 46, ../../sass/app/_app.scss */
 .previewPane {
-  background-color: #fafafa;
-  background: -webkit-radial-gradient(center, ellipse, #efefdf 0%, #e0e0d0 100%);
-  background: radial-gradient(ellipse at center, #efefdf 0%, #e0e0d0 100%);
+  background-color: #AEBBBF;
   position: relative;
   overflow: hidden;
 }
 
-/* line 57, ../../sass/app/_app.scss */
+/* line 56, ../../sass/app/_app.scss */
 [data-preview-loading="true"] .main_extrasSection .main_loading_state * {
   visibility: visible !important;
 }
 
-/* line 64, ../../sass/app/_app.scss */
+/* line 63, ../../sass/app/_app.scss */
 .main_loading_state {
   width: 100%;
   height: 100%;
 }
 
-/* line 69, ../../sass/app/_app.scss */
+/* line 68, ../../sass/app/_app.scss */
 .fastPane {
   overflow-y: auto;
   overflow-x: hidden;
   width: 120px !important;
 }
-/* line 74, ../../sass/app/_app.scss */
+/* line 73, ../../sass/app/_app.scss */
 .fastPane .plugin-category {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-  margin: 1px 0;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  margin: 2px 2px;
+  position: relative;
 }
 /* line 78, ../../sass/app/_app.scss */
 .fastPane .plugin-category .plugin-category-title {
-  background: #d33;
+  background: #4184f3;
   color: #fff;
   padding: 2px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-  width: 100%;
   cursor: pointer;
 }
-/* line 85, ../../sass/app/_app.scss */
+/* line 84, ../../sass/app/_app.scss */
 .fastPane .plugin-category .plugin-category-title:hover {
   background: #aad;
 }
 
-/* line 94, ../../sass/app/_app.scss */
+/* line 93, ../../sass/app/_app.scss */
 .optionsPane {
   max-height: 22px;
   min-height: 22px;
@@ -5245,28 +5243,26 @@ body {
   position: relative;
 }
 
-/* line 105, ../../sass/app/_app.scss */
+/* line 104, ../../sass/app/_app.scss */
 .plugin-button {
   position: relative;
   text-rendering: geometricPrecision;
-  border: 1px solid rgba(0, 0, 0, 0.3);
   padding: 0 3px;
   cursor: pointer;
   max-height: 18px;
   min-height: 18px;
   line-height: 18px;
-  text-align: center;
   white-space: nowrap;
   margin: 1px 1px;
   box-sizing: border-box;
 }
-/* line 119, ../../sass/app/_app.scss */
+/* line 118, ../../sass/app/_app.scss */
 .optionsPane > .plugin-button {
   min-height: 100%;
   max-height: 100%;
   margin: 0 1px;
 }
-/* line 125, ../../sass/app/_app.scss */
+/* line 124, ../../sass/app/_app.scss */
 .plugin-button::before {
   display: block;
   width: 2px;
@@ -5274,12 +5270,13 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  background-color: #aad;
+  background-color: #3BCC33;
   content: '';
 }
-/* line 136, ../../sass/app/_app.scss */
+/* line 135, ../../sass/app/_app.scss */
 .plugin-button:hover {
-  background: #aad;
+  background: #3BCC33;
+  color: #fff;
 }
 
 /* line 141, ../../sass/app/_app.scss */
@@ -5356,7 +5353,7 @@ body {
 /* line 199, ../../sass/app/_app.scss */
 .main_extrasSection .console-outcast {
   border: 1px solid rgba(0, 0, 0, 0.3);
-  color: #d33;
+  color: #4184f3;
   background: #444;
   visibility: visible;
   flex: 1;
@@ -5371,8 +5368,8 @@ body {
 .main_sceneSelector > div,
 .main_attributesSection > div,
 .main_extrasSection > div {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   overflow: hidden;
-  border: 1px solid rgba(0, 0, 0, 0.3);
   min-height: 15px;
   line-height: 15px;
   margin: 1px 0;
@@ -5423,7 +5420,7 @@ body {
 .alert {
   font-weight: bold;
   text-align: center;
-  color: #d33;
+  color: #4184f3;
   flex: 1;
 }
 
@@ -5659,6 +5656,7 @@ body {
   transform-box: border-box;
   box-sizing: border-box;
   position: relative;
+  box-shadow: 0 0 3px #000;
 }
 
 /* line 1, ../../sass/app/app/_right-side-pane.scss */
@@ -5675,7 +5673,7 @@ body {
 .right-side-pane .close-button {
   width: 100%;
   cursor: pointer;
-  background: #d33;
+  background: #4184f3;
   text-align: center;
   height: 20px;
   line-height: 20px;
@@ -5695,15 +5693,14 @@ body {
 }
 /* line 30, ../../sass/app/app/_right-side-pane.scss */
 .right-side-pane .right-side-pane-inner .right-side-pane-plugin .right-side-pane-plugin-title {
-  bottom-border: 1px solid rgba(255, 255, 255, 0.6);
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: #3BCC33;
   text-align: center;
 }
-/* line 35, ../../sass/app/app/_right-side-pane.scss */
+/* line 34, ../../sass/app/app/_right-side-pane.scss */
 .right-side-pane .right-side-pane-inner .right-side-pane-plugin .right-side-pane-plugin-content {
   position: relative;
 }
-/* line 37, ../../sass/app/app/_right-side-pane.scss */
+/* line 36, ../../sass/app/app/_right-side-pane.scss */
 .right-side-pane .right-side-pane-inner .right-side-pane-plugin .right-side-pane-plugin-content input {
   width: 100%;
 }
