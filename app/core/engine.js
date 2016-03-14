@@ -724,7 +724,7 @@ CocoChanelJS.prototype.initalizeRightSidePane = function() {
         rsp = document.createElement('div');
 
     rsp.classList.add('right-side-pane');
-    rsp.classList.add('hidden');
+    rsp.classList.add('pane-hidden');
     rsp.innerHTML = [
         '<div class="close-button">', this.translateKey('right-side-pane-close-button'), '</div>',
         '<div class="right-side-pane-inner flex column">',
@@ -758,7 +758,7 @@ CocoChanelJS.prototype.showRightSidePane = function () {
         html.push(this.generateRightSidePanePluginDom(i, eType));
 
     this.main_rightSidePane.querySelector('.right-side-pane-inner').innerHTML = html.join('');
-    this.main_rightSidePane.classList.remove('hidden');
+    this.main_rightSidePane.classList.remove('pane-hidden');
 
     this.onRightSidePanePluginsInit();
 };
@@ -781,7 +781,7 @@ CocoChanelJS.prototype.generateRightSidePanePluginDom = function(index, elementT
 };
 
 CocoChanelJS.prototype.hideRightSidePane = function () {
-    this.main_rightSidePane.classList.add('hidden');
+    this.main_rightSidePane.classList.add('pane-hidden');
     this.main_rightSidePane.querySelector('.right-side-pane-inner').innerHTML = '';
 };
 

@@ -6,6 +6,11 @@
     width: 230px;
     background-color: rgba(0,0,0,0.8);
     color: #fff;
+    transition: right 150ms;
+
+    &.pane-hidden {
+        right: -230px;
+    }
 
     .close-button {
         width: 100%;

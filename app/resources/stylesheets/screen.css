@@ -5668,8 +5668,13 @@ body {
   width: 230px;
   background-color: rgba(0, 0, 0, 0.8);
   color: #fff;
+  transition: right 150ms;
 }
-/* line 10, ../../sass/app/app/_right-side-pane.scss */
+/* line 11, ../../sass/app/app/_right-side-pane.scss */
+.right-side-pane.pane-hidden {
+  right: -230px;
+}
+/* line 15, ../../sass/app/app/_right-side-pane.scss */
 .right-side-pane .close-button {
   width: 100%;
   cursor: pointer;
@@ -5678,7 +5683,7 @@ body {
   height: 20px;
   line-height: 20px;
 }
-/* line 19, ../../sass/app/app/_right-side-pane.scss */
+/* line 24, ../../sass/app/app/_right-side-pane.scss */
 .right-side-pane .right-side-pane-inner {
   position: relative;
   flex: 1 1 auto;
@@ -5686,21 +5691,21 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
 }
-/* line 26, ../../sass/app/app/_right-side-pane.scss */
+/* line 31, ../../sass/app/app/_right-side-pane.scss */
 .right-side-pane .right-side-pane-inner .right-side-pane-plugin {
   margin: 2px 1px;
   border: 1px solid rgba(255, 255, 255, 0.6);
 }
-/* line 30, ../../sass/app/app/_right-side-pane.scss */
+/* line 35, ../../sass/app/app/_right-side-pane.scss */
 .right-side-pane .right-side-pane-inner .right-side-pane-plugin .right-side-pane-plugin-title {
   background-color: #3BCC33;
   text-align: center;
 }
-/* line 34, ../../sass/app/app/_right-side-pane.scss */
+/* line 39, ../../sass/app/app/_right-side-pane.scss */
 .right-side-pane .right-side-pane-inner .right-side-pane-plugin .right-side-pane-plugin-content {
   position: relative;
 }
-/* line 36, ../../sass/app/app/_right-side-pane.scss */
+/* line 41, ../../sass/app/app/_right-side-pane.scss */
 .right-side-pane .right-side-pane-inner .right-side-pane-plugin .right-side-pane-plugin-content input {
   width: 100%;
 }
