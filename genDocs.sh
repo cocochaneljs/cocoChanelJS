@@ -1,1 +1,1 @@
-node ./node_modules/jsdoc/jsdoc ./app -r -d ./docs
+node ./node_modules/jsdoc/jsdoc --debug -c ./confDocs.json

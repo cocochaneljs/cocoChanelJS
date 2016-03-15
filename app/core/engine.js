@@ -1,8 +1,8 @@
 ( function() {
-
 /**
  * @class
- * @author Andrei Bazavan
+ * @constructor
+ * @function CocoChanelJS
  * @description This is the core class of CocoChanelJS, this drives the core functionalities of the whole app.
  * @returns {undefined}
  */
@@ -47,10 +47,11 @@ function CocoChanelJS() {
     this.liveData = {};
 }
 
-CocoChanelJS.prototype.test = function (first_argument) {
-    console.log([first_argument,this]);
-};
-
+/**
+ * @function initializeElements
+ * @description Generates CocoChanelJS DOM and it's translation.
+ * @returns {undefined}
+ */
 CocoChanelJS.prototype.initializeElements = function() {
     this.main_body_element = document.createElement('div');
     this.main_body_element.className = "flex column fullSpace";
@@ -100,13 +101,22 @@ CocoChanelJS.prototype.initializeElements = function() {
     document.body.appendChild(this.main_body_element);
 };
 
+/**
+ * @function initializeTranslation
+ * @description Generates translation for CocoChanelJS DOM.
+ * @returns {undefined}
+ */
 CocoChanelJS.prototype.initializeTranslation = function() {
     this.main_elementSelector.setAttribute('title', this.translateKey('outliner-description'));
     this.main_elementAttributes.setAttribute('title', this.translateKey('attributes-description'));
     this.main_fastOptions.setAttribute('title', this.translateKey('fast-pane-description'));
 };
 
-
+/**
+ * @function initialize
+ * @description Prepares all event listeners, popup, right side pane, implements document.
+ * @returns {undefined}
+ */
 CocoChanelJS.prototype.initialize = function() {
     // origin lie
     document.origin = 'https://github.com/rokyed/cocoChanelJS.git';
@@ -121,7 +131,11 @@ CocoChanelJS.prototype.initialize = function() {
     this.refreshData();
 };
 
-
+/**
+ * @function initializePreviewListeners
+ * @description Generates listeners for the <webview> preview pane.
+ * @returns {undefined}
+ */
 CocoChanelJS.prototype.initializePreviewListeners = function() {
     var me = this;
     EventListenerWrapper.addEventListener(this.main_preview, 'dom-ready', function() {
@@ -130,10 +144,23 @@ CocoChanelJS.prototype.initializePreviewListeners = function() {
     });
 };
 
+/**
+ * @function clearSelection
+ * @description Clears (blurs) current selection from working document.
+ * @returns {undefined}
+ */
 CocoChanelJS.prototype.clearSelection = function() {
     this.currentSelectedElement = null;
     this.currentSelectedElementNode =null;
 };
+
+/**
+ * @function onPreviewElementClicked
+ * @description When clicking on preview this method gets called.
+ * @param {Array} e - Contains 'data-selector' and 'data-type' attributes of the element selected in preview.
+ * @param {Boolean} showRightSidePane - If true will show the right side pane else it hides it.
+ * @returns {undefined}
+ */
 CocoChanelJS.prototype.onPreviewElementClicked = function(e, showRightSidePane) {
     this.setCurrentSelectedElement(e[2],e[1]);
 
@@ -147,6 +174,12 @@ CocoChanelJS.prototype.onPreviewElementClicked = function(e, showRightSidePane) 
         this.hideRightSidePane();
 };
 
+/**
+ * @function onElementSelected
+ * @description When element is clicked in the outliner.
+ * @param {Event} e - Contains the element selected in the outliner (right top of the window).
+ * @returns {undefined}
+ */
 CocoChanelJS.prototype.onElementSelected = function(e) {
     var eTarget = e.getTarget('.element-selection-button', 10),
         collapseTarget = e.getTarget('.collapse-element'),
@@ -185,6 +218,11 @@ CocoChanelJS.prototype.onElementSelected = function(e) {
         this.hideRightSidePane();
 };
 
+/**
+ * @function onElementAttributesChanged
+ * @description When changing the elements on the attribute on the (right middle of the window), this applies the changes.
+ * @returns {undefined}
+ */
 CocoChanelJS.prototype.onElementAttributesChanged = function() {
     if (! this.currentSelectedElementNode)
         return;
@@ -198,6 +236,14 @@ CocoChanelJS.prototype.onElementAttributesChanged = function() {
     this.softRefreshData();
 };
 
+/**
+ * @function collapseSpecificElement
+ * @description This collapses or expands elements.
+ * @param {String} dataSelector - the unique ID of that element.
+ * @param {String} dataType - the type of that element.
+ * @param {Boolean} collapse - if true it sets the element to collapsed.
+ * @returns {undefined}
+ */
 CocoChanelJS.prototype.collapseSpecificElement = function(dataSelector, dataType, collapse) {
     var element = this.getSpecificElement(dataSelector, dataType);;
 
@@ -210,6 +256,14 @@ CocoChanelJS.prototype.collapseSpecificElement = function(dataSelector, dataType
     }
 };
 
+/**
+ * @function setCurrentSelectedElement
+ * @description This sets currentSelectedElement and currentSelectedElementNode(DOMElement).
+ * @param {String} dataSelector - the unique ID of that element.
+ * @param {String} dataType - the type of that element.
+ * @param {String} id - the id attribute of that element.
+ * @returns {undefined}
+ */
 CocoChanelJS.prototype.setCurrentSelectedElement = function(dataSelector, dataType, id) {
     this.currentSelectedElement = {
         dataSelector: dataSelector,
@@ -220,6 +274,13 @@ CocoChanelJS.prototype.setCurrentSelectedElement = function(dataSelector, dataTy
     this.currentSelectedElementNode = this.getSpecificElement(dataSelector, dataType);
 };
 
+/**
+ * @function getSpecificElement
+ * @description Will retrieve the element coresponding to parameters.
+ * @param {String} dataSelector - the unique ID of that element.
+ * @param {String} dataType - the type of that element.
+ * @returns {DOMElement}
+ */
 CocoChanelJS.prototype.getSpecificElement = function (dataSelector, dataType) {
     if (dataSelector) {
         console.log('grabbed with dataSelector:', dataSelector);
@@ -232,13 +293,26 @@ CocoChanelJS.prototype.getSpecificElement = function (dataSelector, dataType) {
     return this.selectSpecificElement(false, dataType);
 };
 
-CocoChanelJS.prototype.selectSpecificElement = function(attrib, selector) {
-    if (attrib)
-        return this.root_document.querySelector('[' + this.uniqueIdAttribute + '="' + attrib + '"]');
+/**
+ * @function getSpecificElement
+ * @description Will select from the document the element coresponding to parameters.
+ * @param {String} dataSelector - the unique ID of that element.
+ * @param {String} dataType - the type of that element.
+ * @returns {DOMElement}
+ */
+CocoChanelJS.prototype.selectSpecificElement = function(dataSelector, dataType) {
+    if (dataSelector)
+        return this.root_document.querySelector('[' + this.uniqueIdAttribute + '="' + dataSelector + '"]');
 
-    return this.root_document.querySelector(selector);
+    return this.root_document.querySelector(dataType);
 };
 
+/**
+ * @function implementDocument
+ * @description Will generate the working document.
+ * @param {Boolean} skipDocumentCreation - Skips the creation of the document (used when loading from file, because we already have a new document).
+ * @returns {undefined}
+ */
 CocoChanelJS.prototype.implementDocument = function(skipDocumentCreation) {
     if (!skipDocumentCreation)
         this.root_document = document.implementation.createHTMLDocument();
