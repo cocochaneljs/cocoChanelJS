@@ -1,4 +1,32 @@
-( function() {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: engine.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: engine.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>( function() {
 
 /**
  * @class
@@ -55,36 +83,36 @@ CocoChanelJS.prototype.initializeElements = function() {
     this.main_body_element = document.createElement('div');
     this.main_body_element.className = "flex column fullSpace";
     this.main_body_element.innerHTML = [
-        '<div class="mainPane flex column flex-one">',
-            '<div class="optionsPane flex row">',
-            '</div>',
-            '<div class="bodyPane flex row flex-one">',
-                '<div class="propertiesPane fastPane flex column">',
-                '</div>',
-                '<div class="previewPane flex-one flex column">',
-                    '<webview class="main_scenePreview flex-one" disablewebsecurity nodeintegration></webview>',
-                '</div>',
-                '<div class="propertiesPane flex column">',
-                    '<div class="main_sceneSelector flex-one flex column">',
-                    '</div>',
-                    '<div class="main_attributesSection flex-one flex column">',
-                    '</div>',
-                    '<div class="main_extrasSection flex-one flex row">',
-                        '<div class="main_loading_state">',
-                            '<div id="loading-marker-animation-state">',
-                                '<div>',
-                                    '<div>',
-                                        '<div>',
-                                        '</div>',
-                                    '</div>',
-                                '</div>',
-                            '</div>',
-                        '</div>',
-                        '<div class="console-outcast"></div>',
-                    '</div>',
-                '</div>',
-            '</div>',
-        '</div>'
+        '&lt;div class="mainPane flex column flex-one">',
+            '&lt;div class="optionsPane flex row">',
+            '&lt;/div>',
+            '&lt;div class="bodyPane flex row flex-one">',
+                '&lt;div class="propertiesPane fastPane flex column">',
+                '&lt;/div>',
+                '&lt;div class="previewPane flex-one flex column">',
+                    '&lt;webview class="main_scenePreview flex-one" disablewebsecurity nodeintegration>&lt;/webview>',
+                '&lt;/div>',
+                '&lt;div class="propertiesPane flex column">',
+                    '&lt;div class="main_sceneSelector flex-one flex column">',
+                    '&lt;/div>',
+                    '&lt;div class="main_attributesSection flex-one flex column">',
+                    '&lt;/div>',
+                    '&lt;div class="main_extrasSection flex-one flex row">',
+                        '&lt;div class="main_loading_state">',
+                            '&lt;div id="loading-marker-animation-state">',
+                                '&lt;div>',
+                                    '&lt;div>',
+                                        '&lt;div>',
+                                        '&lt;/div>',
+                                    '&lt;/div>',
+                                '&lt;/div>',
+                            '&lt;/div>',
+                        '&lt;/div>',
+                        '&lt;div class="console-outcast">&lt;/div>',
+                    '&lt;/div>',
+                '&lt;/div>',
+            '&lt;/div>',
+        '&lt;/div>'
     ].join('');
 
     this.main_previewPane = this.main_body_element.querySelector('.previewPane');
@@ -189,7 +217,7 @@ CocoChanelJS.prototype.onElementAttributesChanged = function() {
     if (! this.currentSelectedElementNode)
         return;
 
-    for (var i = 0, ln = this.main_elementAttributes.children.length; i < ln; i++) {
+    for (var i = 0, ln = this.main_elementAttributes.children.length; i &lt; ln; i++) {
         var inputElm = this.main_elementAttributes.children[i].querySelector('input');
 
         this.currentSelectedElementNode.setAttribute(inputElm.getAttribute('data-attribute-data'),inputElm.value);
@@ -303,10 +331,10 @@ CocoChanelJS.prototype.reccursiveTreeExplore = function(element, depth) {
         isUntoucheable: element.getAttribute ? (element.getAttribute(this.untoucheableNodes) ? true: false) : false
     }];
 
-    if (element.children.length == 0 || element.getAttribute && element.getAttribute(this.keywords.collapsed))
+    if (element.children.length == 0 || element.getAttribute &amp;&amp; element.getAttribute(this.keywords.collapsed))
         return arr;
 
-    for (var i = 0,ln = element.children.length; i< ln;i++)
+    for (var i = 0,ln = element.children.length; i&lt; ln;i++)
         arr.push(this.reccursiveTreeExplore(element.children[i], depth + 1));
 
     return arr;
@@ -318,7 +346,7 @@ CocoChanelJS.prototype.getAllElementsAsList = function(elements) {
 
     //@TODO to be refactored with a template for greater flexibility
 
-    for (var i = 0, ln = elements.length; i<ln;i++) {
+    for (var i = 0, ln = elements.length; i&lt;ln;i++) {
         str+= CCJS_ELEMENT_LIST_STRUCTURE({
             extraDATA: 'data-button',
             id: elements[i].nodeID,
@@ -338,7 +366,7 @@ CocoChanelJS.prototype.getAllElementsAsList = function(elements) {
 };
 
 CocoChanelJS.prototype.highlightSelectedElement = function() {
-    if (this.currentSelectedElement && (this.currentSelectedElement.dataSelector || this.currentSelectedElement.dataType)) {
+    if (this.currentSelectedElement &amp;&amp; (this.currentSelectedElement.dataSelector || this.currentSelectedElement.dataType)) {
         var element = this.main_elementSelector.querySelector([
             '[data-selector="',
             this.currentSelectedElement.dataSelector,
@@ -358,17 +386,17 @@ CocoChanelJS.prototype.listAllAttributes = function() {
 
 
     if (this.currentSelectedElementNode) {
-        for (var i = 0, ln = this.currentSelectedElementNode.attributes.length; i < ln; i++) {
-            attributes +=['<div><label title="',this.translateKey('edit-attribute') ,'">',
+        for (var i = 0, ln = this.currentSelectedElementNode.attributes.length; i &lt; ln; i++) {
+            attributes +=['&lt;div>&lt;label title="',this.translateKey('edit-attribute') ,'">',
                 this.currentSelectedElementNode.attributes[i].name,
-            ':</label><input data-attribute-data="',
+            ':&lt;/label>&lt;input data-attribute-data="',
             this.currentSelectedElementNode.attributes[i].name,
             '" type="text" value="',
                 this.currentSelectedElementNode.attributes[i].value,
-            '"></div>'].join('');
+            '">&lt;/div>'].join('');
         }
     }else {
-        attributes = "<div class='alert'>" + this.translateKey('nothing_selected') + "</div>";
+        attributes = "&lt;div class='alert'>" + this.translateKey('nothing_selected') + "&lt;/div>";
     }
 
     this.main_elementAttributes.innerHTML = attributes;
@@ -558,11 +586,11 @@ CocoChanelJS.prototype.toggleButtons = function() {
     var elements = document.querySelectorAll('[data-plugin-requires-selection="true"]');
 
     if (this.currentSelectedElementNode) {
-        for (var i = 0, ln = elements.length;i<ln;i++) {
+        for (var i = 0, ln = elements.length;i&lt;ln;i++) {
             elements[i].classList.remove('plugin-disabled');
         }
     }else {
-        for (var i = 0, ln = elements.length;i<ln;i++) {
+        for (var i = 0, ln = elements.length;i&lt;ln;i++) {
             elements[i].classList.add('plugin-disabled');
         }
     }
@@ -631,7 +659,7 @@ CocoChanelJS.prototype.indexAllItems = function() {
 
     var elements = this.root_document.querySelectorAll('*');
 
-    for (var i = 0, ln = elements.length; i<ln;i++) {
+    for (var i = 0, ln = elements.length; i&lt;ln;i++) {
         if (this.nonRemovableNodes.indexOf(elements[i].nodeName) === -1) {
             if (!elements[i].getAttribute(this.uniqueIdAttribute)) {
                 elements[i].setAttribute(this.uniqueIdAttribute, this.generateUniqueId());
@@ -701,7 +729,7 @@ CocoChanelJS.prototype.initializeEventListeners = function() {
 CocoChanelJS.prototype.drawSelectedElementHilighter = function() {
     var oldElements = this.root_document.querySelectorAll('['+this.hilighter.selectedElementAttribute+']');
 
-    for(var i = 0; i< oldElements.length;i++) {
+    for(var i = 0; i&lt; oldElements.length;i++) {
         oldElements[i].removeAttribute(this.hilighter.selectedElementAttribute);
     }
 
@@ -733,9 +761,9 @@ CocoChanelJS.prototype.initalizeRightSidePane = function() {
     rsp.classList.add('right-side-pane');
     rsp.classList.add('pane-hidden');
     rsp.innerHTML = [
-        '<div class="close-button">', this.translateKey('right-side-pane-close-button'), '</div>',
-        '<div class="right-side-pane-inner flex column">',
-        '</div>'
+        '&lt;div class="close-button">', this.translateKey('right-side-pane-close-button'), '&lt;/div>',
+        '&lt;div class="right-side-pane-inner flex column">',
+        '&lt;/div>'
     ].join('');
 
     this.main_rightSidePane = rsp;
@@ -761,7 +789,7 @@ CocoChanelJS.prototype.showRightSidePane = function () {
     var eType = this.currentSelectedElementNode.tagName,
         html = [];
 
-    for (var i = 0, ln = this.rightSidePaneModules.length; i < ln; i++)
+    for (var i = 0, ln = this.rightSidePaneModules.length; i &lt; ln; i++)
         html.push(this.generateRightSidePaneModuleDom(i, eType));
 
     this.main_rightSidePane.querySelector('.right-side-pane-inner').innerHTML = html.join('');
@@ -774,14 +802,14 @@ CocoChanelJS.prototype.generateRightSidePaneModuleDom = function(index, elementT
     var module = this.rightSidePaneModules[index],
         html;
 
-    if (module.elementTypes.indexOf('ALL') < 0 && module.elementTypes.indexOf(elementType)  < 0)
+    if (module.elementTypes.indexOf('ALL') &lt; 0 &amp;&amp; module.elementTypes.indexOf(elementType)  &lt; 0)
         return '';
 
     html = [
-        '<div class="right-side-pane-module" data-rst-module="', index, '">',
-            '<div class="right-side-pane-module-title">', module.title, '</div>',
-            '<div class="right-side-pane-module-content flex column">', module.template.join(''), '</div>',
-        '</div>'
+        '&lt;div class="right-side-pane-module" data-rst-module="', index, '">',
+            '&lt;div class="right-side-pane-module-title">', module.title, '&lt;/div>',
+            '&lt;div class="right-side-pane-module-content flex column">', module.template.join(''), '&lt;/div>',
+        '&lt;/div>'
     ].join('');
 
     return html;
@@ -803,7 +831,7 @@ CocoChanelJS.prototype.onRightSidePaneChange = function(e) {
 CocoChanelJS.prototype.onRightSidePaneApplyModule = function(e) {
     var modulesDom = this.main_rightSidePane.querySelectorAll('[data-rst-module]');
 
-    for (var i = 0, ln = modulesDom.length; i < ln; i++)
+    for (var i = 0, ln = modulesDom.length; i &lt; ln; i++)
         this.rightSidePaneModules[modulesDom[i].getAttribute('data-rst-module')].action.apply(this, [modulesDom[i], e]);
 
     this.softRefreshData();
@@ -811,7 +839,7 @@ CocoChanelJS.prototype.onRightSidePaneApplyModule = function(e) {
 CocoChanelJS.prototype.onRightSidePaneModulesInit = function() {
     var modulesDom = this.main_rightSidePane.querySelectorAll('[data-rst-module]');
 
-    for (var i = 0, ln = modulesDom.length; i < ln; i++)
+    for (var i = 0, ln = modulesDom.length; i &lt; ln; i++)
         this.rightSidePaneModules[modulesDom[i].getAttribute('data-rst-module')].init.apply(this, [modulesDom[i]]);
 };
 
@@ -825,3 +853,26 @@ CocoChanelJS.prototype.translateKey = function(key) {
 
 module.exports = CocoChanelJS;
 })();
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Mon Mar 14 2016 23:31:35 GMT-0400 (EDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
