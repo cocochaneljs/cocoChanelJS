@@ -1,8 +1,6 @@
 ( function() {
 /**
- * @class
- * @constructor
- * @function CocoChanelJS
+ * @class CocoChanelJS
  * @description This is the core class of CocoChanelJS, this drives the core functionalities of the whole app.
  * @returns {undefined}
  */
@@ -48,6 +46,7 @@ function CocoChanelJS() {
 }
 
 /**
+ * @memberof CocoChanelJS
  * @function initializeElements
  * @description Generates CocoChanelJS DOM and it's translation.
  * @returns {undefined}
@@ -102,6 +101,7 @@ CocoChanelJS.prototype.initializeElements = function() {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function initializeTranslation
  * @description Generates translation for CocoChanelJS DOM.
  * @returns {undefined}
@@ -113,6 +113,7 @@ CocoChanelJS.prototype.initializeTranslation = function() {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function initialize
  * @description Prepares all event listeners, popup, right side pane, implements document.
  * @returns {undefined}
@@ -131,6 +132,7 @@ CocoChanelJS.prototype.initialize = function() {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function initializePreviewListeners
  * @description Generates listeners for the <webview> preview pane.
  * @returns {undefined}
@@ -144,6 +146,7 @@ CocoChanelJS.prototype.initializePreviewListeners = function() {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function clearSelection
  * @description Clears (blurs) current selection from working document.
  * @returns {undefined}
@@ -154,6 +157,7 @@ CocoChanelJS.prototype.clearSelection = function() {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function onPreviewElementClicked
  * @description When clicking on preview this method gets called.
  * @param {Array} e - Contains 'data-selector' and 'data-type' attributes of the element selected in preview.
@@ -174,6 +178,7 @@ CocoChanelJS.prototype.onPreviewElementClicked = function(e, showRightSidePane) 
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function onElementSelected
  * @description When element is clicked in the outliner.
  * @param {Event} e - Contains the element selected in the outliner (right top of the window).
@@ -218,6 +223,7 @@ CocoChanelJS.prototype.onElementSelected = function(e) {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function onElementAttributesChanged
  * @description When changing the elements on the attribute on the (right middle of the window), this applies the changes.
  * @returns {undefined}
@@ -236,6 +242,7 @@ CocoChanelJS.prototype.onElementAttributesChanged = function() {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function collapseSpecificElement
  * @description This collapses or expands elements.
  * @param {String} dataSelector - the unique ID of that element.
@@ -256,6 +263,7 @@ CocoChanelJS.prototype.collapseSpecificElement = function(dataSelector, dataType
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function setCurrentSelectedElement
  * @description This sets currentSelectedElement and currentSelectedElementNode(DOMElement).
  * @param {String} dataSelector - the unique ID of that element.
@@ -274,6 +282,7 @@ CocoChanelJS.prototype.setCurrentSelectedElement = function(dataSelector, dataTy
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function getSpecificElement
  * @description Will retrieve the element coresponding to parameters.
  * @param {String} dataSelector - the unique ID of that element.
@@ -293,6 +302,7 @@ CocoChanelJS.prototype.getSpecificElement = function (dataSelector, dataType) {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function getSpecificElement
  * @description Will select from the document the element coresponding to parameters.
  * @param {String} dataSelector - the unique ID of that element.
@@ -307,6 +317,7 @@ CocoChanelJS.prototype.selectSpecificElement = function(dataSelector, dataType) 
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function implementDocument
  * @description Will generate the working document.
  * @param {Boolean} skipDocumentCreation - Skips the creation of the document (used when loading from file, because we already have a new document).
@@ -348,6 +359,7 @@ CocoChanelJS.prototype.implementDocument = function(skipDocumentCreation) {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function listAllElements
  * @description Will list all the elements in the element selector (outliner).
  * @returns {undefined}
@@ -357,6 +369,7 @@ CocoChanelJS.prototype.listAllElements = function() {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function getAllElements
  * @description Gathers all the elements from the working document.
  * @returns {Array}
@@ -368,6 +381,7 @@ CocoChanelJS.prototype.getAllElements = function() {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function propagateRemoveAttribute
  * @description Recursively removing attributes from all the elements bubbling.
  * @param {DOMElement} element - The element we start at.
@@ -383,6 +397,7 @@ CocoChanelJS.prototype.propagateRemoveAttribute = function(element, attribute) {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function reccursiveTreeExplore
  * @description Gathers all the elements from the working document from the starting element.
  * @param {DOMElement} element - Element we start exploring.
@@ -410,6 +425,7 @@ CocoChanelJS.prototype.reccursiveTreeExplore = function(element, depth) {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function getAllElementsAsList
  * @description Generates the innerHTML from the parameters.
  * @param {Object[]} elements - Element we start exploring.
@@ -441,6 +457,7 @@ CocoChanelJS.prototype.getAllElementsAsList = function(elements) {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function hilightSelectedElement
  * @description Will hilight the selected element in the element selector (outliner).
  * @returns {undefined}
@@ -462,6 +479,7 @@ CocoChanelJS.prototype.hilightSelectedElement = function() {
 }
 
 /**
+ * @memberof CocoChanelJS
  * @function listAllElements
  * @description Will list all the attributes in the attributes panel.
  * @returns {undefined}
@@ -488,6 +506,7 @@ CocoChanelJS.prototype.listAllAttributes = function() {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function addElement
  * @description Will add an element of the type set in the parameter and will append it to the currentSelectedElementNode.
  * @param {String} type - The kind of element you want to add.
@@ -509,6 +528,7 @@ CocoChanelJS.prototype.addElement = function(type) {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function removeElement
  * @description Deletes the currentSelectedElementNode from the document.
  * @returns {undefined}
@@ -525,6 +545,7 @@ CocoChanelJS.prototype.removeElement = function() {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function addElement
  * @description Creates plugin that gives access to the core in order to add new functionalities (very modular).
  * @param {Object} config - The whole plugin config.
@@ -584,6 +605,7 @@ CocoChanelJS.prototype.addPlugin = function(config) {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function addCategory
  * @description Adds category or finds category by categoryName.
  * @param {String} categoryName.
@@ -623,6 +645,7 @@ CocoChanelJS.prototype.addCategory = function(categoryName) {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function addToCategory
  * @description Adds plugin to category.
  * @param {DOMElement} element - plugin's element.
@@ -636,6 +659,7 @@ CocoChanelJS.prototype.addToCategory = function(element, categoryName) {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function addToCategory
  * @description Adds plugin to category.
  * @param {DOMElement} element - plugin's element.
@@ -657,6 +681,7 @@ CocoChanelJS.prototype.showPreview = function() {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function generateUniqueId
  * @description Generates an unique id based on the timestamp, in order to not duplicate it,
  *  it also counts all the elments containing the prefix from the timestamp.
@@ -673,6 +698,7 @@ CocoChanelJS.prototype.generateUniqueId = function() {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function refreshData
  * @description It's a hard refresh , one that also removes selection and hides right side pane
  * @returns {undefined}
@@ -685,6 +711,7 @@ CocoChanelJS.prototype.refreshData = function() {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function softRefreshData
  * @description Updates preview and document without removing selection and hiding right side pane
  * @returns {undefined}
@@ -700,6 +727,7 @@ CocoChanelJS.prototype.softRefreshData =function() {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function toggleButtons
  * @description Toggles on slection, if the plugin requires selection.
  * @returns {undefined}
@@ -719,6 +747,7 @@ CocoChanelJS.prototype.toggleButtons = function() {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function initializePopupElement
  * @description Executed upon initalization creates popup which will be used during runtime
  * @returns {undefined}
@@ -744,6 +773,7 @@ CocoChanelJS.prototype.initializePopupElement = function() {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function showPopupElement
  * @description Executed by plugins, helps performing actions on the specific plugin
  * it already has events in order to listen for clicks
@@ -765,6 +795,7 @@ CocoChanelJS.prototype.showPopupElement = function(data, callback, scope, person
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function onPopupElementTap
  * @description Self explanatory, hides popup.
  * @param {DOMEvent} e - Click event.
@@ -776,6 +807,7 @@ CocoChanelJS.prototype.onPopupElementTap = function(e) {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function indexAllItems
  * @description Adds unique id to all elements from the document (skips nonRemovableNodes)
  * @returns {undefined}
@@ -800,6 +832,7 @@ CocoChanelJS.prototype.indexAllItems = function() {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function initializeEventListeners
  * @description Adds event listeners used by the CocoChanelJS
  * @returns {undefined}
@@ -857,6 +890,7 @@ CocoChanelJS.prototype.initializeEventListeners = function() {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function drawSelectedElementHilighter
  * @description Adds hilighter attribute on the currently selected element in the working document.
  * @returns {undefined}
@@ -873,6 +907,7 @@ CocoChanelJS.prototype.drawSelectedElementHilighter = function() {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function storeEditorDataInDocument
  * @description Stores editor data in document as a json.
  * @returns {undefined}
@@ -882,6 +917,7 @@ CocoChanelJS.prototype.storeEditorDataInDocument = function() {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function loadEditorDataFromDocument
  * @description Loads editor data from document's json script.
  * @returns {undefined}
@@ -892,6 +928,7 @@ CocoChanelJS.prototype.loadEditorDataFromDocument = function() {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function getLoaderElement
  * @description Gets the loader element of CocoChanelJS.
  * @returns {DOMElement}
@@ -901,6 +938,7 @@ CocoChanelJS.prototype.getLoaderElement = function () {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function setConsoleOutcast
  * @description Sets the innerHTML of the console outcast element to the message.
  * @param {String} message
@@ -911,6 +949,7 @@ CocoChanelJS.prototype.setConsoleOutcast = function(message) {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function initializeRightSidePane
  * @description Generates the right side pane element.
  * @returns {undefined}
@@ -944,6 +983,7 @@ CocoChanelJS.prototype.initializeRightSidePane = function() {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function showRightSidePane
  * @description Shows the right side pane and initializes all the modules that are for the current selected element.
  * @returns {undefined}
@@ -965,6 +1005,7 @@ CocoChanelJS.prototype.showRightSidePane = function() {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function generateRightSidePaneModuleDom
  * @description generates the dom for every single module that's good for currentSelectedElementNode.
  * @param {Number} index
@@ -989,6 +1030,7 @@ CocoChanelJS.prototype.generateRightSidePaneModuleDom = function(index, elementT
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function hideRightSidePane
  * @description Hides the right side pane and unloads all the modules from it.
  * @returns {undefined}
@@ -999,6 +1041,7 @@ CocoChanelJS.prototype.hideRightSidePane = function () {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function onRightSidePaneTap
  * @description When click was made on right side pane.
  * @param {DOMEvent} e
@@ -1009,6 +1052,7 @@ CocoChanelJS.prototype.onRightSidePaneTap = function(e) {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function onRightSidePaneChange
  * @description When input field was changed on module in right side pane.
  * @param {DOMEvent} e
@@ -1019,6 +1063,7 @@ CocoChanelJS.prototype.onRightSidePaneChange = function(e) {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function onRightSidePaneApplyModule
  * @description Gathers all the current modules and applies them one by one.
  * @returns {undefined}
@@ -1032,6 +1077,7 @@ CocoChanelJS.prototype.onRightSidePaneApplyModule = function(e) {
     this.softRefreshData();
 };
 /**
+ * @memberof CocoChanelJS
  * @function onRightSidePaneModulesInit
  * @description Initializes all the selected modules for the currentSelectedElementNode.
  * @returns {undefined}
@@ -1044,6 +1090,7 @@ CocoChanelJS.prototype.onRightSidePaneModulesInit = function() {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function addRightSidePaneModule
  * @description Hides the right side pane and unloads all the modules from it.
  * @returns {undefined}
@@ -1053,6 +1100,7 @@ CocoChanelJS.prototype.addRightSidePaneModule = function(config) {
 };
 
 /**
+ * @memberof CocoChanelJS
  * @function translateKey
  * @description Tries to translate the key or will just return the key.
  * @returns {String}
